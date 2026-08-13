@@ -1,0 +1,83 @@
+/* ==========================================================================
+   FilmFlicks - My Watchlist Page Styling
+   File: css/mywatchlist.css
+   ========================================================================== */
+
+/* Header Section */
+.watchlist-header {
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.15) 0%, rgba(15, 23, 42, 0) 100%);
+  padding: 40px 0 20px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+/* Glass Filter Tabs */
+.watchlist-filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.watchlist-filter-btn:hover,
+.watchlist-filter-btn.active {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+/* Watchlist Item Card Enhancements */
+.watchlist-card {
+  position: relative;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.watchlist-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent-purple);
+}
+
+.remove-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(15, 23, 42, 0.8);
+  color: #ff4d4d;
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #ff4d4d;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Empty Watchlist State */
+.empty-watchlist {
+  background: var(--bg-glass);
+  border: 1px dashed var(--border-glass);
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+}

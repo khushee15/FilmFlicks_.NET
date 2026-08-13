@@ -1,0 +1,122 @@
+/* ==========================================================================
+   FilmFlicks - Movie Details & Player Page Styling
+   File: css/movie-details.css
+   ========================================================================== */
+
+/* Hero Banner Layout with Backdrop Blur */
+.movie-details-hero {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.98) 100%),
+              url('https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1600') center/cover no-repeat;
+  border: 1px solid var(--border-glass);
+}
+
+.poster-box {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border-glass);
+  transition: transform 0.3s ease;
+}
+
+.poster-box:hover {
+  transform: scale(1.02);
+}
+
+.poster-img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+}
+
+/* Metadata & Badges Styling */
+.meta-tag {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Video Player Container */
+.player-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background: #000;
+}
+
+/* Screenshots Gallery Grid */
+.screenshot-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-glass);
+  aspect-ratio: 16/9;
+}
+
+.screenshot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.screenshot-item:hover .screenshot-img {
+  transform: scale(1.08);
+}
+
+/* Download Server Table Styling */
+.download-table-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-glass);
+}
+
+.download-table {
+  margin-bottom: 0;
+  color: var(--text-main);
+}
+
+.download-table thead {
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.download-table th {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.download-table td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-glass);
+  background: var(--bg-glass);
+}
+
+/* Review Avatar & Card */
+.review-card {
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.review-card:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}

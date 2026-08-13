@@ -1,0 +1,179 @@
+/* ==========================================================================
+   FilmFlicks - Admin Movie Requests Moderation Styling
+   File: css/admin-requests.css
+   ========================================================================== */
+
+/* Page Wrapper & Layout */
+.admin-wrapper {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  display: flex;
+}
+
+/* Sidebar Styling */
+.admin-sidebar {
+  width: 260px;
+  background: rgba(15, 23, 42, 0.95);
+  border-right: 1px solid var(--border-glass);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-glass);
+  margin-bottom: 20px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar-menu li {
+  margin-bottom: 8px;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background: rgba(225, 29, 72, 0.15);
+  color: var(--text-main);
+  border-left: 4px solid var(--accent-crimson);
+}
+
+/* Main Content Area */
+.admin-main-content {
+  margin-left: 260px;
+  flex-grow: 1;
+  padding: 30px;
+  background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.08), transparent 40%),
+              var(--bg-main);
+}
+
+/* Glass Card Container */
+.admin-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* User Avatar Initials */
+.user-avatar-sm {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(225, 29, 72, 0.2);
+  color: var(--accent-crimson);
+  border: 1px solid rgba(225, 29, 72, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Table Styling */
+.table-dark-custom {
+  background: transparent !important;
+  color: var(--text-main) !important;
+  vertical-align: middle;
+}
+
+.table-dark-custom th {
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-glass);
+  padding: 14px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.table-dark-custom td {
+  background: transparent !important;
+  color: var(--text-main) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 14px;
+  font-size: 0.9rem;
+}
+
+/* Status Dropdown Custom Styling */
+.status-select-dropdown {
+  background-color: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25 ease;
+}
+
+/* Status Specific Colors */
+.status-pending {
+  color: #f59e0b !important; /* Warning Yellow */
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+.status-approved {
+  color: #3b82f6 !important; /* Info Blue */
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+.status-uploaded {
+  color: #10b981 !important; /* Success Green */
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Responsive adjustment */
+@media (max-width: 992px) {
+  .admin-sidebar {
+    width: 70px;
+    padding: 15px 10px;
+  }
+  .sidebar-brand span, .sidebar-menu span {
+    display: none;
+  }
+  .admin-main-content {
+    margin-left: 70px;
+    padding: 20px 15px;
+  }
+}

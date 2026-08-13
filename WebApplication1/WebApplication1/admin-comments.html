@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comments Moderation - FilmFlicks Admin</title>
+  
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Custom CSS Files -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin-comments.css">
+</head>
+<body class="bg-dark">
+
+  <!-- ==========================================================================
+       COMMENTS MODERATION CONTAINER (#admin-comments)
+       ========================================================================== -->
+  <div id="admin-comments" class="admin-wrapper">
+
+    <!-- SIDEBAR -->
+    <nav class="admin-sidebar">
+      <a href="admin-dashboard.html" class="sidebar-brand">
+        <i class="bi bi-film"></i>
+        <span>FilmFlicks</span>
+      </a>
+
+      <ul class="sidebar-menu">
+         <li><a href="admin-dashboard.html" class="active"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a></li>
+        <li><a href="admin-movies.html"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
+        <li><a href="admin-categories.html"><i class="bi bi-send-fill"></i> <span>Categories</span></a></li>
+        <li><a href="admin-users.html"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
+        <li><a href="admin-comments.html" class="active"><i class="bi bi-graph-up-arrow"></i> <span>Comments</span></a></li>
+        <li><a href="admin-settings.html"><i class="bi bi-gear-fill"></i> <span>Settings</span></a></li>
+      </ul>
+
+      <div class="pt-3 border-top border-secondary border-opacity-25">
+        <a href="admin-login.html" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3 hover-bg-danger">
+          <i class="bi bi-box-arrow-left"></i> <span>Logout</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="admin-main-content">
+      
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <div>
+          <h3 class="fw-bold text-white mb-1">User Comments Moderation</h3>
+          <p class="text-white-50 small mb-0">Approve pending comments or delete reported/spam user feedback.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Search comments..." style="width: 220px;">
+        </div>
+      </div>
+
+      <!-- DATA TABLE CARD -->
+      <div class="admin-card">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+          
+          <!-- Filter Tabs -->
+          <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-danger active">All Comments (48)</button>
+            <button type="button" class="btn btn-outline-secondary text-warning">Pending Review (6)</button>
+            <button type="button" class="btn btn-outline-secondary text-success">Approved (42)</button>
+          </div>
+
+          <span class="badge bg-warning-subtle text-warning border border-warning-subtle">6 Require Moderation</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-dark-custom align-middle mb-0">
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th>Movie Title</th>
+                <th>Comment Text</th>
+                <th>Date</th>
+                <th class="text-end">Actions (Approve / Delete)</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <!-- Comment Row 1 (Pending) -->
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="user-avatar-sm">RP</div>
+                    <div>
+                      <div class="fw-bold text-white">Rahul Patel</div>
+                      <span class="badge bg-warning text-dark style-badge" style="font-size: 0.65rem;">Pending</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#" class="movie-title-badge">
+                    <i class="bi bi-play-circle-fill"></i> Dune: Part Two
+                  </a>
+                </td>
+                <td>
+                  <div class="comment-text-box">
+                    "Awesome print quality! The audio sync in the 4K version is super smooth. Thanks FilmFlicks team!"
+                  </div>
+                </td>
+                <td class="text-white-50 small">13 Aug 2026<br><span class="text-muted" style="font-size: 0.75rem;">10:45 AM</span></td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-approve py-1 px-3 me-1" title="Approve Comment">
+                    <i class="bi bi-check-circle-fill me-1"></i> Approve
+                  </button>
+                  <button class="btn btn-sm btn-delete-comment py-1 px-2" title="Delete Comment">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Comment Row 2 (Approved) -->
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="user-avatar-sm" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6; border-color: rgba(59, 130, 246, 0.4);">KS</div>
+                    <div>
+                      <div class="fw-bold text-white">Karan Sharma</div>
+                      <span class="badge bg-success text-white style-badge" style="font-size: 0.65rem;">Approved</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#" class="movie-title-badge">
+                    <i class="bi bi-play-circle-fill"></i> Oppenheimer
+                  </a>
+                </td>
+                <td>
+                  <div class="comment-text-box">
+                    "Mind blowing direction by Christopher Nolan. Background score sound is incredible!"
+                  </div>
+                </td>
+                <td class="text-white-50 small">12 Aug 2026<br><span class="text-muted" style="font-size: 0.75rem;">04:15 PM</span></td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-secondary disabled py-1 px-3 me-1">
+                    <i class="bi bi-check2-all me-1"></i> Approved
+                  </button>
+                  <button class="btn btn-sm btn-delete-comment py-1 px-2" title="Delete Comment">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Comment Row 3 (Pending - Spam/Reported) -->
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="user-avatar-sm" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border-color: rgba(245, 158, 11, 0.4);">AM</div>
+                    <div>
+                      <div class="fw-bold text-white">Amit Mehta</div>
+                      <span class="badge bg-warning text-dark style-badge" style="font-size: 0.65rem;">Pending</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#" class="movie-title-badge">
+                    <i class="bi bi-play-circle-fill"></i> Animal
+                  </a>
+                </td>
+                <td>
+                  <div class="comment-text-box border-danger border-opacity-50">
+                    <span class="text-danger small fw-semibold me-1">[Flagged]</span> "Check out this link for free downloads http://example-spam-link.com"
+                  </div>
+                </td>
+                <td class="text-white-50 small">10 Aug 2026<br><span class="text-muted" style="font-size: 0.75rem;">08:30 PM</span></td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-approve py-1 px-3 me-1" title="Approve Comment">
+                    <i class="bi bi-check-circle-fill me-1"></i> Approve
+                  </button>
+                  <button class="btn btn-sm btn-delete-comment py-1 px-2" title="Delete Spam Comment">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Comment Row 4 (Approved) -->
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="user-avatar-sm" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border-color: rgba(16, 185, 129, 0.4);">VJ</div>
+                    <div>
+                      <div class="fw-bold text-white">Vipul Joshi</div>
+                      <span class="badge bg-success text-white style-badge" style="font-size: 0.65rem;">Approved</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <a href="#" class="movie-title-badge">
+                    <i class="bi bi-play-circle-fill"></i> Stree 2
+                  </a>
+                </td>
+                <td>
+                  <div class="comment-text-box">
+                    "Super funny movie! Perfect comedy timing and great 1080p stream."
+                  </div>
+                </td>
+                <td class="text-white-50 small">08 Aug 2026<br><span class="text-muted" style="font-size: 0.75rem;">01:10 PM</span></td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-secondary disabled py-1 px-3 me-1">
+                    <i class="bi bi-check2-all me-1"></i> Approved
+                  </button>
+                  <button class="btn btn-sm btn-delete-comment py-1 px-2" title="Delete Comment">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+</body>
+</html>

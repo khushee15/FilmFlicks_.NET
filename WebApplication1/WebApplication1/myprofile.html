@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - FilmFlicks</title>
+  
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Custom CSS Files -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/myprofile.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       STICKY NAVBAR
+       ========================================================================== -->
+  <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="index.html" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
+          <li class="nav-item"><a class="nav-link text-white-50" href="index.html">Home</a></li>
+           <li class="nav-item"><a class="nav-link text-white-50" href="about.html">about Us</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.html">Movies</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="webseries.html">Web Series</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.html">Bollywood</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="contact.html">Contact Us</a></li>
+         
+       
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <form class="input-group" style="max-width: 240px;" action="browse.html">
+            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Search movies...">
+            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+          </form>
+
+          <a href="login.html" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+          <a href="register.html" class="btn btn-crimson btn-sm px-3">Register</a>
+
+          <!-- Pure CSS Profile Dropdown -->
+          <div class="profile-dropdown-container">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="rounded-circle border border-primary p-1" width="42" height="42" alt="Profile Avatar">
+            <div class="profile-dropdown-menu">
+              <a href="myprofile.html"><i class="bi bi-person me-2"></i>My Profile</a>
+              <a href="mywatchlist.html"><i class="bi bi-bookmark me-2"></i>My Watchlist</a>
+              <a href="requestmovie.html"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
+              <a href="admin-login.html"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
+              <hr class="dropdown-divider bg-secondary my-1">
+              <a href="login.html" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- ==========================================================================
+       MAIN PROFILE CONTENT
+       ========================================================================== -->
+  <main class="container" style="padding-top: 110px; padding-bottom: 60px;">
+    
+    <div class="row g-4">
+      
+      <!-- Left Column: User Summary Card -->
+      <div class="col-12 col-lg-4">
+        <div class="profile-card text-center mb-4">
+          <div class="profile-avatar-wrapper mb-3">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400" alt="Profile Picture" class="profile-avatar">
+            <button class="avatar-edit-btn" title="Change Avatar"><i class="bi bi-camera-fill"></i></button>
+          </div>
+          <h4 class="fw-bold text-white mb-1">Alex Morgan</h4>
+          <p class="text-white-50 small mb-3">@alex_flicks</p>
+          <span class="badge bg-danger px-3 py-2 rounded-pill mb-4"><i class="bi bi-star-fill me-1"></i>VIP Premium Member</span>
+
+          <!-- Member Stats -->
+          <div class="row g-2 border-top border-bottom border-secondary py-3 my-2 text-center">
+            <div class="col-4">
+              <h5 class="fw-bold text-white mb-0">24</h5>
+              <small class="text-white-50">Downloads</small>
+            </div>
+            <div class="col-4">
+              <h5 class="fw-bold text-white mb-0">12</h5>
+              <small class="text-white-50">Watchlist</small>
+            </div>
+            <div class="col-4">
+              <h5 class="fw-bold text-white mb-0">5</h5>
+              <small class="text-white-50">Requests</small>
+            </div>
+          </div>
+
+          <p class="text-white-50 small mt-3 mb-0"><i class="bi bi-calendar3 me-1"></i>Joined January 2026</p>
+        </div>
+      </div>
+
+      <!-- Right Column: Account Settings & History Tabs -->
+      <div class="col-12 col-lg-8">
+        <div class="profile-card">
+          
+          <!-- Navigation Tabs -->
+          <ul class="nav nav-tabs profile-tabs mb-4" id="profileTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit-pane" type="button" role="tab"><i class="bi bi-person-gear me-2"></i>Edit Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security-pane" type="button" role="tab"><i class="bi bi-shield-lock me-2"></i>Security</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history-pane" type="button" role="tab"><i class="bi bi-download me-2"></i>Recent Downloads</button>
+            </li>
+          </ul>
+
+          <!-- Tab Contents -->
+          <div class="tab-content" id="profileTabContent">
+            
+            <!-- TAB 1: Edit Profile -->
+            <div class="tab-pane fade show active" id="edit-pane" role="tabpanel">
+              <form action="#" method="POST">
+                <div class="row g-3">
+                  <div class="col-12 col-md-6">
+                    <label for="fullName"><i class="bi bi-person me-1"></i>Full Name</label>
+                    <input type="text" class="form-control" id="fullName" value="Alex Morgan" required>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="username"><i class="bi bi-at me-1"></i>Username</label>
+                    <input type="text" class="form-control" id="username" value="alex_flicks" required>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="email"><i class="bi bi-envelope me-1"></i>Email Address</label>
+                    <input type="email" class="form-control" id="email" value="alex.morgan@example.com" required>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="phone"><i class="bi bi-telephone me-1"></i>Phone Number</label>
+                    <input type="text" class="form-control" id="phone" value="+1 (555) 019-2834">
+                  </div>
+
+                  <div class="col-12">
+                    <label for="bio"><i class="bi bi-chat-left-text me-1"></i>About / Bio</label>
+                    <textarea class="form-control" id="bio" rows="3" placeholder="Tell us about your favorite movie genres...">Movie enthusiast | Marvel Fanatic | Sci-Fi Lover</textarea>
+                  </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                  <button type="submit" class="btn btn-crimson px-4 fw-bold"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- TAB 2: Security (Change Password) -->
+            <div class="tab-pane fade" id="security-pane" role="tabpanel">
+              <form action="#" method="POST">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label for="currentPassword"><i class="bi bi-lock me-1"></i>Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password" required>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="newPassword"><i class="bi bi-key me-1"></i>New Password</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="confirmPassword"><i class="bi bi-shield-check me-1"></i>Confirm New Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
+                  </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                  <button type="submit" class="btn btn-crimson px-4 fw-bold"><i class="bi bi-arrow-repeat me-1"></i>Update Password</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- TAB 3: Recent Downloads History -->
+            <div class="tab-pane fade" id="history-pane" role="tabpanel">
+              <div class="d-flex flex-column gap-3">
+                
+                <!-- Item 1 -->
+                <div class="history-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-film fs-3 text-primary"></i>
+                    <div>
+                      <h6 class="fw-bold text-white mb-0">Interstellar (2014)</h6>
+                      <small class="text-white-50">Quality: 1080p FHD | Size: 2.4 GB</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Downloaded Today</span>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="history-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-tv fs-3 text-danger"></i>
+                    <div>
+                      <h6 class="fw-bold text-white mb-0">Stranger Things (S04E01)</h6>
+                      <small class="text-white-50">Quality: 720p HD | Size: 600 MB</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-secondary">Yesterday</span>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="history-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-film fs-3 text-warning"></i>
+                    <div>
+                      <h6 class="fw-bold text-white mb-0">Jawan (2023)</h6>
+                      <small class="text-white-50">Quality: 4K Ultra HD | Size: 4.8 GB</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-secondary">3 days ago</span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="glass-card mt-5 rounded-0 border-start-0 border-end-0 border-bottom-0 py-5">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <a href="index.html" class="fw-bold fs-3 text-decoration-none" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <i class="bi bi-film me-2"></i>FilmFlicks
+          </a>
+          <p class="text-white-50 mt-3 small">FilmFlicks is a premier platform for high-quality movie downloads, dual audio films, and web series. Enjoy fast, secure, and hassle-free movie access in 480p, 720p, 1080p, and 4K Ultra HD.</p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="fw-bold text-white mb-3">Quick Links</h6>
+          <ul class="list-unstyled text-white-50 small">
+            <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+            <li class="mb-2"><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+            <li class="mb-2"><a href="movie-details.html" class="text-white-50 text-decoration-none">Movies</a></li>
+            <li class="mb-2"><a href="webseries.html" class="text-white-50 text-decoration-none">Web Series</a></li>
+            <li class="mb-2"><a href="bollywood.html" class="text-white-50 text-decoration-none">Bollywood</a></li>
+            <li class="mb-2"><a href="contact.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
+              <li class="mb-2"><a href="login.html" class="text-white-50 text-decoration-none">Login</a></li>
+                <li class="mb-2"><a href="register.html" class="text-white-50 text-decoration-none">Register</a></li>
+          </ul>
+        </div>
+    
+        <div class="col-lg-4">
+          <h6 class="fw-bold text-white mb-3">Disclaimer & Info</h6>
+          <p class="text-white-50 small">We do not host any files on our server. All content is provided by non-affiliated third parties. Designed for educational and UI showcase purposes.</p>
+          <div class="d-flex gap-3 fs-5 text-white-50 mt-3">
+            <a href="#" class="text-white-50"><i class="bi bi-telegram"></i></a>
+            <a href="#" class="text-white-50"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-white-50"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-secondary my-4">
+      <div class="text-center text-white-50 small">
+        © 2026 FilmFlicks. All rights reserved. Crafted with pure HTML, CSS, and Bootstrap.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+</body>
+</html>

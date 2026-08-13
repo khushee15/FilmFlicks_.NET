@@ -1,0 +1,68 @@
+/* ==========================================================================
+   FilmFlicks - About Us Page Styling
+   File: css/about.css
+   ========================================================================== */
+
+/* Header Hero Section */
+.about-header {
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.18) 0%, rgba(15, 23, 42, 0) 100%);
+  padding: 50px 0 30px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+/* Story Card */
+.about-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Feature Box UI */
+.feature-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 25px;
+  height: 100%;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-purple);
+}
+
+.feature-icon-box {
+  width: 55px;
+  height: 55px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--accent-purple);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 18px;
+}
+
+/* Stats Counter Section */
+.stat-item {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

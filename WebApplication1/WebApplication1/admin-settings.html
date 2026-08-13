@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Settings - FilmFlicks Admin</title>
+  
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Custom CSS Files -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin-settings.css">
+</head>
+<body class="bg-dark">
+
+  <!-- ==========================================================================
+       SITE SETTINGS CONTAINER (#admin-settings)
+       ========================================================================== -->
+  <div id="admin-settings" class="admin-wrapper">
+
+    <!-- SIDEBAR -->
+    <nav class="admin-sidebar">
+      <a href="admin-dashboard.html" class="sidebar-brand">
+        <i class="bi bi-film"></i>
+        <span>FilmFlicks</span>
+      </a>
+
+      <ul class="sidebar-menu">
+       <li><a href="admin-dashboard.html"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a></li>
+        <li><a href="admin-movies.html"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
+        <li><a href="admin-categories.html"><i class="bi bi-send-fill"></i> <span>Categories</span></a></li>
+        <li><a href="admin-users.html"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
+        <li><a href="admin-comments.html"><i class="bi bi-graph-up-arrow"></i> <span>Comments</span></a></li>
+        <li><a href="admin-settings.html"class="active"><i class="bi bi-gear-fill"></i> <span>Settings</span></a></li>
+      </ul>
+
+      <div class="pt-3 border-top border-secondary border-opacity-25">
+        <a href="admin-login.html" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3 hover-bg-danger">
+          <i class="bi bi-box-arrow-left"></i> <span>Logout</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="admin-main-content">
+      
+      <!-- Header with Global Save Button -->
+      <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <div>
+          <h3 class="fw-bold text-white mb-1">General Site Settings</h3>
+          <p class="text-white-50 small mb-0">Configure site meta details, logos, SEO keywords, ad code integrations, and maintenance mode.</p>
+        </div>
+        <div>
+          <button type="submit" form="settings-form" class="btn btn-danger px-4 fw-semibold shadow">
+            <i class="bi bi-check-lg me-1"></i> Save Changes
+          </button>
+        </div>
+      </div>
+
+      <form id="settings-form">
+        
+        <!-- SECTION 1: MAINTENANCE MODE (PURE CSS TOGGLE) -->
+        <div class="admin-card mb-4">
+          <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">
+            <i class="bi bi-tools text-warning"></i> System Maintenance Mode
+          </h5>
+          <div class="switch-container">
+            <div>
+              <h6 class="fw-bold text-white mb-1">Enable Maintenance Mode</h6>
+              <p class="text-white-50 small mb-0">When enabled, public users will see a maintenance screen. Admins can still access dashboard.</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="maintenanceToggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- SECTION 2: GENERAL SITE INFO & LOGO UPLOAD -->
+        <div class="admin-card mb-4">
+          <h5 class="fw-bold text-white mb-4 d-flex align-items-center gap-2">
+            <i class="bi bi-globe text-primary"></i> Site Information & Branding
+          </h5>
+          
+          <div class="row g-3">
+            <!-- Site Title -->
+            <div class="col-md-6">
+              <label class="form-label text-white-50 fw-semibold small">Site Title</label>
+              <input type="text" class="form-control form-control-glass" value="FilmFlicks - Free Movies & Web Series HD" required>
+            </div>
+
+            <!-- Site Tagline -->
+            <div class="col-md-6">
+              <label class="form-label text-white-50 fw-semibold small">Tagline / Subtitle</label>
+              <input type="text" class="form-control form-control-glass" value="Watch Unlimited Blockbuster Movies in 4K & 1080p">
+            </div>
+
+            <!-- Logo Upload -->
+            <div class="col-md-6 mt-3">
+              <label class="form-label text-white-50 fw-semibold small">Site Logo (PNG / SVG)</label>
+              <div class="d-flex align-items-center gap-3">
+                <div class="logo-preview-box">
+                  <span class="text-danger fw-bold fs-5"><i class="bi bi-film me-1"></i>Film</span>
+                </div>
+                <input type="file" class="form-control form-control-glass">
+              </div>
+            </div>
+
+            <!-- Favicon Upload -->
+            <div class="col-md-6 mt-3">
+              <label class="form-label text-white-50 fw-semibold small">Favicon (.ico / .png)</label>
+              <div class="d-flex align-items-center gap-3">
+                <div class="logo-preview-box" style="width: 60px;">
+                  <i class="bi bi-film fs-3 text-danger"></i>
+                </div>
+                <input type="file" class="form-control form-control-glass">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: SEO CONFIGURATION -->
+        <div class="admin-card mb-4">
+          <h5 class="fw-bold text-white mb-4 d-flex align-items-center gap-2">
+            <i class="bi bi-search text-success"></i> SEO & Meta Configuration
+          </h5>
+
+          <div class="row g-3">
+            <!-- Meta Description -->
+            <div class="col-12">
+              <label class="form-label text-white-50 fw-semibold small">Meta Description</label>
+              <textarea class="form-control form-control-glass" rows="3">FilmFlicks is the premier streaming platform to watch and download free HD movies, web series, and anime with multi-language audio support.</textarea>
+            </div>
+
+            <!-- SEO Keywords -->
+            <div class="col-12">
+              <label class="form-label text-white-50 fw-semibold small">Meta Keywords (Comma Separated)</label>
+              <input type="text" class="form-control form-control-glass" value="movies, streaming, 4k movies, dual audio, free web series, filmflicks, hd downloads">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: AD BANNER CODE TEXTAREAS -->
+        <div class="admin-card mb-4">
+          <h5 class="fw-bold text-white mb-4 d-flex align-items-center gap-2">
+            <i class="bi bi-code-square text-info"></i> Advertisement Banner Scripts
+          </h5>
+
+          <div class="row g-3">
+            <!-- Header Ad Code -->
+            <div class="col-md-6">
+              <label class="form-label text-white-50 fw-semibold small">Header Banner Ad Code (728x90)</label>
+              <textarea class="form-control form-control-glass code-textarea" rows="4" placeholder="<!-- Paste AdScript Code Here -->"><script src="https://adnetwork.example.com/banner728.js" async></script></textarea>
+            </div>
+
+            <!-- Sidebar Ad Code -->
+            <div class="col-md-6">
+              <label class="form-label text-white-50 fw-semibold small">Sidebar Banner Ad Code (300x250)</label>
+              <textarea class="form-control form-control-glass code-textarea" rows="4" placeholder="<!-- Paste AdScript Code Here -->"><script src="https://adnetwork.example.com/banner300.js" async></script></textarea>
+            </div>
+
+            <!-- Video Player Ad Code -->
+            <div class="col-12">
+              <label class="form-label text-white-50 fw-semibold small">In-Player Popunder / Pre-roll Ad Code</label>
+              <textarea class="form-control form-control-glass code-textarea" rows="3" placeholder="<!-- Paste Popunder Code Here -->"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button Bottom -->
+        <div class="d-flex justify-content-end mb-5">
+          <button type="submit" class="btn btn-danger btn-lg px-5 fw-semibold shadow">
+            <i class="bi bi-check-circle-fill me-2"></i> Save All Settings
+          </button>
+        </div>
+
+      </form>
+
+    </main>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+</body>
+</html>

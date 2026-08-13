@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Management - FilmFlicks Admin</title>
+  
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Custom CSS Files -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin-categories.css">
+</head>
+<body class="bg-dark">
+
+  <!-- ==========================================================================
+       CATEGORY MANAGEMENT CONTAINER (#admin-categories)
+       ========================================================================== -->
+  <div id="admin-categories" class="admin-wrapper">
+
+    <!-- SIDEBAR -->
+    <nav class="admin-sidebar">
+      <a href="admin-dashboard.html" class="sidebar-brand">
+        <i class="bi bi-film"></i>
+        <span>FilmFlicks</span>
+      </a>
+
+      <ul class="sidebar-menu">
+         <li><a href="admin-dashboard.html" ><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a></li>
+        <li><a href="admin-movies.html"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
+        <li><a href="admin-categories.html " class="active"><i class="bi bi-send-fill"></i> <span>Categories</span></a></li>
+        <li><a href="admin-users.html"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
+        <li><a href="admin-comments.html"><i class="bi bi-graph-up-arrow"></i> <span>Comments</span></a></li>
+        <li><a href="admin-settings.html"><i class="bi bi-gear-fill"></i> <span>Settings</span></a></li>
+      </ul>
+
+      <div class="pt-3 border-top border-secondary border-opacity-25">
+        <a href="admin-login.html" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3 hover-bg-danger">
+          <i class="bi bi-box-arrow-left"></i> <span>Logout</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="admin-main-content">
+      
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <div>
+          <h3 class="fw-bold text-white mb-1">Category Management</h3>
+          <p class="text-white-50 small mb-0">Organize and structure movie genres, industries, and series tags.</p>
+        </div>
+      </div>
+
+      <!-- SPLIT VIEW LAYOUT -->
+      <div class="row g-4">
+        
+        <!-- ==========================================================================
+             LEFT SIDE: ADD CATEGORY FORM
+             ========================================================================== -->
+        <div class="col-12 col-lg-5">
+          <div class="admin-card">
+            <h5 class="fw-bold text-white mb-4 border-bottom border-secondary pb-2">
+              <i class="bi bi-plus-square-fill me-2 text-danger"></i>Add New Category
+            </h5>
+
+            <form action="#" method="POST">
+              
+              <!-- 1. Category Name -->
+              <div class="mb-3">
+                <label for="categoryName" class="form-label">Category Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="categoryName" placeholder="e.g. Bollywood Movies" required>
+              </div>
+
+              <!-- 2. Category Slug -->
+              <div class="mb-3">
+                <label for="categorySlug" class="form-label">Slug / URL Identifier <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="categorySlug" placeholder="e.g. bollywood-movies" required>
+                <small class="text-white-50" style="font-size: 0.75rem;">Used in website URLs (auto-generated or manual).</small>
+              </div>
+
+              <!-- 3. Icon Class -->
+              <div class="mb-4">
+                <label for="iconClass" class="form-label">Bootstrap Icon Class <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text bg-dark border-secondary text-white-50"><i class="bi bi-layers-fill"></i></span>
+                  <input type="text" class="form-control" id="iconClass" placeholder="bi-film, bi-tv, bi-fire" required>
+                </div>
+                <small class="text-white-50" style="font-size: 0.75rem;">Enter valid Bootstrap Icon class (e.g. <code>bi-film</code>).</small>
+              </div>
+
+              <!-- Form Buttons -->
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-crimson fw-bold py-2">
+                  <i class="bi bi-folder-plus me-1"></i> Save Category
+                </button>
+                <button type="reset" class="btn btn-outline-secondary btn-sm">Reset Form</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             RIGHT SIDE: EXISTING CATEGORIES DATA TABLE
+             ========================================================================== -->
+        <div class="col-12 col-lg-7">
+          <div class="admin-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold text-white mb-0">Existing Categories</h5>
+              <span class="badge bg-secondary">Total: 5</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-dark-custom align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Slug</th>
+                    <th class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <!-- Row 1 -->
+                  <tr>
+                    <td>
+                      <div class="icon-preview-box">
+                        <i class="bi bi-film"></i>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="fw-bold text-white">Bollywood</div>
+                      <small class="text-white-50">1,240 Movies</small>
+                    </td>
+                    <td><code class="text-danger">/bollywood</code></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-light py-1 px-2 me-1" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                      <button class="btn btn-sm btn-outline-danger py-1 px-2" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 2 -->
+                  <tr>
+                    <td>
+                      <div class="icon-preview-box" style="background: rgba(139, 92, 246, 0.15); color: var(--accent-purple);">
+                        <i class="bi bi-globe"></i>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="fw-bold text-white">Hollywood</div>
+                      <small class="text-white-50">980 Movies</small>
+                    </td>
+                    <td><code class="text-danger">/hollywood</code></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-light py-1 px-2 me-1" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                      <button class="btn btn-sm btn-outline-danger py-1 px-2" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3 -->
+                  <tr>
+                    <td>
+                      <div class="icon-preview-box" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">
+                        <i class="bi bi-tv-fill"></i>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="fw-bold text-white">Web Series</div>
+                      <small class="text-white-50">450 Seasons</small>
+                    </td>
+                    <td><code class="text-danger">/web-series</code></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-light py-1 px-2 me-1" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                      <button class="btn btn-sm btn-outline-danger py-1 px-2" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 4 -->
+                  <tr>
+                    <td>
+                      <div class="icon-preview-box" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                        <i class="bi bi-fire"></i>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="fw-bold text-white">South Indian</div>
+                      <small class="text-white-50">720 Movies</small>
+                    </td>
+                    <td><code class="text-danger">/south-indian</code></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-light py-1 px-2 me-1" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                      <button class="btn btn-sm btn-outline-danger py-1 px-2" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 5 -->
+                  <tr>
+                    <td>
+                      <div class="icon-preview-box" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                        <i class="bi bi-controller"></i>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="fw-bold text-white">Anime</div>
+                      <small class="text-white-50">310 Shows</small>
+                    </td>
+                    <td><code class="text-danger">/anime</code></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-light py-1 px-2 me-1" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                      <button class="btn btn-sm btn-outline-danger py-1 px-2" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+</body>
+</html>
