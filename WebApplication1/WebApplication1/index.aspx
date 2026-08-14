@@ -67,7 +67,7 @@
                     <div class="container">
                         <div class="row g-4 mb-4">
                             <div class="col-lg-4">
-                                <a href="index.html" class="fw-bold fs-3 text-decoration-none" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="bi bi-film me-2"></i>FilmFlicks </a>
+                                <a href="index.aspx" class="fw-bold fs-3 text-decoration-none" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="bi bi-film me-2"></i>FilmFlicks </a>
                                 <p class="text-white-50 mt-3 small">
                                     FilmFlicks is a premier platform for high-quality movie downloads, dual audio films, and web series. Enjoy fast, secure, and hassle-free movie access in 480p, 720p, 1080p, and 4K Ultra HD.</p>
                             </div>
@@ -132,7 +132,7 @@
                     <section class="mb-5">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3 class="fw-bold m-0 border-start border-4 border-danger ps-3">Trending Movies</h3>
-                            <a href="browse.html" class="text-white-50 text-decoration-none small">View All <i class="bi bi-arrow-right"></i></a>
+                            <a href="browse.aspx" class="text-white-50 text-decoration-none small">View All <i class="bi bi-arrow-right"></i></a>
                         </div>
                         <div class="row g-4">
                             <!-- Movie 1 -->
@@ -144,7 +144,7 @@
                                         <h5 class="fw-bold text-white mb-1">Inception</h5>
                                         <p class="text-white-50 small mb-2">
                                             2010 • Sci-Fi / Action</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                                         <h5 class="fw-bold text-white mb-1">Dune: Part Two</h5>
                                         <p class="text-white-50 small mb-2">
                                             2024 • Adventure / Sci-Fi</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
                                         <h5 class="fw-bold text-white mb-1">Oppenheimer</h5>
                                         <p class="text-white-50 small mb-2">
                                             2023 • Biography / History</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                                         <h5 class="fw-bold text-white mb-1">The Dark Knight</h5>
                                         <p class="text-white-50 small mb-2">
                                             2008 • Action / Crime</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-play-fill me-1"></i>View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +196,7 @@
                     <section class="mb-5">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3 class="fw-bold m-0 border-start border-4 border-primary ps-3">Recently Added</h3>
-                            <a href="browse.html" class="text-white-50 text-decoration-none small">View All <i class="bi bi-arrow-right"></i></a>
+                            <a href="browse.aspx" class="text-white-50 text-decoration-none small">View All <i class="bi bi-arrow-right"></i></a>
                         </div>
                         <div class="row g-4">
                             <div class="col-12 col-sm-6 col-lg-3">
@@ -207,7 +207,7 @@
                                         <h5 class="fw-bold text-white mb-1">Avatar: The Way of Water</h5>
                                         <p class="text-white-50 small mb-2">
                                             2022 • Action / Fantasy</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +219,7 @@
                                         <h5 class="fw-bold text-white mb-1">The Batman</h5>
                                         <p class="text-white-50 small mb-2">
                                             2022 • Action / Mystery</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +231,7 @@
                                         <h5 class="fw-bold text-white mb-1">Spider-Man: Across Spider-Verse</h5>
                                         <p class="text-white-50 small mb-2">
                                             2023 • Animation / Action</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
                                     </div>
                                 </div>
                             </div>
@@ -243,7 +243,7 @@
                                         <h5 class="fw-bold text-white mb-1">Top Gun: Maverick</h5>
                                         <p class="text-white-50 small mb-2">
                                             2022 • Action / Drama</p>
-                                        <a href="movie-details.html" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
+                                        <a href="movie-details.aspx" class="btn btn-crimson btn-sm w-100"><i class="bi bi-download me-1"></i>Download</a>
                                     </div>
                                 </div>
                             </div>

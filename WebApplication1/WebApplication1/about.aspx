@@ -37,34 +37,33 @@
       <div class="collapse navbar-collapse" id="navContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
            <li class="nav-item"><a class="nav-link text-white-50" href="index.html">Home</a></li>
-           <li class="nav-item"><a class="nav-link text-white active" href="about.html">about Us</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.html">Movies</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="webseries.html">Web Series</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.html">Bollywood</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="contact.html">Contact Us</a></li>
+           <li class="nav-item"><a class="nav-link text-white active" href="about.aspx">about Us</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
         </ul>
 
         <div class="d-flex align-items-center gap-3">
-          <a href="login.html" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-          <a href="register.html" class="btn btn-crimson btn-sm px-3">Register</a>
+          <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+          <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
         </div>
       </div>
     </div>
   </nav>
-
-  <!-- ==========================================================================
-       HEADER SECTION
-       ========================================================================== -->
-  <header class="about-header" style="padding-top: 110px;">
-    <div class="container text-center">
-      <h2 class="fw-bold text-white mb-2"><i class="bi bi-info-circle-fill me-2 text-primary"></i>About FilmFlicks</h2>
-      <p class="text-white-50 mb-4" style="max-width: 600px; margin: 0 auto;">Your ultimate destination for high-quality Movies, Web Series, and Dual Audio entertainment.</p>
-    </div>
-  </header>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <!-- ==========================================================================
+     HEADER SECTION
+     ========================================================================== -->
+<header class="about-header" style="padding-top: 110px;">
+  <div class="container text-center">
+    <h2 class="fw-bold text-white mb-2"><i class="bi bi-info-circle-fill me-2 text-primary"></i>About FilmFlicks</h2>
+    <p class="text-white-50 mb-4" style="max-width: 600px; margin: 0 auto;">Your ultimate destination for high-quality Movies, Web Series, and Dual Audio entertainment.</p>
+  </div>
+</header>
+
+<!-- ==========================================================================
      MAIN CONTENT
      ========================================================================== -->
 <main class="container my-5">
@@ -173,14 +172,14 @@
         <div class="col-6 col-lg-2">
           <h6 class="fw-bold text-white mb-3">Quick Links</h6>
           <ul class="list-unstyled text-white-50 small">
-            <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
-            <li class="mb-2"><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
-            <li class="mb-2"><a href="movie-details.html" class="text-white-50 text-decoration-none">Movies</a></li>
-            <li class="mb-2"><a href="webseries.html" class="text-white-50 text-decoration-none">Web Series</a></li>
-            <li class="mb-2"><a href="bollywood.html" class="text-white-50 text-decoration-none">Bollywood</a></li>
-            <li class="mb-2"><a href="contact.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
-              <li class="mb-2"><a href="login.html" class="text-white-50 text-decoration-none">Login</a></li>
-                <li class="mb-2"><a href="register.html" class="text-white-50 text-decoration-none">Register</a></li>
+            <li class="mb-2"><a href="index.aspx" class="text-white-50 text-decoration-none">Home</a></li>
+            <li class="mb-2"><a href="about.aspx" class="text-white-50 text-decoration-none">About Us</a></li>
+            <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>
+            <li class="mb-2"><a href="webseries.aspx" class="text-white-50 text-decoration-none">Web Series</a></li>
+            <li class="mb-2"><a href="bollywood.aspx" class="text-white-50 text-decoration-none">Bollywood</a></li>
+            <li class="mb-2"><a href="contact.aspx" class="text-white-50 text-decoration-none">Contact Us</a></li>
+              <li class="mb-2"><a href="login.aspx" class="text-white-50 text-decoration-none">Login</a></li>
+                <li class="mb-2"><a href="register.aspx" class="text-white-50 text-decoration-none">Register</a></li>
           </ul>
         </div>
     

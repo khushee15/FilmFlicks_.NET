@@ -76,8 +76,10 @@
     <Content Include="admin-movies.html" />
     <Content Include="admin-settings.html" />
     <Content Include="admin-users.html" />
+    <Content Include="bollywood.aspx" />
     <Content Include="bollywood.html" />
     <Content Include="browse.html" />
+    <Content Include="contact.aspx" />
     <Content Include="contact.html" />
     <Content Include="css\about.css" />
     <Content Include="css\admin-categories.css" />
@@ -117,6 +119,7 @@
     <Content Include="register.html" />
     <Content Include="requestmovie.html" />
     <Content Include="Web.config" />
+    <Content Include="webseries.aspx" />
     <Content Include="webseries.html" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +129,20 @@
     </Compile>
     <Compile Include="about.aspx.designer.cs">
       <DependentUpon>about.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="bollywood.aspx.cs">
+      <DependentUpon>bollywood.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bollywood.aspx.designer.cs">
+      <DependentUpon>bollywood.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contact.aspx.designer.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="forgot-password.aspx.cs">
       <DependentUpon>forgot-password.aspx</DependentUpon>
@@ -169,6 +186,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="webseries.aspx.cs">
+      <DependentUpon>webseries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webseries.aspx.designer.cs">
+      <DependentUpon>webseries.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
