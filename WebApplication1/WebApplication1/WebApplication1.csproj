@@ -113,7 +113,9 @@
     <Content Include="login.html" />
     <Content Include="movie-details.aspx" />
     <Content Include="movie-details.html" />
+    <Content Include="myprofile.aspx" />
     <Content Include="myprofile.html" />
+    <Content Include="mywatchlist.aspx" />
     <Content Include="mywatchlist.html" />
     <Content Include="register.aspx" />
     <Content Include="register.html" />
@@ -171,6 +173,20 @@
     </Compile>
     <Compile Include="movie-details.aspx.designer.cs">
       <DependentUpon>movie-details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myprofile.aspx.cs">
+      <DependentUpon>myprofile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myprofile.aspx.designer.cs">
+      <DependentUpon>myprofile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mywatchlist.aspx.cs">
+      <DependentUpon>mywatchlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mywatchlist.aspx.designer.cs">
+      <DependentUpon>mywatchlist.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">

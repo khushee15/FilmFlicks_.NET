@@ -47,8 +47,8 @@
                         <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
                     </div>
 
-                    <a href="login.html" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-                    <a href="register.html" class="btn btn-crimson btn-sm px-3">Register</a>
+                    <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                    <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
 
                     <!-- Pure CSS Profile Dropdown -->
                     <div class="profile-dropdown-container">
@@ -59,7 +59,7 @@
                             <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
                             <a href="admin-login.aspx"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
                             <hr class="dropdown-divider bg-secondary my-1">
-                            <a href="login.html" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                            <a href="login.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
                         </div>
                     </div>
                 </div>
