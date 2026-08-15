@@ -53,8 +53,8 @@
             <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
           </form>
 
-          <a href="login.html" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-          <a href="register.html" class="btn btn-crimson btn-sm px-3">Register</a>
+          <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+          <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
 
           <!-- Pure CSS Profile Dropdown -->
           <div class="profile-dropdown-container">
