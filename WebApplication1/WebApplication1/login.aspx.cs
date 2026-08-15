@@ -37,7 +37,7 @@ namespace WebApplication1
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // Validation: Check if fields are empty
+
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 lblLoginFeedback.Text = "Please enter Username or Email!";
@@ -52,7 +52,6 @@ namespace WebApplication1
             {
                 getcon();
 
-            
                 string query = "SELECT * FROM users_tbl WHERE (Username = @User OR Email = @User) AND Password = @Password";
                 cmd = new SqlCommand(query, con);
 
@@ -65,27 +64,29 @@ namespace WebApplication1
                 {
                     dr.Read();
 
-              
+                   
                     Session["username"] = dr["Username"].ToString();
-                    Session["email"] = dr["Email"].ToString();
+                    Session["UserEmail"] = dr["Email"].ToString(); 
 
                     lblLoginFeedback.Text = "Login Successful! Redirecting...";
                     lblLoginFeedback.CssClass = "d-block mt-3 text-center fw-semibold text-success";
 
                     clear();
 
-                 
-                    Response.Redirect("index.aspx");
+                    dr.Close();
+                    con.Close();
+
+                  
+                    Response.Redirect("myprofile.aspx");
                 }
                 else
                 {
-               
                     lblLoginFeedback.Text = "Invalid Username/Email or Password! Please register first if you haven't.";
                     lblLoginFeedback.CssClass = "d-block mt-3 text-center fw-semibold text-danger";
-                }
 
-                dr.Close();
-                con.Close();
+                    dr.Close();
+                    con.Close();
+                }
             }
         }
     }

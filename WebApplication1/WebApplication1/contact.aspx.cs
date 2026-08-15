@@ -10,7 +10,7 @@ namespace WebApplication1
 {
     public partial class contact : System.Web.UI.Page
     {
-        private string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True";
+        private string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True;";
         protected void Page_Load(object sender, EventArgs e)
         {
 

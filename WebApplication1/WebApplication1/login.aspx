@@ -20,7 +20,7 @@
             
             <div class="ms-auto d-flex gap-2">
                 <a href="index.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold"><i class="bi bi-house me-1"></i>Home</a>
-                <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                <a href="register.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Register</a>
             </div>
         </div>
     </nav>   

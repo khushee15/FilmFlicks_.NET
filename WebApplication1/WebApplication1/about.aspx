@@ -36,7 +36,7 @@
 
       <div class="collapse navbar-collapse" id="navContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
-           <li class="nav-item"><a class="nav-link text-white-50" href="index.html">Home</a></li>
+           <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
            <li class="nav-item"><a class="nav-link text-white active" href="about.aspx">about Us</a></li>
           <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>
           <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>

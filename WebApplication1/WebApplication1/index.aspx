@@ -24,7 +24,7 @@
        ========================================================================== -->
                     <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
                         <div class="container">
-                            <a class="navbar-brand fw-bold fs-3" href="index.html" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="bi bi-film me-2 text-primary"></i>FilmFlicks </a>
+                            <a class="navbar-brand fw-bold fs-3" href="index." style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="bi bi-film me-2 text-primary"></i>FilmFlicks </a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
