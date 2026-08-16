@@ -39,8 +39,8 @@
       <div class="collapse navbar-collapse" id="navContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
           <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
-           <li class="nav-item"><a class="nav-link text-white-50" href="about.aspx">about Us</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>
+<%--      
+          <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>--%>
           <li class="nav-item"><a class="nav-link text-white active" href="webseries.aspx">Web Series</a></li>
           <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
           <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
@@ -61,10 +61,10 @@
           <div class="profile-dropdown-container">
             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="rounded-circle border border-primary p-1" width="42" height="42" alt="Profile Avatar">
             <div class="profile-dropdown-menu">
-              <a href="myprofile.html"><i class="bi bi-person me-2"></i>My Profile</a>
-              <a href="mywatchlist.html"><i class="bi bi-bookmark me-2"></i>My Watchlist</a>
-              <a href="requestmovie.html"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
-              <a href="admin-login.html"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
+              <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
+              <a href="mywatchlist.aspx"><i class="bi bi-bookmark me-2"></i>My Watchlist</a>
+              <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
+              <a href="admin-login.aspx"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
               <hr class="dropdown-divider bg-secondary my-1">
               <a href="login.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
             </div>
@@ -332,8 +332,8 @@
           <h6 class="fw-bold text-white mb-3">Quick Links</h6>
           <ul class="list-unstyled text-white-50 small">
             <li class="mb-2"><a href="index.aspx" class="text-white-50 text-decoration-none">Home</a></li>
-            <li class="mb-2"><a href="about.aspx" class="text-white-50 text-decoration-none">About Us</a></li>
-            <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>
+        
+           <%-- <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>--%>
             <li class="mb-2"><a href="webseries.aspx" class="text-white-50 text-decoration-none">Web Series</a></li>
             <li class="mb-2"><a href="bollywood.aspx" class="text-white-50 text-decoration-none">Bollywood</a></li>
             <li class="mb-2"><a href="contact.aspx" class="text-white-50 text-decoration-none">Contact Us</a></li>

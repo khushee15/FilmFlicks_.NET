@@ -26,7 +26,7 @@
        ========================================================================== -->
  <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-3" href="index.html" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
         <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
       </a>
       
@@ -38,8 +38,8 @@
       <div class="collapse navbar-collapse" id="navContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
           <li class="nav-item"><a class="nav-link text-white active" href="index.aspx">Home</a></li>
-           <li class="nav-item"><a class="nav-link text-white-50" href="about.aspx">about Us</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>
+<%--           <li class="nav-item"><a class="nav-link text-white-50" href="about.aspx">about Us</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>--%>
           <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
           <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
           <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
@@ -48,13 +48,13 @@
         </ul>
 
         <div class="d-flex align-items-center gap-3">
-          <form class="input-group" style="max-width: 240px;" action="browse.html">
+          <form class="input-group" style="max-width: 240px;" action="index.aspx">
             <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Search movies...">
             <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
           </form>
 
-          <a href="login.html" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-          <a href="register.html" class="btn btn-crimson btn-sm px-3">Register</a>
+          <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+          <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
 
           <!-- Pure CSS Profile Dropdown -->
           <div class="profile-dropdown-container">
@@ -220,7 +220,7 @@
     <div class="container">
       <div class="row g-4 mb-4">
         <div class="col-lg-4">
-          <a href="index.html" class="fw-bold fs-3 text-decoration-none" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          <a href="index.aspx" class="fw-bold fs-3 text-decoration-none" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
             <i class="bi bi-film me-2"></i>FilmFlicks
           </a>
           <p class="text-white-50 mt-3 small">FilmFlicks is a premier platform for high-quality movie downloads, dual audio films, and web series. Enjoy fast, secure, and hassle-free movie access in 480p, 720p, 1080p, and 4K Ultra HD.</p>
@@ -229,8 +229,8 @@
           <h6 class="fw-bold text-white mb-3">Quick Links</h6>
           <ul class="list-unstyled text-white-50 small">
             <li class="mb-2"><a href="index.aspx" class="text-white-50 text-decoration-none">Home</a></li>
-            <li class="mb-2"><a href="about.aspx" class="text-white-50 text-decoration-none">About Us</a></li>
-            <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>
+     <%--       <li class="mb-2"><a href="about.aspx" class="text-white-50 text-decoration-none">About Us</a></li>
+            <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>--%>
             <li class="mb-2"><a href="webseries.aspx" class="text-white-50 text-decoration-none">Web Series</a></li>
             <li class="mb-2"><a href="bollywood.aspx" class="text-white-50 text-decoration-none">Bollywood</a></li>
             <li class="mb-2"><a href="contact.aspx" class="text-white-50 text-decoration-none">Contact Us</a></li>

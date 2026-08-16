@@ -14,6 +14,8 @@ namespace WebApplication1
     {
         SqlConnection con;
         SqlCommand cmd;
+        SqlDataAdapter da;
+        DataSet ds;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -39,6 +41,7 @@ namespace WebApplication1
         }
         protected void btnRegister_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrWhiteSpace(floatingName.Text))
             {
                 lblRegisterFeedback.Text = "Please enter Full Name!";
@@ -78,23 +81,33 @@ namespace WebApplication1
             {
                 getcon();
 
-                string query = "INSERT INTO users_tbl (FullName, Username, Email, Password) VALUES (@Name, @Username, @Email, @Password)";
-                cmd = new SqlCommand(query, con);
+                // 1. Check if Username already exists in Database
+                da = new SqlDataAdapter("SELECT * FROM users_tbl WHERE Username='" + floatingUsername.Text.Trim() + "'", con);
+                ds = new DataSet();
+                da.Fill(ds);
 
-                cmd.Parameters.AddWithValue("@Name", floatingName.Text.Trim());
-                cmd.Parameters.AddWithValue("@Username", floatingUsername.Text.Trim());
-                cmd.Parameters.AddWithValue("@Email", floatingEmail.Text.Trim());
-                cmd.Parameters.AddWithValue("@Password", floatingPassword.Text.Trim());
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    // Username હાજર હોય તો આ મેસેજ સ્ક્રીન પર આવશે
+                    lblRegisterFeedback.Text = "Username is already taken! Please choose another.";
+                    lblRegisterFeedback.CssClass = "d-block mt-2 text-danger";
+                    con.Close();
+                }
+                else
+                {
+                    // 2. Insert Data into Database
+                    string query = "INSERT INTO users_tbl (FullName, Username, Email, Password) VALUES ('" + floatingName.Text.Trim() + "', '" + floatingUsername.Text.Trim() + "', '" + floatingEmail.Text.Trim() + "', '" + floatingPassword.Text.Trim() + "')";
+                    cmd = new SqlCommand(query, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
 
-                cmd.ExecuteNonQuery();
-                con.Close();
+                    lblRegisterFeedback.Text = "Registration Successful!";
+                    lblRegisterFeedback.CssClass = "d-block mt-2 text-success";
 
-                lblRegisterFeedback.Text = "Registration Successful!";
-                lblRegisterFeedback.CssClass = "d-block mt-2 text-success";
+                    clear();
+                }
 
-                clear();
             }
-
         }
     }
 }

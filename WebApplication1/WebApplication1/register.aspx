@@ -5,7 +5,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
+   
     <!-- Custom CSS Files -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/register.css">
@@ -18,13 +18,13 @@
             <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
             </a>
-            
+           
             <div class="ms-auto d-flex gap-2">
                 <a href="index.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold"><i class="bi bi-house me-1"></i>Home</a>
                 <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
             </div>
         </div>
-    </nav>   
+    </nav>  
 </asp:Content>
 
 <asp:Content ID="Content6" runat="server" ContentPlaceHolderID="ContentPlaceHolder3">
@@ -36,7 +36,7 @@
                 <p class="text-white-50 small">Join FilmFlicks to request movies and build your watchlist</p>
             </div>
 
-      
+     
             <div class="d-grid gap-2 mb-3">
                 <a href="#" class="btn-social">
                     <i class="bi bi-google text-danger fs-5"></i> Sign up with Google
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-        
+       
                 <div class="col-12 col-md-6">
                     <div class="form-floating">
                         <asp:TextBox ID="floatingPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Password" ClientIDMode="Static"></asp:TextBox>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-          
+         
                 <div class="col-12 col-md-6">
                     <div class="form-floating">
                         <asp:TextBox ID="floatingConfirmPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Confirm Password" ClientIDMode="Static"></asp:TextBox>
@@ -90,7 +90,7 @@
                 </div>
             </div>
 
-          
+         
             <div class="form-check mt-3 mb-4">
                 <asp:CheckBox ID="termsCheck" runat="server" CssClass="form-check-input bg-dark border-secondary" ClientIDMode="Static" />
                 <label class="form-check-label text-white-50 small" for="termsCheck">
@@ -101,7 +101,7 @@
          
             <asp:Button ID="btnRegister" runat="server" Text="Create Account" CssClass="btn btn-crimson w-100 py-2 fs-6 fw-bold" OnClick="btnRegister_Click" />
 
-          
+         
             <div class="text-center">
                 <asp:Label ID="lblRegisterFeedback" runat="server"></asp:Label>
             </div>

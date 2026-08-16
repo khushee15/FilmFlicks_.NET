@@ -1,311 +1,211 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="movie-details.aspx.cs" Inherits="WebApplication1.movie_details" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oppenheimer (2023) - Watch Trailer & Download | FilmFlicks</title>
-  
-  <!-- Bootstrap 5 CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons CDN -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  
-  <!-- Custom CSS Files -->
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/home.css">
-  <link rel="stylesheet" href="css/movie-details.css">
-</head>
-<body>
-
-  <!-- ==========================================================================
-       STICKY NAVBAR
-       ========================================================================== -->
- 
-  <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
-    <div class="container">
-      <a class="navbar-brand fw-bold fs-3" href="index.html" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
-      </a>
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-
-      <div class="collapse navbar-collapse" id="navContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
-          <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
-           <li class="nav-item"><a class="nav-link text-white-50" href="about.aspx">about Us</a></li>
-          <li class="nav-item"><a class="nav-link text-white active" href="movie-details.aspx">Movies</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx ">Bollywood</a></li>
-          <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
-         
-       
-        </ul>
-
-        <div class="d-flex align-items-center gap-3">
-          <form class="input-group" style="max-width: 240px;" action="browse.aspx">
-            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Search movies...">
-            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
-          </form>
-
-          <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-          <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
-
-          <!-- Pure CSS Profile Dropdown -->
-          <div class="profile-dropdown-container">
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="rounded-circle border border-primary p-1" width="42" height="42" alt="Profile Avatar">
-            <div class="profile-dropdown-menu">
-              <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
-              <a href="mywatchlist.aspx"><i class="bi bi-bookmark me-2"></i>My Watchlist</a>
-              <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
-              <a href="admin-login.aspx"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
-              <hr class="dropdown-divider bg-secondary my-1">
-              <a href="login.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <!-- ==========================================================================
-     MAIN MOVIE DETAILS CONTENT
-     ========================================================================== -->
-<main class="container" style="padding-top: 100px;">
-  
-  <!-- Hero Banner with Poster & Metadata -->
-  <section class="movie-details-hero p-4 p-md-5 mb-5 glass-card">
-    <div class="row g-4 align-items-center">
-      <!-- Poster Image Column -->
-      <div class="col-12 col-md-4 col-lg-3">
-        <div class="poster-box">
-          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600" class="poster-img" alt="Oppenheimer Poster">
-        </div>
-      </div>
-
-      <!-- Movie Details Text Column -->
-      <div class="col-12 col-md-8 col-lg-9">
-        <div class="d-flex flex-wrap gap-2 mb-3">
-          <span class="meta-tag text-warning border-warning"><i class="bi bi-star-fill me-1"></i>IMDb 8.9 / 10</span>
-          <span class="meta-tag"><i class="bi bi-clock me-1"></i>3h 00m</span>
-          <span class="meta-tag"><i class="bi bi-calendar3 me-1"></i>2023</span>
-          <span class="meta-tag"><i class="bi bi-translate me-1"></i>English / Hindi Dual Audio</span>
-        </div>
-
-        <h1 class="display-4 fw-bold text-white mb-3">Oppenheimer</h1>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movie Details - FilmFlicks</title>
         
-        <div class="d-flex flex-wrap gap-2 mb-4">
-          <span class="badge bg-danger">Biography</span>
-          <span class="badge bg-primary">Drama</span>
-          <span class="badge bg-secondary">History</span>
-        </div>
+        <!-- Bootstrap 5 CSS & Icons CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        
+        <!-- Custom CSS Files -->
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/movie-details.css">
+    </head>
+    <body>
 
-        <p class="lead text-light mb-4">The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II, exploring the scientific breakthrough and the personal, political, and moral dilemmas that followed.</p>
+        <!-- STICKY NAVBAR -->
+        <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="row g-3 text-white-50 mb-4 small">
-          <div class="col-sm-6">
-            <p class="mb-1"><strong class="text-white"><i class="bi bi-person-video2 me-2"></i>Director:</strong> Christopher Nolan</p>
-            <p class="mb-1"><strong class="text-white"><i class="bi bi-people me-2"></i>Cast:</strong> Cillian Murphy, Emily Blunt, Matt Damon, Robert Downey Jr.</p>
-          </div>
-          <div class="col-sm-6">
-            <p class="mb-1"><strong class="text-white"><i class="bi bi-award me-2"></i>Awards:</strong> Winner of 7 Academy Awards (Oscars)</p>
-            <p class="mb-1"><strong class="text-white"><i class="bi bi-disc me-2"></i>Quality Available:</strong> 480p, 720p, 1080p, 4K Ultra HD</p>
-          </div>
-        </div>
+                <div class="collapse navbar-collapse" id="navContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
+                        <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
+                 
+                        <li class="nav-item"><a class="nav-link text-white active" href="movie-details.aspx">Movies</a></li>
+                        <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
+                        <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
+                        <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
+                    </ul>
 
-        <div class="d-flex gap-3 flex-wrap">
-          <a href="#download-section" class="btn btn-crimson btn-lg fs-6"><i class="bi bi-download me-2"></i>Go To Downloads</a>
-          <a href="#trailer-section" class="btn btn-outline-light btn-lg fs-6"><i class="bi bi-play-btn me-2"></i>Watch Trailer</a>
-          <button class="btn btn-outline-secondary btn-lg fs-6"><i class="bi bi-bookmark-plus me-2"></i>Add to Watchlist</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Trailer Embed Section -->
-  <section id="trailer-section" class="mb-5">
-    <h3 class="fw-bold mb-4 border-start border-4 border-danger ps-3">Official Trailer</h3>
-    <div class="player-wrapper p-2 glass-card">
-      <div class="ratio ratio-16x9">
-        <iframe src="https://www.youtube.com/embed/uYPbbksJxIg" title="Oppenheimer Trailer" allowfullscreen class="rounded"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Movie Screenshots Gallery Grid -->
-  <section class="mb-5">
-    <h3 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Movie Screenshots & Preview</h3>
-    <div class="row g-3">
-      <div class="col-6 col-md-3">
-        <div class="screenshot-item">
-          <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=600" class="screenshot-img" alt="Screenshot 1">
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="screenshot-item">
-          <img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=600" class="screenshot-img" alt="Screenshot 2">
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="screenshot-item">
-          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600" class="screenshot-img" alt="Screenshot 3">
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="screenshot-item">
-          <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600" class="screenshot-img" alt="Screenshot 4">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Download Server Links Table -->
-  <section id="download-section" class="mb-5">
-    <h3 class="fw-bold mb-4 border-start border-4 border-success ps-3">High-Speed Download Links</h3>
-    
-    <div class="download-table-card glass-card table-responsive">
-      <table class="table download-table align-middle">
-        <thead>
-          <tr>
-            <th>Quality / Resolution</th>
-            <th>File Size</th>
-            <th>Audio Track</th>
-            <th>Available Servers</th>
-            <th>Direct Download</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="badge bg-secondary fs-6"><i class="bi bi-badge-sd me-1"></i>480p SD</span></td>
-            <td class="fw-semibold">550 MB</td>
-            <td>Hindi + English</td>
-            <td><span class="text-white-50">GDrive, Mega, Telegram</span></td>
-            <td><a href="#" class="btn btn-crimson btn-sm"><i class="bi bi-cloud-arrow-down me-1"></i>Download [550MB]</a></td>
-          </tr>
-          <tr>
-            <td><span class="badge bg-primary fs-6"><i class="bi bi-badge-hd me-1"></i>720p HD</span></td>
-            <td class="fw-semibold">1.4 GB</td>
-            <td>Hindi + English</td>
-            <td><span class="text-white-50">GDrive, Mega, HighSpeed</span></td>
-            <td><a href="#" class="btn btn-crimson btn-sm"><i class="bi bi-cloud-arrow-down me-1"></i>Download [1.4GB]</a></td>
-          </tr>
-          <tr>
-            <td><span class="badge bg-success fs-6"><i class="bi bi-badge-hd-fill me-1"></i>1080p Full HD</span></td>
-            <td class="fw-semibold">3.2 GB</td>
-            <td>Hindi ORG 5.1 + English</td>
-            <td><span class="text-white-50">GDrive Direct, Mega, Telegram</span></td>
-            <td><a href="#" class="btn btn-crimson btn-sm"><i class="bi bi-cloud-arrow-down me-1"></i>Download [3.2GB]</a></td>
-          </tr>
-          <tr>
-            <td><span class="badge bg-danger fs-6"><i class="bi bi-badge-4k me-1"></i>4K Ultra HD</span></td>
-            <td class="fw-semibold">11.5 GB</td>
-            <td>Hindi Dolby Atmos + English</td>
-            <td><span class="text-white-50">Ultra Speed Dedicated Server</span></td>
-            <td><a href="#" class="btn btn-crimson btn-sm"><i class="bi bi-cloud-arrow-down me-1"></i>Download [11.5GB]</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- User Reviews & Comment Section -->
-  <section class="mb-5">
-    <h3 class="fw-bold mb-4 border-start border-4 border-purple ps-3" style="border-color: var(--accent-purple) !important;">User Reviews & Comments</h3>
-    
-    <div class="glass-card p-4">
-      <!-- Comment Input Form -->
-      <form class="mb-5">
-        <h5 class="fw-bold text-white mb-3"><i class="bi bi-chat-square-text me-2"></i>Leave a Review</h5>
-        <div class="mb-3">
-          <textarea class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Write your thoughts about this movie..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-crimson btn-sm"><i class="bi bi-send me-1"></i>Post Comment</button>
-      </form>
-
-      <!-- User Review List -->
-      <div class="review-list">
-        <!-- Review 1 -->
-        <div class="review-card">
-          <div class="d-flex align-items-center justify-content-between mb-2">
-            <div class="d-flex align-items-center gap-2">
-              <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="rounded-circle" width="36" height="36" alt="User Avatar">
-              <h6 class="fw-bold text-white m-0">Alex Rahul</h6>
+                    <div class="d-flex align-items-center gap-3">
+                        <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                        <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
+                    </div>
+                </div>
             </div>
-            <span class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i> 5.0</span>
-          </div>
-          <p class="text-white-50 small mb-1">A masterpiece by Christopher Nolan! Cillian Murphy gave an award-winning performance. The audio quality in 4K download is top-notch.</p>
-          <span class="text-muted" style="font-size: 0.75rem;">2 days ago</span>
-        </div>
-
-        <!-- Review 2 -->
-        <div class="review-card">
-          <div class="d-flex align-items-center justify-content-between mb-2">
-            <div class="d-flex align-items-center gap-2">
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" class="rounded-circle" width="36" height="36" alt="User Avatar">
-              <h6 class="fw-bold text-white m-0">Priya Sharma</h6>
-            </div>
-            <span class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i> 4.5</span>
-          </div>
-          <p class="text-white-50 small mb-1">Fast download link! The 1080p version worked perfectly on my TV with Hindi audio.</p>
-          <span class="text-muted" style="font-size: 0.75rem;">5 days ago</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
+        </nav>
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-      <!-- FOOTER -->
-  <footer class="glass-card mt-5 rounded-0 border-start-0 border-end-0 border-bottom-0 py-5">
-    <div class="container">
-      <div class="row g-4 mb-4">
-        <div class="col-lg-4">
-          <a href="index.html" class="fw-bold fs-3 text-decoration-none" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-            <i class="bi bi-film me-2"></i>FilmFlicks
-          </a>
-          <p class="text-white-50 mt-3 small">FilmFlicks is a premier platform for high-quality movie downloads, dual audio films, and web series. Enjoy fast, secure, and hassle-free movie access in 480p, 720p, 1080p, and 4K Ultra HD.</p>
-        </div>
-        <div class="col-6 col-lg-2">
-          <h6 class="fw-bold text-white mb-3">Quick Links</h6>
-          <ul class="list-unstyled text-white-50 small">
-            <li class="mb-2"><a href="index.aspx" class="text-white-50 text-decoration-none">Home</a></li>
-            <li class="mb-2"><a href="about.aspx" class="text-white-50 text-decoration-none">About Us</a></li>
-            <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>
-            <li class="mb-2"><a href="webseries.aspx" class="text-white-50 text-decoration-none">Web Series</a></li>
-            <li class="mb-2"><a href="bollywood.aspx" class="text-white-50 text-decoration-none">Bollywood</a></li>
-            <li class="mb-2"><a href="contact.aspx" class="text-white-50 text-decoration-none">Contact Us</a></li>
-              <li class="mb-2"><a href="login.aspx" class="text-white-50 text-decoration-none">Login</a></li>
-                <li class="mb-2"><a href="register.aspx" class="text-white-50 text-decoration-none">Register</a></li>
-          </ul>
-        </div>
-    
-        <div class="col-lg-4">
-          <h6 class="fw-bold text-white mb-3">Disclaimer & Info</h6>
-          <p class="text-white-50 small">We do not host any files on our server. All content is provided by non-affiliated third parties. Designed for educational and UI showcase purposes.</p>
-          <div class="d-flex gap-3 fs-5 text-white-50 mt-3">
-            <a href="#" class="text-white-50"><i class="bi bi-telegram"></i></a>
-            <a href="#" class="text-white-50"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="text-white-50"><i class="bi bi-youtube"></i></a>
-          </div>
-        </div>
-      </div>
-      <hr class="border-secondary my-4">
-      <div class="text-center text-white-50 small">
-        © 2026 FilmFlicks. All rights reserved. Crafted with pure HTML, CSS, and Bootstrap.
-      </div>
-    </div>
-  </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <!-- MAIN MOVIE DETAILS CONTENT -->
+    <main class="container" style="padding-top: 100px;">
+        
+        <!-- DYNAMIC MOVIE DATA REPEATER -->
+        <asp:Repeater ID="rptMovieDetails" runat="server">
+            <ItemTemplate>
+                <!-- Hero Banner Section -->
+                <section class="movie-details-hero p-4 p-md-5 mb-5 glass-card">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <div class="poster-box">
+                                <img src='<%# Eval("PosterUrl") %>' class="poster-img img-fluid rounded" alt='<%# Eval("Title") %>'>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-8 col-lg-9">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="meta-tag text-warning border-warning"><i class="bi bi-star-fill me-1"></i>IMDb 8.5</span>
+                                <span class="meta-tag"><i class="bi bi-clock me-1"></i>2h 45m</span>
+                                <span class="meta-tag"><i class="bi bi-translate me-1"></i>Dual Audio</span>
+                            </div>
+
+                            <h1 class="display-4 fw-bold text-white mb-3"><%# Eval("Title") %></h1>
+                            
+                            <div class="d-flex flex-wrap gap-2 mb-4">
+                                <span class="badge bg-danger"><%# Eval("Category") %></span>
+                                <span class="badge bg-primary"><%# Eval("QualityTag") %></span>
+                            </div>
+
+                            <p class="lead text-light mb-4"><%# Eval("Description") %></p>
+
+                            <div class="row g-3 text-white-50 mb-4 small">
+                                <div class="col-sm-6">
+                                    <p class="mb-1"><strong class="text-white"><i class="bi bi-person-video2 me-2"></i>Director:</strong> <%# Eval("Director") %></p>
+                                    <p class="mb-1"><strong class="text-white"><i class="bi bi-people me-2"></i>Cast:</strong> <%# Eval("Cast") %></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="mb-1"><strong class="text-white"><i class="bi bi-award me-2"></i>Category:</strong> <%# Eval("Category") %></p>
+                                    <p class="mb-1"><strong class="text-white"><i class="bi bi-disc me-2"></i>Quality Available:</strong> <%# Eval("QualityTag") %></p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="#download-section" class="btn btn-crimson btn-lg fs-6"><i class="bi bi-download me-2"></i>Go To Downloads</a>
+                                <a href="#trailer-section" class="btn btn-outline-light btn-lg fs-6"><i class="bi bi-play-btn me-2"></i>Watch Trailer</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dynamic Official Trailer Section -->
+                <section id="trailer-section" class="mb-5">
+                    <h3 class="fw-bold mb-4 border-start border-4 border-danger ps-3">Official Trailer</h3>
+                    <div class="player-wrapper p-2 glass-card">
+                        <div class="ratio ratio-16x9">
+                            <iframe src='<%# Eval("TrailerUrl") %>' title="Official Trailer" allowfullscreen class="rounded"></iframe>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dynamic Screenshots Gallery Grid -->
+                <section class="mb-5">
+                    <h3 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Movie Screenshots & Preview</h3>
+                    <div class="row g-3">
+                        <div class="col-6 col-md-3">
+                            <img src='<%# Eval("Screenshot1") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 1">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src='<%# Eval("Screenshot2") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 2">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src='<%# Eval("Screenshot3") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 3">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src='<%# Eval("Screenshot4") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 4">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dynamic Download Links Table -->
+                <section id="download-section" class="mb-5">
+                    <h3 class="fw-bold mb-4 border-start border-4 border-success ps-3">High-Speed Download Links</h3>
+                    <div class="glass-card table-responsive p-3">
+                        <table class="table align-middle text-white mb-0">
+                            <thead>
+                                <tr class="text-white-50">
+                                    <th>Server</th>
+                                    <th>Quality</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="badge bg-success">Primary Server 1</span></td>
+                                    <td><%# Eval("QualityTag") %></td>
+                                    <td><a href='<%# Eval("DownloadLink1") %>' target="_blank" class="btn btn-crimson btn-sm"><i class="bi bi-cloud-arrow-down me-1"></i>Server 1 Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-primary">Mirror Server 2</span></td>
+                                    <td><%# Eval("QualityTag") %></td>
+                                    <td><a href='<%# Eval("DownloadLink2") %>' target="_blank" class="btn btn-crimson btn-sm"><i class="bi bi-cloud-arrow-down me-1"></i>Server 2 Download</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </ItemTemplate>
+        </asp:Repeater>
+
+        <!-- Dynamic Comments & Reviews Section -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-4 border-start border-4 border-purple ps-3">User Reviews & Comments</h3>
+            
+            <div class="glass-card p-4">
+                <!-- Add Comment Form -->
+                <div class="mb-5">
+                    <h5 class="fw-bold text-white mb-3"><i class="bi bi-chat-square-text me-2"></i>Leave a Review</h5>
+                    <div class="mb-3">
+                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control bg-dark text-white border-secondary mb-2" Placeholder="Your Name"></asp:TextBox>
+                        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control bg-dark text-white border-secondary" Placeholder="Write your review here..."></asp:TextBox>
+                    </div>
+                    <asp:Button ID="btnSubmitComment" runat="server" Text="Post Comment" CssClass="btn btn-crimson btn-sm" OnClick="btnSubmitComment_Click" />
+                </div>
+
+                <!-- Comment List Repeater -->
+                <div class="review-list">
+                    <asp:Repeater ID="rptComments" runat="server" OnItemCommand="rptComments_ItemCommand">
+                        <ItemTemplate>
+                            <div class="review-card mb-3 pb-3 border-bottom border-secondary">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h6 class="fw-bold text-white m-0"><%# Eval("UserName") %></h6>
+                                    <span class="text-warning small"><i class="bi bi-star-fill me-1"></i><%# Eval("Rating") %></span>
+                                </div>
+                                <p class="text-white-50 small mb-1"><%# Eval("CommentText") %></p>
+                                <span class="text-muted" style="font-size: 0.75rem;"><%# Eval("CommentDate", "{0:dd MMM yyyy}") %></span>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+    <!-- FOOTER -->
+    <footer class="glass-card mt-5 rounded-0 border-start-0 border-end-0 border-bottom-0 py-5">
+        <div class="container text-center text-white-50 small">
+            © 2026 FilmFlicks. All rights reserved.
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 </asp:Content>

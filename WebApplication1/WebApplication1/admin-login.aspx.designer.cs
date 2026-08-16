@@ -11,52 +11,52 @@ namespace WebApplication1
 {
 
 
-    public partial class movie_details
+    public partial class admin_login
     {
 
         /// <summary>
-        /// rptMovieDetails control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMovieDetails;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// txtUserName control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserName;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
-        /// txtComment control.
+        /// adminUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtComment;
+        protected global::System.Web.UI.WebControls.TextBox adminUsername;
 
         /// <summary>
-        /// btnSubmitComment control.
+        /// masterKey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitComment;
+        protected global::System.Web.UI.WebControls.TextBox masterKey;
 
         /// <summary>
-        /// rptComments control.
+        /// btnAdminLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptComments;
+        protected global::System.Web.UI.WebControls.LinkButton btnAdminLogin;
     }
 }

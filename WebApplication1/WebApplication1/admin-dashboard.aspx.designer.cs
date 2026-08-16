@@ -11,7 +11,7 @@ namespace WebApplication1
 {
 
 
-    public partial class about
+    public partial class admin_dashboard
     {
     }
 }

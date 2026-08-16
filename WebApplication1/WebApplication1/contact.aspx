@@ -34,8 +34,8 @@
             <div class="collapse navbar-collapse" id="navContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
                     <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white-50" href="about.aspx">about Us</a></li>
-                    <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>
+                
+           <%--         <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>--%>
                     <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
                     <li class="nav-item"><a class="nav-link text-white active" href="contact.aspx">Contact Us</a></li>
@@ -226,8 +226,8 @@
                     <h6 class="fw-bold text-white mb-3">Quick Links</h6>
                     <ul class="list-unstyled text-white-50 small">
                         <li class="mb-2"><a href="index.aspx" class="text-white-50 text-decoration-none">Home</a></li>
-                        <li class="mb-2"><a href="about.aspx" class="text-white-50 text-decoration-none">About Us</a></li>
-                        <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>
+                  
+                    <%--    <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>--%>
                         <li class="mb-2"><a href="webseries.aspx" class="text-white-50 text-decoration-none">Web Series</a></li>
                         <li class="mb-2"><a href="bollywood.aspx" class="text-white-50 text-decoration-none">Bollywood</a></li>
                         <li class="mb-2"><a href="contact.aspx" class="text-white-50 text-decoration-none">Contact Us</a></li>

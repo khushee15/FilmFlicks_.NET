@@ -67,14 +67,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="about.aspx" />
     <Content Include="about.html" />
     <Content Include="admin-categories.html" />
     <Content Include="admin-comments.html" />
+    <Content Include="admin-dashboard.aspx" />
     <Content Include="admin-dashboard.html" />
+    <Content Include="admin-login.aspx" />
     <Content Include="admin-login.html" />
+    <Content Include="admin-movies.aspx" />
     <Content Include="admin-movies.html" />
     <Content Include="admin-settings.html" />
+    <Content Include="admin-users.aspx" />
     <Content Include="admin-users.html" />
     <Content Include="bollywood.aspx" />
     <Content Include="bollywood.html" />
@@ -126,12 +129,33 @@
     <Content Include="webseries.html" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="about.aspx.cs">
-      <DependentUpon>about.aspx</DependentUpon>
+    <Compile Include="admin-dashboard.aspx.cs">
+      <DependentUpon>admin-dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="about.aspx.designer.cs">
-      <DependentUpon>about.aspx</DependentUpon>
+    <Compile Include="admin-dashboard.aspx.designer.cs">
+      <DependentUpon>admin-dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin-login.aspx.cs">
+      <DependentUpon>admin-login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-login.aspx.designer.cs">
+      <DependentUpon>admin-login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin-movies.aspx.cs">
+      <DependentUpon>admin-movies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-movies.aspx.designer.cs">
+      <DependentUpon>admin-movies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin-users.aspx.cs">
+      <DependentUpon>admin-users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-users.aspx.designer.cs">
+      <DependentUpon>admin-users.aspx</DependentUpon>
     </Compile>
     <Compile Include="bollywood.aspx.cs">
       <DependentUpon>bollywood.aspx</DependentUpon>
