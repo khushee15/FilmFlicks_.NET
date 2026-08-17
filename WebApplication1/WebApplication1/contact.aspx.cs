@@ -1,67 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class contact : System.Web.UI.Page
+    public partial class contact : Page
     {
-        private string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True;";
+        string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True;";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
-
-            string name = txtSenderName.Text.Trim();
-            string email = txtSenderEmail.Text.Trim();
-            string subject = ddlSubject.SelectedValue;
-            string message = txtMessageContent.Text.Trim();
-
-           
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(message))
+            if (string.IsNullOrEmpty(txtSenderName.Text) ||
+                string.IsNullOrEmpty(txtSenderEmail.Text) ||
+                string.IsNullOrEmpty(ddlSubject.SelectedValue) ||
+                string.IsNullOrEmpty(txtMessageContent.Text))
             {
-                lblStatus.Text = "<div class='alert alert-warning'>Please fill all required fields!</div>";
+                lblMsg.Text = "<div class='alert alert-danger mb-4' style='background-color: #dc3545; color: #ffffff; border-radius: 8px; padding: 12px 16px;'>Please fill all required fields.</div>";
                 return;
             }
 
-        
-            using (SqlConnection con = new SqlConnection(connStr))
+            try
             {
-                string query = "INSERT INTO ContactMessages (SenderName, SenderEmail, Subject, MessageContent) VALUES (@Name, @Email, @Subject, @Message)";
-
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(connStr))
                 {
-                    cmd.Parameters.AddWithValue("@Name", name);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Subject", subject);
-                    cmd.Parameters.AddWithValue("@Message", message);
+                    string query = "INSERT INTO ContactMessages (Name, Email, Subject, Message, CreatedAt) VALUES (@Name, @Email, @Subject, @Message, @CreatedAt)";
 
-                    con.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
+                    using (SqlCommand cmd = new SqlCommand(query, con))
                     {
-                        lblStatus.Text = "<div class='alert alert-success'>Thank you! Your message has been sent successfully.</div>";
+                        cmd.Parameters.AddWithValue("@Name", txtSenderName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", txtSenderEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Subject", ddlSubject.SelectedValue);
+                        cmd.Parameters.AddWithValue("@Message", txtMessageContent.Text.Trim());
+                        cmd.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
 
-                      
-                        txtSenderName.Text = string.Empty;
-                        txtSenderEmail.Text = string.Empty;
-                        ddlSubject.SelectedIndex = 0;
-                        txtMessageContent.Text = string.Empty;
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
                     }
-                    else
-                    {
-                        lblStatus.Text = "<div class='alert alert-danger'>Failed to send message. Please try again later.</div>";
-                    }
-                }            
+                }
+
+                lblMsg.Text = "<div class='alert alert-success mb-4' style='background-color: #198754; color: #ffffff; border-radius: 8px; padding: 12px 16px; font-weight: 500;'>Your message has been sent successfully. We will get back to you soon!</div>";
+
+                txtSenderName.Text = "";
+                txtSenderEmail.Text = "";
+                ddlSubject.SelectedIndex = 0;
+                txtMessageContent.Text = "";
+            }
+            catch (Exception ex)
+            {
+                lblMsg.Text = "<div class='alert alert-danger mb-4' style='background-color: #dc3545; color: #ffffff; border-radius: 8px; padding: 12px 16px;'>Error: " + ex.Message + "</div>";
             }
         }
     }

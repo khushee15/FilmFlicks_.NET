@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="about.html" />
     <Content Include="admin-categories.html" />
+    <Content Include="admin-comments.aspx" />
     <Content Include="admin-comments.html" />
     <Content Include="admin-dashboard.aspx" />
     <Content Include="admin-dashboard.html" />
@@ -129,6 +130,13 @@
     <Content Include="webseries.html" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin-comments.aspx.cs">
+      <DependentUpon>admin-comments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-comments.aspx.designer.cs">
+      <DependentUpon>admin-comments.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin-dashboard.aspx.cs">
       <DependentUpon>admin-dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
