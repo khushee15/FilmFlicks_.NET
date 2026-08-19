@@ -34,7 +34,7 @@ namespace WebApplication1
                     return id;
                 }
             }
-            return 1; // Default ID jo QueryString n malke
+            return 1; 
         }
 
         private void LoadMovieDetails(int movieId)

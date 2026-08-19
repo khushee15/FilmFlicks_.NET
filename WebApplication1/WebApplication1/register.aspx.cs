@@ -81,21 +81,20 @@ namespace WebApplication1
             {
                 getcon();
 
-                // 1. Check if Username already exists in Database
                 da = new SqlDataAdapter("SELECT * FROM users_tbl WHERE Username='" + floatingUsername.Text.Trim() + "'", con);
                 ds = new DataSet();
                 da.Fill(ds);
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    // Username હાજર હોય તો આ મેસેજ સ્ક્રીન પર આવશે
+                   
                     lblRegisterFeedback.Text = "Username is already taken! Please choose another.";
                     lblRegisterFeedback.CssClass = "d-block mt-2 text-danger";
                     con.Close();
                 }
                 else
                 {
-                    // 2. Insert Data into Database
+                 
                     string query = "INSERT INTO users_tbl (FullName, Username, Email, Password) VALUES ('" + floatingName.Text.Trim() + "', '" + floatingUsername.Text.Trim() + "', '" + floatingEmail.Text.Trim() + "', '" + floatingPassword.Text.Trim() + "')";
                     cmd = new SqlCommand(query, con);
                     cmd.ExecuteNonQuery();

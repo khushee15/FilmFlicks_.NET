@@ -151,7 +151,7 @@
                 <ul class="sidebar-menu">
                     <li><a href="admin-dashboard.aspx"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a></li>
                     <li><a href="admin-movies.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
-                    <li><a href="admin-categories.aspx"><i class="bi bi-send-fill"></i> <span>Categories</span></a></li>
+                    <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movierequest</span></a></li>
                     <li><a href="admin-users.aspx" class="active"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
                     <li><a href="admin-comments.aspx"><i class="bi bi-graph-up-arrow"></i> <span>Comments</span></a></li>
                     <li><a href="admin-settings.aspx"><i class="bi bi-gear-fill"></i> <span>Settings</span></a></li>

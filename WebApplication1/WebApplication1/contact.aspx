@@ -34,8 +34,8 @@
                             <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Search movies...">
                             <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
                         </div>
-                        <a href="login.html" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-                        <a href="register.html" class="btn btn-crimson btn-sm px-3">Register</a>
+                        <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                        <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
                         <div class="profile-dropdown-container">
                             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="rounded-circle border border-primary p-1" width="42" height="42" alt="Profile Avatar">
                             <div class="profile-dropdown-menu">

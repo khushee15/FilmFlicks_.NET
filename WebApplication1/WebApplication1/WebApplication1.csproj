@@ -75,6 +75,7 @@
     <Content Include="admin-dashboard.html" />
     <Content Include="admin-login.aspx" />
     <Content Include="admin-login.html" />
+    <Content Include="admin-movierequest.aspx" />
     <Content Include="admin-movies.aspx" />
     <Content Include="admin-movies.html" />
     <Content Include="admin-settings.html" />
@@ -150,6 +151,13 @@
     </Compile>
     <Compile Include="admin-login.aspx.designer.cs">
       <DependentUpon>admin-login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin-movierequest.aspx.cs">
+      <DependentUpon>admin-movierequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-movierequest.aspx.designer.cs">
+      <DependentUpon>admin-movierequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin-movies.aspx.cs">
       <DependentUpon>admin-movies.aspx</DependentUpon>
