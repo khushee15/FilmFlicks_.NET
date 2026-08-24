@@ -98,5 +98,10 @@ namespace WebApplication1
                 LoadComments(movieId);
             }
         }
+
+        protected void rptMovieDetails_ItemCommand()
+        {
+
+        }
     }
 }

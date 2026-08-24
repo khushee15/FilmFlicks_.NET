@@ -67,25 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="about.html" />
-    <Content Include="admin-categories.html" />
     <Content Include="admin-comments.aspx" />
-    <Content Include="admin-comments.html" />
     <Content Include="admin-dashboard.aspx" />
-    <Content Include="admin-dashboard.html" />
     <Content Include="admin-login.aspx" />
-    <Content Include="admin-login.html" />
     <Content Include="admin-movierequest.aspx" />
     <Content Include="admin-movies.aspx" />
-    <Content Include="admin-movies.html" />
-    <Content Include="admin-settings.html" />
     <Content Include="admin-users.aspx" />
-    <Content Include="admin-users.html" />
     <Content Include="bollywood.aspx" />
-    <Content Include="bollywood.html" />
-    <Content Include="browse.html" />
     <Content Include="contact.aspx" />
-    <Content Include="contact.html" />
     <Content Include="css\about.css" />
     <Content Include="css\admin-categories.css" />
     <Content Include="css\admin-comments.css" />
@@ -113,22 +102,14 @@
     <Content Include="forgot-password.aspx" />
     <Content Include="forgot-password.html" />
     <Content Include="index.aspx" />
-    <Content Include="index.html" />
     <Content Include="login.aspx" />
-    <Content Include="login.html" />
     <Content Include="movie-details.aspx" />
-    <Content Include="movie-details.html" />
     <Content Include="myprofile.aspx" />
-    <Content Include="myprofile.html" />
     <Content Include="mywatchlist.aspx" />
-    <Content Include="mywatchlist.html" />
     <Content Include="register.aspx" />
-    <Content Include="register.html" />
     <Content Include="requestmovie.aspx" />
-    <Content Include="requestmovie.html" />
     <Content Include="Web.config" />
     <Content Include="webseries.aspx" />
-    <Content Include="webseries.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin-comments.aspx.cs">
