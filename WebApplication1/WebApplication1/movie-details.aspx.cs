@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,7 +13,6 @@ namespace WebApplication1
     {
         string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True;";
 
-  
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,6 +21,11 @@ namespace WebApplication1
                 LoadMovieDetails(movieId);
                 LoadComments(movieId);
             }
+        }
+
+        protected void rptMovieDetails_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
         }
         private int GetCurrentMovieId()
         {
@@ -34,7 +37,7 @@ namespace WebApplication1
                     return id;
                 }
             }
-            return 1; 
+            return 1;
         }
 
         private void LoadMovieDetails(int movieId)
@@ -66,10 +69,6 @@ namespace WebApplication1
                 rptComments.DataBind();
             }
         }
-        protected void rptComments_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-
-        }
 
         protected void btnSubmitComment_Click(object sender, EventArgs e)
         {
@@ -85,7 +84,7 @@ namespace WebApplication1
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@MovieID", movieId);
                     cmd.Parameters.AddWithValue("@UserName", name);
-               
+
                     cmd.Parameters.AddWithValue("@CommentText", comment);
                     cmd.Parameters.AddWithValue("@CommentDate", DateTime.Now);
 
@@ -97,9 +96,10 @@ namespace WebApplication1
                 txtComment.Text = "";
                 LoadComments(movieId);
             }
+
         }
 
-        protected void rptMovieDetails_ItemCommand()
+        protected void rptComments_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
         }

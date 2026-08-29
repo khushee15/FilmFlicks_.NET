@@ -100,7 +100,6 @@
     <Content Include="css\requestmovie.css" />
     <Content Include="css\webseries.css" />
     <Content Include="forgot-password.aspx" />
-    <Content Include="forgot-password.html" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
     <Content Include="movie-details.aspx" />

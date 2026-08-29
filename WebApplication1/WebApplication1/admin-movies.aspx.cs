@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,12 +12,14 @@ namespace WebApplication1
     public partial class admin_movies : System.Web.UI.Page
     {
         string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindMoviesTable();
             }
+
         }
         private void BindMoviesTable()
         {
@@ -34,11 +35,6 @@ namespace WebApplication1
             }
         }
 
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            
-        }
-        
         protected void btnSave_Click(object sender, EventArgs e)
         {
             int movieId = Convert.ToInt32(hfMovieID.Value);
@@ -95,6 +91,7 @@ namespace WebApplication1
 
             ClearForm();
             BindMoviesTable();
+
 
         }
         protected void rptAdminMovies_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -172,6 +169,7 @@ namespace WebApplication1
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             ClearForm();
+
         }
     }
 }

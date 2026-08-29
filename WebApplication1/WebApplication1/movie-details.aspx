@@ -57,7 +57,7 @@
     <main class="container" style="padding-top: 100px;">
         
         <!-- DYNAMIC MOVIE DATA REPEATER -->
-        <asp:Repeater ID="rptMovieDetails" runat="server">
+        <asp:Repeater ID="rptMovieDetails" runat="server" OnItemCommand="rptMovieDetails_ItemCommand">
             <ItemTemplate>
                 <!-- Hero Banner Section -->
                 <section class="movie-details-hero p-4 p-md-5 mb-5 glass-card">

@@ -12,15 +12,15 @@
         .sidebar-menu { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
         .sidebar-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: #94a3b8; text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.3s ease; margin-bottom: 8px; }
         .sidebar-menu a:hover, .sidebar-menu a.active { background-color: rgba(99, 102, 241, 0.15); color: #ffffff; }
-        
+       
         .admin-main-content { margin-left: 260px; padding: 30px; background-color: #12151e; min-height: 100vh; }
         .admin-card { background-color: #1a1d2d; border-radius: 12px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); border: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 30px; }
         .card-header-title { font-size: 1.15rem; font-weight: 600; color: #ffffff; margin-bottom: 20px; }
-        
+       
         .table-dark-custom { --bs-table-bg: transparent; --bs-table-color: #cbd5e1; border-color: rgba(255, 255, 255, 0.05); }
         .table-dark-custom th { color: #64748b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 15px; }
         .table-dark-custom td { padding: 16px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); vertical-align: middle; }
-        
+       
         .action-btn { width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s ease; text-decoration: none; margin-right: 5px; }
         .action-btn-success { background-color: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
         .action-btn-success:hover { background-color: #10b981; color: #ffffff; }
@@ -58,7 +58,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <main class="admin-main-content">
-        
+       
         <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
             <div>
                 <h3 class="fw-bold text-white mb-1">User Movie Requests</h3>
@@ -70,7 +70,7 @@
 
         <div class="admin-card">
             <div class="card-header-title">Submitted Movie Requests</div>
-            
+           
             <div class="table-responsive">
                 <asp:Repeater ID="rptRequests" runat="server" OnItemCommand="rptRequests_ItemCommand">
                     <HeaderTemplate>
@@ -111,13 +111,13 @@
                                 </span>
                             </td>
                             <td class="text-end">
-                                <asp:LinkButton ID="btnApprove" runat="server" CommandName="Approve" CommandArgument='<%# Eval("RequestId") %>' 
+                                <asp:LinkButton ID="btnApprove" runat="server" CommandName="Approve" CommandArgument='<%# Eval("RequestId") %>'
                                     CssClass="action-btn action-btn-success" ToolTip="Approve Request"
                                     Visible='<%# Eval("Status").ToString() == "Pending" %>'>
                                     <i class="bi bi-check-lg"></i>
                                 </asp:LinkButton>
-                                
-                                <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteReq" CommandArgument='<%# Eval("RequestId") %>' 
+                               
+                                <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteReq" CommandArgument='<%# Eval("RequestId") %>'
                                     CssClass="action-btn action-btn-danger" ToolTip="Delete Request"
                                     OnClientClick="return confirm('Are you sure you want to delete this request?');">
                                     <i class="bi bi-trash"></i>
@@ -128,7 +128,7 @@
                     <FooterTemplate>
                             </tbody>
                         </table>
-                        <asp:Label ID="lblEmpty" runat="server" Visible='<%# rptRequests.Items.Count == 0 %>' 
+                        <asp:Label ID="lblEmpty" runat="server" Visible='<%# rptRequests.Items.Count == 0 %>'
                                    Text="No movie requests found." CssClass="text-center text-white-50 d-block py-3"></asp:Label>
                     </FooterTemplate>
                 </asp:Repeater>
