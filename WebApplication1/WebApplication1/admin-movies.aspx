@@ -5,19 +5,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <!-- INTERNAL CUSTOM CSS (Matching Admin Theme) -->
     <style>
-        body {
+        /* Global & Reset Styles */
+        body, html {
             background-color: #12151e !important;
             color: #fff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100%;
         }
 
+        /* Layout Structure */
         .admin-wrapper {
             display: flex;
             min-height: 100vh;
+            width: 100%;
         }
 
         /* Sidebar Styling */
@@ -82,8 +85,10 @@
             padding: 30px;
             background-color: #12151e;
             min-height: 100vh;
+            width: calc(100% - 260px);
         }
 
+        /* Card Component */
         .admin-card {
             background-color: #1a1d2d;
             border-radius: 12px;
@@ -101,6 +106,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 12px;
         }
 
         /* Form Controls Styling */
@@ -229,6 +236,7 @@
             }
             .admin-main-content {
                 margin-left: 0;
+                width: 100%;
                 padding: 15px;
             }
         }
@@ -244,12 +252,13 @@
         </a>
 
         <ul class="sidebar-menu">
-            <li><a href="admin-dashboard.aspx"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a></li>
+            <li><a href="admin-webseries.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage webseries</span></a></li>
             <li><a href="admin-movies.aspx" class="active"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
-            <li><a href="admin-movierequest.aspx"><i class="bi bi-tags-fill"></i> <span>Movierequest</span></a></li>
+             <li><a href="admin-bollywood.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Bollywood</span></a></li>
+            <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
             <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
             <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
-            <li><a href="admin-settings.aspx"><i class="bi bi-gear-fill"></i> <span>Settings</span></a></li>
+       
         </ul>
 
         <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
@@ -268,7 +277,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
             <div>
                 <h3 class="fw-bold text-white mb-1">Movie Catalog Management</h3>
-                <p class="text-white-50 small mb-0">Add new movies, update download links, media URLs and manage movie library.</p>
+                <p class="text-white-50 small mb-0">Add new movies, update download links, media files and manage movie library.</p>
             </div>
         </div>
 
@@ -290,8 +299,8 @@
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" placeholder="e.g. Oppenheimer"></asp:TextBox>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">IMDb ID / Rating</label>
-                    <asp:TextBox ID="txtImdbID" runat="server" CssClass="form-control" placeholder="e.g. tt15398776"></asp:TextBox>
+                    <label class="form-label">IMDb Rating</label>
+                    <asp:TextBox ID="txtImdbID" runat="server" CssClass="form-control" placeholder="e.g. 8.9"></asp:TextBox>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Category</label>
@@ -321,32 +330,32 @@
                     <asp:TextBox ID="txtCast" runat="server" CssClass="form-control" placeholder="e.g. Cillian Murphy, Robert Downey Jr."></asp:TextBox>
                 </div>
 
-                <!-- Media URLs -->
+                <!-- Media File Uploads -->
                 <div class="col-md-6">
-                    <label class="form-label">Poster Image URL</label>
-                    <asp:TextBox ID="txtPosterUrl" runat="server" CssClass="form-control" placeholder="https://image-link.jpg"></asp:TextBox>
+                    <label class="form-label">Poster Image (Upload)</label>
+                    <asp:FileUpload ID="fPoster" runat="server" CssClass="form-control" />
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Trailer Embed URL (YouTube Embed)</label>
                     <asp:TextBox ID="txtTrailerUrl" runat="server" CssClass="form-control" placeholder="https://www.youtube.com/embed/XXXXXX"></asp:TextBox>
                 </div>
 
-                <!-- Screenshots -->
+                <!-- Screenshots Uploads -->
                 <div class="col-md-3">
-                    <label class="form-label">Screenshot 1 URL</label>
-                    <asp:TextBox ID="txtSS1" runat="server" CssClass="form-control" placeholder="https://img1.jpg"></asp:TextBox>
+                    <label class="form-label">Screenshot 1</label>
+                    <asp:FileUpload ID="fSS1" runat="server" CssClass="form-control" />
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Screenshot 2 URL</label>
-                    <asp:TextBox ID="txtSS2" runat="server" CssClass="form-control" placeholder="https://img2.jpg"></asp:TextBox>
+                    <label class="form-label">Screenshot 2</label>
+                    <asp:FileUpload ID="fSS2" runat="server" CssClass="form-control" />
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Screenshot 3 URL</label>
-                    <asp:TextBox ID="txtSS3" runat="server" CssClass="form-control" placeholder="https://img3.jpg"></asp:TextBox>
+                    <label class="form-label">Screenshot 3</label>
+                    <asp:FileUpload ID="fSS3" runat="server" CssClass="form-control" />
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Screenshot 4 URL</label>
-                    <asp:TextBox ID="txtSS4" runat="server" CssClass="form-control" placeholder="https://img4.jpg"></asp:TextBox>
+                    <label class="form-label">Screenshot 4</label>
+                    <asp:FileUpload ID="fSS4" runat="server" CssClass="form-control" />
                 </div>
 
                 <!-- Download Links -->
@@ -398,7 +407,7 @@
                         <tr>
                             <td class="fw-bold text-white-50">#<%# Eval("MovieID") %></td>
                             <td>
-                                <img src='<%# Eval("PosterUrl") %>' width="40" height="52" class="rounded" style="object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
+                                <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' width="40" height="52" class="rounded" style="object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
                             </td>
                             <td class="fw-semibold text-white"><%# Eval("Title") %></td>
                             <td><span class="badge bg-secondary text-light px-2 py-1"><%# Eval("Category") %></span></td>
@@ -425,4 +434,6 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
 </asp:Content>

@@ -69,7 +69,10 @@
                             <div class="movie-card">
                                 <span class="rating-badge"><i class="bi bi-star-fill"></i> IMDb</span> 
                                 <span class="quality-badge"><%# Eval("QualityTag") %></span>
-                                <img src='<%# Eval("PosterUrl") %>' class="movie-poster" alt='<%# Eval("Title") %>'>
+                                
+                                <!-- માત્ર આ લાઇન સુધારી છે: ResolveUrl વાપરીને સેટ કરેલી ઈમેજ ટેગ -->
+                                <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' class="movie-poster" alt='<%# Eval("Title") %>'>
+                                
                                 <div class="movie-overlay">
                                     <h5 class="fw-bold text-white mb-1"><%# Eval("Title") %></h5>
                                     <p class="text-white-50 small mb-2"><%# Eval("Category") %></p>

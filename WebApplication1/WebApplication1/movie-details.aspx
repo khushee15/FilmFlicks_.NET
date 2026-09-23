@@ -1,55 +1,44 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="movie-details.aspx.cs" Inherits="WebApplication1.movie_details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Bootstrap 5 CSS & Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/movie-details.css">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Movie Details - FilmFlicks</title>
-        
-        <!-- Bootstrap 5 CSS & Icons CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-        
-        <!-- Custom CSS Files -->
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/home.css">
-        <link rel="stylesheet" href="css/movie-details.css">
-    </head>
-    <body>
+    <!-- STICKY NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- STICKY NAVBAR -->
-        <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
-            <div class="container">
-                <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
-                </a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
+                    <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white active" href="movie-details.aspx">Movies</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
+                </ul>
 
-                <div class="collapse navbar-collapse" id="navContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
-                        <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
-                 
-                        <li class="nav-item"><a class="nav-link text-white active" href="movie-details.aspx">Movies</a></li>
-                        <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
-                        <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
-                        <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
-                    </ul>
-
-                    <div class="d-flex align-items-center gap-3">
-                        <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-                        <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
-                    </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                    <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
@@ -64,7 +53,7 @@
                     <div class="row g-4 align-items-center">
                         <div class="col-12 col-md-4 col-lg-3">
                             <div class="poster-box">
-                                <img src='<%# Eval("PosterUrl") %>' class="poster-img img-fluid rounded" alt='<%# Eval("Title") %>'>
+                                <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' class="poster-img img-fluid rounded" alt='<%# Eval("Title") %>'>
                             </div>
                         </div>
 
@@ -118,16 +107,16 @@
                     <h3 class="fw-bold mb-4 border-start border-4 border-primary ps-3">Movie Screenshots & Preview</h3>
                     <div class="row g-3">
                         <div class="col-6 col-md-3">
-                            <img src='<%# Eval("Screenshot1") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 1">
+                            <img src='<%# ResolveUrl(Eval("Screenshot1").ToString()) %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 1">
                         </div>
                         <div class="col-6 col-md-3">
-                            <img src='<%# Eval("Screenshot2") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 2">
+                            <img src='<%# ResolveUrl(Eval("Screenshot2").ToString()) %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 2">
                         </div>
                         <div class="col-6 col-md-3">
-                            <img src='<%# Eval("Screenshot3") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 3">
+                            <img src='<%# ResolveUrl(Eval("Screenshot3").ToString()) %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 3">
                         </div>
                         <div class="col-6 col-md-3">
-                            <img src='<%# Eval("Screenshot4") %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 4">
+                            <img src='<%# ResolveUrl(Eval("Screenshot4").ToString()) %>' class="img-fluid rounded w-100" style="height: 160px; object-fit: cover;" alt="Screenshot 4">
                         </div>
                     </div>
                 </section>
@@ -206,6 +195,4 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 </asp:Content>

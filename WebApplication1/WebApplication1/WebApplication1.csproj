@@ -67,12 +67,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin-bollywood.aspx" />
     <Content Include="admin-comments.aspx" />
-    <Content Include="admin-dashboard.aspx" />
     <Content Include="admin-login.aspx" />
     <Content Include="admin-movierequest.aspx" />
     <Content Include="admin-movies.aspx" />
     <Content Include="admin-users.aspx" />
+    <Content Include="admin-webseries.aspx" />
     <Content Include="bollywood.aspx" />
     <Content Include="contact.aspx" />
     <Content Include="css\about.css" />
@@ -111,19 +112,19 @@
     <Content Include="webseries.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin-bollywood.aspx.cs">
+      <DependentUpon>admin-bollywood.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-bollywood.aspx.designer.cs">
+      <DependentUpon>admin-bollywood.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin-comments.aspx.cs">
       <DependentUpon>admin-comments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin-comments.aspx.designer.cs">
       <DependentUpon>admin-comments.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin-dashboard.aspx.cs">
-      <DependentUpon>admin-dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin-dashboard.aspx.designer.cs">
-      <DependentUpon>admin-dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin-login.aspx.cs">
       <DependentUpon>admin-login.aspx</DependentUpon>
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="admin-users.aspx.designer.cs">
       <DependentUpon>admin-users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin-webseries.aspx.cs">
+      <DependentUpon>admin-webseries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-webseries.aspx.designer.cs">
+      <DependentUpon>admin-webseries.aspx</DependentUpon>
     </Compile>
     <Compile Include="bollywood.aspx.cs">
       <DependentUpon>bollywood.aspx</DependentUpon>
@@ -249,6 +257,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Movie_Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

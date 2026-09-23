@@ -87,13 +87,13 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox txtCast;
 
         /// <summary>
-        /// txtPosterUrl control.
+        /// fPoster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPosterUrl;
+        protected global::System.Web.UI.WebControls.FileUpload fPoster;
 
         /// <summary>
         /// txtTrailerUrl control.
@@ -105,40 +105,40 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox txtTrailerUrl;
 
         /// <summary>
-        /// txtSS1 control.
+        /// fSS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSS1;
+        protected global::System.Web.UI.WebControls.FileUpload fSS1;
 
         /// <summary>
-        /// txtSS2 control.
+        /// fSS2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSS2;
+        protected global::System.Web.UI.WebControls.FileUpload fSS2;
 
         /// <summary>
-        /// txtSS3 control.
+        /// fSS3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSS3;
+        protected global::System.Web.UI.WebControls.FileUpload fSS3;
 
         /// <summary>
-        /// txtSS4 control.
+        /// fSS4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSS4;
+        protected global::System.Web.UI.WebControls.FileUpload fSS4;
 
         /// <summary>
         /// txtLink1 control.
