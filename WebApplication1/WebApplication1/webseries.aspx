@@ -91,7 +91,7 @@
                                 
                                 <div class="movie-overlay">
                                     <h5 class="fw-bold text-white mb-2"><%# Eval("Title") %></h5>
-                                    <a href='<%# "webseries_details.aspx?id=" + Eval("SeriesID") %>' class="btn btn-crimson btn-sm w-100 mt-2">
+                                    <a href='<%# "webseries-details.aspx?id=" + Eval("SeriesID") %>' class="btn btn-crimson btn-sm w-100 mt-2">
                                         <i class="bi bi-play-fill me-1"></i>View Series
                                     </a>
                                 </div>

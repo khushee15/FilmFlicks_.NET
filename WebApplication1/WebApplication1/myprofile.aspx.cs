@@ -49,8 +49,7 @@ namespace WebApplication1
         void LoadUserProfile(string email)
         {
             getcon();
-            cmd = new SqlCommand("SELECT FullName, Username, Email, Phone, Bio, ImagePath FROM users_tbl WHERE Email = @Email", con);
-            cmd.Parameters.AddWithValue("@Email", email);
+            cmd = new SqlCommand("SELECT FullName, Username, Email, Phone, Bio, ImagePath FROM users_tbl WHERE Email = '" + email + "'", con);
             dr = cmd.ExecuteReader();
 
             if (dr.Read())
@@ -81,7 +80,6 @@ namespace WebApplication1
         {
             if (fileUploadAvatar.HasFile)
             {
-                // ફાઈલનું નામ unique રાખવા માટે ટાઈમસ્ટેમ્પ ઉમેર્યું છે
                 string fileName = Path.GetFileNameWithoutExtension(fileUploadAvatar.FileName) + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(fileUploadAvatar.FileName);
                 fnm = "~/Uploads/" + fileName;
                 fileUploadAvatar.SaveAs(Server.MapPath(fnm));
@@ -97,25 +95,16 @@ namespace WebApplication1
             }
             else
             {
-                cmd = new SqlCommand("SELECT ImagePath FROM users_tbl WHERE Username = @Username", con);
-                cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                cmd = new SqlCommand("SELECT ImagePath FROM users_tbl WHERE Username = '" + txtUsername.Text.Trim() + "'", con);
                 object obj = cmd.ExecuteScalar();
                 fnm = (obj != null && obj != DBNull.Value) ? obj.ToString() : "";
             }
 
-            // SQL Injection થી બચવા Parameterized Query નો ઉપયોગ
-            cmd = new SqlCommand("UPDATE users_tbl SET FullName = @FullName, Email = @Email, Phone = @Phone, Bio = @Bio, ImagePath = @ImagePath WHERE Username = @Username", con);
-            cmd.Parameters.AddWithValue("@FullName", txtFullName.Text);
-            cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
-            cmd.Parameters.AddWithValue("@Bio", txtBio.Text);
-            cmd.Parameters.AddWithValue("@ImagePath", fnm);
-            cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+            cmd = new SqlCommand("UPDATE users_tbl SET FullName = '" + txtFullName.Text.Trim() + "', Email = '" + txtEmail.Text.Trim() + "', Phone = '" + txtPhone.Text.Trim() + "', Bio = '" + txtBio.Text.Trim() + "', ImagePath = '" + fnm + "' WHERE Username = '" + txtUsername.Text.Trim() + "'", con);
 
             cmd.ExecuteNonQuery();
             con.Close();
 
-           
             Session["UserEmail"] = txtEmail.Text;
             Session["username"] = txtUsername.Text;
 
