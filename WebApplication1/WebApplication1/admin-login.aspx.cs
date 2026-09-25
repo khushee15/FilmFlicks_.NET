@@ -29,7 +29,7 @@ namespace WebApplication1
             
                 Session["AdminUser"] = username;
 
-                Response.Redirect("admin-movies.aspx");
+                Response.Redirect("admin-webseries.aspx");
             }
             else
             {

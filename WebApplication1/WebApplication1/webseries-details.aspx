@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Web Series Details" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="webseries-details.aspx.cs" Inherits="WebApplication1.webseries_details" %>
+<%@ Page Title="Web Series Details" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="webseries_details.aspx.cs" Inherits="WebApplication1.webseries_details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap 5 CSS & Icons CDN -->
@@ -12,7 +12,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!-- STICKY NAVBAR -->
+
     <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
         <div class="container">
             <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
@@ -27,13 +27,36 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
                     <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-white active" href="webseries.aspx">Web Series</a></li>
-                    <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="Cartoon.aspx">Cartoon</a></li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
                 </ul>
 
                 <div class="d-flex align-items-center gap-3">
-                    <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-                    <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
+                    <div class="input-group" style="max-width: 240px;">
+                        <input type="text" name="q" class="form-control bg-dark text-white border-secondary" placeholder="Search web series...">
+                        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                    </div>
+
+                    <% if (Session["username"] == null) { %>
+                        <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                        <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
+                    <% } else { %>
+                        <div class="profile-dropdown-container">
+                            <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
+                                <span class="text-white fw-semibold small d-none d-md-inline"><%= Session["username"] %></span>
+                            </div>
+                            <div class="profile-dropdown-menu">
+                                <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
+                                    <div class="fw-bold"><%= Session["username"] %></div>
+                                    <% if (Session["UserEmail"] != null) { %><div class="small text-white-50"><%= Session["UserEmail"] %></div><% } %>
+                                </div>
+                                <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
+                                <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
+                                <hr class="dropdown-divider bg-secondary my-1">
+                                <a href="logout.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                            </div>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -58,7 +81,7 @@
 
                         <div class="col-12 col-md-8 col-lg-9">
                             <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="meta-tag text-warning border-warning"><i class="bi bi-star-fill me-1"></i>IMDb 8.8</span>
+                                <span class="meta-tag text-warning border-warning"><i class="bi bi-star-fill me-1"></i>IMDb <%# Eval("ImdbID") %></span>
                                 <span class="meta-tag"><i class="bi bi-collection-play me-1"></i>All Episodes</span>
                                 <span class="meta-tag"><i class="bi bi-translate me-1"></i>Dual Audio</span>
                             </div>
@@ -66,7 +89,6 @@
                             <h1 class="display-4 fw-bold text-white mb-3"><%# Eval("Title") %></h1>
                             
                             <div class="d-flex flex-wrap gap-2 mb-4">
-                                <span class="badge bg-danger"><%# Eval("Category") %></span>
                                 <span class="badge bg-primary"><%# Eval("QualityTag") %></span>
                             </div>
 
@@ -78,7 +100,6 @@
                                     <p class="mb-1"><strong class="text-white"><i class="bi bi-people me-2"></i>Cast:</strong> <%# Eval("Cast") %></p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p class="mb-1"><strong class="text-white"><i class="bi bi-award me-2"></i>Category:</strong> <%# Eval("Category") %></p>
                                     <p class="mb-1"><strong class="text-white"><i class="bi bi-disc me-2"></i>Quality Available:</strong> <%# Eval("QualityTag") %></p>
                                 </div>
                             </div>
@@ -167,7 +188,7 @@
 
                 <!-- Comment List Repeater -->
                 <div class="review-list">
-                    <asp:Repeater ID="rptComments" runat="server">
+                    <asp:Repeater ID="rptComments" runat="server" OnItemCommand="rptComments_ItemCommand">
                         <ItemTemplate>
                             <div class="review-card mb-3 pb-3 border-bottom border-secondary">
                                 <div class="d-flex align-items-center justify-content-between mb-2">

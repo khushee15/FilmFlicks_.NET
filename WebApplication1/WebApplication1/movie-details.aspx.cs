@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,7 +9,10 @@ namespace WebApplication1
 {
     public partial class movie_details : System.Web.UI.Page
     {
-        string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True;";
+        SqlConnection con;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +21,12 @@ namespace WebApplication1
                 int movieId = GetCurrentMovieId();
                 LoadMovieDetails(movieId);
                 LoadComments(movieId);
+
+                if (Session["username"] != null)
+                {
+                    txtUserName.Text = Session["username"].ToString();
+                    txtUserName.ReadOnly = true;
+                }
             }
         }
 
@@ -27,7 +34,17 @@ namespace WebApplication1
         {
 
         }
-        private int GetCurrentMovieId()
+
+        void getcon()
+        {
+            con = new SqlConnection(s);
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+        }
+
+        int GetCurrentMovieId()
         {
             if (Request.QueryString["id"] != null)
             {
@@ -40,63 +57,49 @@ namespace WebApplication1
             return 1;
         }
 
-        private void LoadMovieDetails(int movieId)
+        void LoadMovieDetails(int movieId)
         {
-            using (SqlConnection con = new SqlConnection(connStr))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Movies WHERE MovieID = @MovieID", con);
-                cmd.Parameters.AddWithValue("@MovieID", movieId);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
+            getcon();
+            da = new SqlDataAdapter("select * from Movies where MovieID = " + movieId, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
 
-                rptMovieDetails.DataSource = dt;
-                rptMovieDetails.DataBind();
-            }
+            rptMovieDetails.DataSource = dt;
+            rptMovieDetails.DataBind();
+            con.Close();
         }
 
-        private void LoadComments(int movieId)
+        void LoadComments(int movieId)
         {
-            using (SqlConnection con = new SqlConnection(connStr))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM MovieComments WHERE MovieID = @MovieID ORDER BY CommentDate DESC", con);
-                cmd.Parameters.AddWithValue("@MovieID", movieId);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
+            getcon();
+            da = new SqlDataAdapter("select * from MovieComments where MovieID = " + movieId + " order by CommentDate desc", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
 
-                rptComments.DataSource = dt;
-                rptComments.DataBind();
-            }
+            rptComments.DataSource = dt;
+            rptComments.DataBind();
+            con.Close();
         }
-
         protected void btnSubmitComment_Click(object sender, EventArgs e)
         {
             int movieId = GetCurrentMovieId();
-            string name = string.IsNullOrWhiteSpace(txtUserName.Text) ? "Anonymous" : txtUserName.Text.Trim();
+            string name = Session["username"] != null ? Session["username"].ToString() : (string.IsNullOrWhiteSpace(txtUserName.Text) ? "Anonymous" : txtUserName.Text.Trim());
             string comment = txtComment.Text.Trim();
 
             if (!string.IsNullOrEmpty(comment))
             {
-                using (SqlConnection con = new SqlConnection(connStr))
+                getcon();
+                cmd = new SqlCommand("insert into MovieComments (MovieID, UserName, Rating, CommentText, CommentDate) values (" + movieId + ", '" + name + "', '5.0', '" + comment + "', GETDATE())", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                if (Session["username"] == null)
                 {
-                    string query = "INSERT INTO MovieComments (MovieID, UserName, Rating, CommentText, CommentDate) VALUES (@MovieID, @UserName, '5.0', @CommentText, GETDATE())";
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@MovieID", movieId);
-                    cmd.Parameters.AddWithValue("@UserName", name);
-
-                    cmd.Parameters.AddWithValue("@CommentText", comment);
-                    cmd.Parameters.AddWithValue("@CommentDate", DateTime.Now);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
+                    txtUserName.Text = "";
                 }
-
-                txtUserName.Text = "";
                 txtComment.Text = "";
                 LoadComments(movieId);
             }
-
         }
 
         protected void rptComments_ItemCommand(object source, RepeaterCommandEventArgs e)

@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -13,11 +14,11 @@ namespace WebApplication1
 {
     public partial class admin_movies : System.Web.UI.Page
     {
-        string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True";
-        string posterPath = "", ss1Path = "", ss2Path = "", ss3Path = "", ss4Path = "";
         SqlConnection con;
         SqlCommand cmd;
         SqlDataAdapter da;
+        string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
+        string posterPath = "", ss1Path = "", ss2Path = "", ss3Path = "", ss4Path = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -27,18 +28,17 @@ namespace WebApplication1
         }
         void getcon()
         {
-      
-            con = new SqlConnection(connStr);
+            con = new SqlConnection(s);
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
             }
         }
 
-        private void BindMoviesTable()
+        void BindMoviesTable()
         {
             getcon();
-            da = new SqlDataAdapter("SELECT MovieID, Title, Category, QualityTag, PosterUrl FROM Movies ORDER BY MovieID DESC", con);
+            da = new SqlDataAdapter("select MovieID, Title, QualityTag, PosterUrl from Movies order by MovieID desc", con);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
@@ -47,7 +47,6 @@ namespace WebApplication1
             con.Close();
         }
 
-      
         void uploadPoster()
         {
             if (fPoster.HasFile)
@@ -62,7 +61,6 @@ namespace WebApplication1
             }
         }
 
-      
         void uploadScreenshots()
         {
             string folderPath = Server.MapPath("~/screnshort/");
@@ -101,32 +99,18 @@ namespace WebApplication1
 
             getcon();
 
-          
             uploadPoster();
             uploadScreenshots();
 
             if (movieId == 0)
             {
-               
-                string insertQuery = @"INSERT INTO Movies 
-                    (Title, ImdbID, Category, QualityTag, PosterUrl, Description, Director, Cast, TrailerUrl, Screenshot1, Screenshot2, Screenshot3, Screenshot4, DownloadLink1, DownloadLink2) 
-                    VALUES 
-                    (@Title, @ImdbID, @Category, @QualityTag, @PosterUrl, @Description, @Director, @Cast, @TrailerUrl, @Screenshot1, @Screenshot2, @Screenshot3, @Screenshot4, @DownloadLink1, @DownloadLink2)";
-
-                cmd = new SqlCommand(insertQuery, con);
-                cmd.Parameters.AddWithValue("@PosterUrl", posterPath);
-                cmd.Parameters.AddWithValue("@Screenshot1", ss1Path);
-                cmd.Parameters.AddWithValue("@Screenshot2", ss2Path);
-                cmd.Parameters.AddWithValue("@Screenshot3", ss3Path);
-                cmd.Parameters.AddWithValue("@Screenshot4", ss4Path);
+                cmd = new SqlCommand("insert into Movies (Title, ImdbID, QualityTag, PosterUrl, Description, Director, Cast, TrailerUrl, Screenshot1, Screenshot2, Screenshot3, Screenshot4, DownloadLink1, DownloadLink2) values ('" + txtTitle.Text.Trim() + "', '" + txtImdbID.Text.Trim() + "', '" + ddlQuality.SelectedValue + "', '" + posterPath + "', '" + txtDescription.Text.Trim() + "', '" + txtDirector.Text.Trim() + "', '" + txtCast.Text.Trim() + "', '" + txtTrailerUrl.Text.Trim() + "', '" + ss1Path + "', '" + ss2Path + "', '" + ss3Path + "', '" + ss4Path + "', '" + txtLink1.Text.Trim() + "', '" + txtLink2.Text.Trim() + "')", con);
             }
             else
             {
-              
                 string currentPoster = "", currentSS1 = "", currentSS2 = "", currentSS3 = "", currentSS4 = "";
 
-                SqlCommand cmdSelect = new SqlCommand("SELECT PosterUrl, Screenshot1, Screenshot2, Screenshot3, Screenshot4 FROM Movies WHERE MovieID = @MovieID", con);
-                cmdSelect.Parameters.AddWithValue("@MovieID", movieId);
+                SqlCommand cmdSelect = new SqlCommand("select PosterUrl, Screenshot1, Screenshot2, Screenshot3, Screenshot4 from Movies where MovieID = " + movieId, con);
                 SqlDataReader dr = cmdSelect.ExecuteReader();
                 if (dr.Read())
                 {
@@ -138,34 +122,14 @@ namespace WebApplication1
                 }
                 dr.Close();
 
-                string updateQuery = @"UPDATE Movies SET 
-                    Title=@Title, ImdbID=@ImdbID, Category=@Category, QualityTag=@QualityTag, 
-                    PosterUrl=@PosterUrl, Description=@Description, Director=@Director, Cast=@Cast, 
-                    TrailerUrl=@TrailerUrl, Screenshot1=@Screenshot1, Screenshot2=@Screenshot2, 
-                    Screenshot3=@Screenshot3, Screenshot4=@Screenshot4, DownloadLink1=@DownloadLink1, DownloadLink2=@DownloadLink2 
-                    WHERE MovieID=@MovieID";
+                string finalPoster = string.IsNullOrEmpty(posterPath) ? currentPoster : posterPath;
+                string finalSS1 = string.IsNullOrEmpty(ss1Path) ? currentSS1 : ss1Path;
+                string finalSS2 = string.IsNullOrEmpty(ss2Path) ? currentSS2 : ss2Path;
+                string finalSS3 = string.IsNullOrEmpty(ss3Path) ? currentSS3 : ss3Path;
+                string finalSS4 = string.IsNullOrEmpty(ss4Path) ? currentSS4 : ss4Path;
 
-                cmd = new SqlCommand(updateQuery, con);
-                cmd.Parameters.AddWithValue("@MovieID", movieId);
-
-             
-                cmd.Parameters.AddWithValue("@PosterUrl", string.IsNullOrEmpty(posterPath) ? currentPoster : posterPath);
-                cmd.Parameters.AddWithValue("@Screenshot1", string.IsNullOrEmpty(ss1Path) ? currentSS1 : ss1Path);
-                cmd.Parameters.AddWithValue("@Screenshot2", string.IsNullOrEmpty(ss2Path) ? currentSS2 : ss2Path);
-                cmd.Parameters.AddWithValue("@Screenshot3", string.IsNullOrEmpty(ss3Path) ? currentSS3 : ss3Path);
-                cmd.Parameters.AddWithValue("@Screenshot4", string.IsNullOrEmpty(ss4Path) ? currentSS4 : ss4Path);
+                cmd = new SqlCommand("update Movies set Title = '" + txtTitle.Text.Trim() + "', ImdbID = '" + txtImdbID.Text.Trim() + "', QualityTag = '" + ddlQuality.SelectedValue + "', PosterUrl = '" + finalPoster + "', Description = '" + txtDescription.Text.Trim() + "', Director = '" + txtDirector.Text.Trim() + "', Cast = '" + txtCast.Text.Trim() + "', TrailerUrl = '" + txtTrailerUrl.Text.Trim() + "', Screenshot1 = '" + finalSS1 + "', Screenshot2 = '" + finalSS2 + "', Screenshot3 = '" + finalSS3 + "', Screenshot4 = '" + finalSS4 + "', DownloadLink1 = '" + txtLink1.Text.Trim() + "', DownloadLink2 = '" + txtLink2.Text.Trim() + "' where MovieID = " + movieId, con);
             }
-
-            cmd.Parameters.AddWithValue("@Title", txtTitle.Text.Trim());
-            cmd.Parameters.AddWithValue("@ImdbID", txtImdbID.Text.Trim());
-            cmd.Parameters.AddWithValue("@Category", ddlCategory.SelectedValue);
-            cmd.Parameters.AddWithValue("@QualityTag", ddlQuality.SelectedValue);
-            cmd.Parameters.AddWithValue("@Description", txtDescription.Text.Trim());
-            cmd.Parameters.AddWithValue("@Director", txtDirector.Text.Trim());
-            cmd.Parameters.AddWithValue("@Cast", txtCast.Text.Trim());
-            cmd.Parameters.AddWithValue("@TrailerUrl", txtTrailerUrl.Text.Trim());
-            cmd.Parameters.AddWithValue("@DownloadLink1", txtLink1.Text.Trim());
-            cmd.Parameters.AddWithValue("@DownloadLink2", txtLink2.Text.Trim());
 
             cmd.ExecuteNonQuery();
             con.Close();
@@ -175,7 +139,6 @@ namespace WebApplication1
 
             ClearForm();
             BindMoviesTable();
-
         }
         protected void rptAdminMovies_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -184,8 +147,8 @@ namespace WebApplication1
             if (e.CommandName == "Edit")
             {
                 getcon();
-                cmd = new SqlCommand("SELECT * FROM Movies WHERE MovieID = @MovieID", con);
-                cmd.Parameters.AddWithValue("@MovieID", movieId);
+
+                cmd = new SqlCommand("select * from Movies where MovieID = " + movieId, con);
                 da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -197,9 +160,6 @@ namespace WebApplication1
                     hfMovieID.Value = dr["MovieID"].ToString();
                     txtTitle.Text = dr["Title"].ToString();
                     txtImdbID.Text = dr["ImdbID"].ToString();
-
-                    if (ddlCategory.Items.FindByValue(dr["Category"].ToString()) != null)
-                        ddlCategory.SelectedValue = dr["Category"].ToString();
 
                     if (ddlQuality.Items.FindByValue(dr["QualityTag"].ToString()) != null)
                         ddlQuality.SelectedValue = dr["QualityTag"].ToString();
@@ -217,8 +177,8 @@ namespace WebApplication1
             else if (e.CommandName == "Delete")
             {
                 getcon();
-                cmd = new SqlCommand("DELETE FROM Movies WHERE MovieID = @MovieID", con);
-                cmd.Parameters.AddWithValue("@MovieID", movieId);
+
+                cmd = new SqlCommand("delete from Movies where MovieID = " + movieId, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -227,7 +187,7 @@ namespace WebApplication1
                 BindMoviesTable();
             }
         }
-        private void ClearForm()
+        void ClearForm()
         {
             hfMovieID.Value = "0";
             txtTitle.Text = "";
@@ -240,11 +200,9 @@ namespace WebApplication1
             txtLink2.Text = "";
             btnSave.Text = "Save Movie";
         }
-
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             ClearForm();
-
         }
     }
 }

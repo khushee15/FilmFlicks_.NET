@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-dashboard.aspx.cs" Inherits="WebApplication1.admin_dashboard" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-dashboard.aspx.cs" Inherits="WebApplication1.admin_dashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -34,15 +34,16 @@
 
       <ul class="sidebar-menu">
         <li><a href="admin-dashboard.aspx" class="active"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a></li>
-        <li><a href="admin-movies.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
-        <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movierequest</span></a></li>
+        <li><a href="admin-movies.aspx"><i class="bi bi-film"></i> <span>Manage Movies</span></a></li>
+        <li><a href="admin-webseries.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Web Series</span></a></li>
+        <li><a href="admin-Cartoon.aspx"><i class="bi bi-emoji-smile-fill"></i> <span>Manage Cartoon</span></a></li>
+        <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
         <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
-        <li><a href="admin-comments.aspx"><i class="bi bi-graph-up-arrow"></i> <span>Comments</span></a></li>
-        <li><a href="admin-settings.aspx"><i class="bi bi-gear-fill"></i> <span>Settings</span></a></li>
+        <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
       </ul>
 
       <div class="pt-3 border-top border-secondary border-opacity-25">
-        <a href="admin-login.aspx" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3 hover-bg-danger">
+        <a href="logout.aspx" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3 hover-bg-danger">
           <i class="bi bi-box-arrow-left"></i> <span>Logout</span>
         </a>
       </div>

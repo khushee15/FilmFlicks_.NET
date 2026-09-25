@@ -16,56 +16,66 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/requestmovie.css">
+ <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+ <link rel="stylesheet" href="css/main.css">
+ <link rel="stylesheet" href="css/home.css">
+ <link rel="stylesheet" href="css/webseries.css">--%>
 </head>
 <body>
     <form id="form1" runat="server">
-        
+       
         <!-- STICKY NAVBAR -->
-        <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
-            <div class="container">
-                <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
-                </a>
+              <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
+                <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
+                <li class="nav-item"><a class="nav-link text-white active" href="Cartoon.aspx">Cartoon</a></li>
+                <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
+            </ul>
 
-                <div class="collapse navbar-collapse" id="navContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
-                        <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
-                   
-<%--                        <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>--%>
-                        <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
-                        <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
-                        <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
-                    </ul>
+            <div class="d-flex align-items-center gap-3">
+                <div class="input-group" style="max-width: 240px;">
+                    <input type="text" id="navSearchQuery_cart" class="form-control bg-dark text-white border-secondary" placeholder="Search cartoons..." onkeydown="if(event.key === 'Enter'){ performNavSearch_cart(); return false; }">
+                    <button class="btn btn-outline-secondary" type="button" onclick="performNavSearch_cart()"><i class="bi bi-search"></i></button>
+                </div>
+              
+                <a href="admin-login.aspx" class="btn btn-outline-warning btn-sm px-3 fw-semibold"><i class="bi bi-shield-lock me-1"></i>Admin</a>
 
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="input-group" style="max-width: 240px;">
-                            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Search movies...">
-                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                <% if (Session["username"] == null) { %>
+                    <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                    <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
+                <% } else { %>
+                    <div class="profile-dropdown-container">
+                        <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
+                            <span class="text-white fw-semibold small d-none d-md-inline"><%= Session["username"] %></span>
+  
                         </div>
-
-                        <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-                        <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
-
-                        <!-- Profile Dropdown -->
-                        <div class="profile-dropdown-container">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="rounded-circle border border-primary p-1" width="42" height="42" alt="Profile Avatar">
-                            <div class="profile-dropdown-menu">
-                                <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
-                                <a href="mywatchlist.aspx"><i class="bi bi-bookmark me-2"></i>My Watchlist</a>
-                                <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
-                                <a href="admin-login.aspx"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
-                                <hr class="dropdown-divider bg-secondary my-1">
-                                <a href="login.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                        <div class="profile-dropdown-menu">
+                            <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
+                                <div class="fw-bold"><%= Session["username"] %></div>
+                                <% if (Session["UserEmail"] != null) { %><div class="small text-white-50"><%= Session["UserEmail"] %></div><% } %>
                             </div>
+                            <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
+                            <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
+                            <hr class="dropdown-divider bg-secondary my-1">
+                            <a href="logout.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
                         </div>
                     </div>
-                </div>
+                <% } %>
             </div>
-        </nav>
+        </div>
+    </div>
+</nav>
 
         <!-- HEADER SECTION -->
         <header class="request-header" style="padding-top: 110px;">
@@ -239,7 +249,7 @@
                         <h6 class="fw-bold text-white mb-3">Quick Links</h6>
                         <ul class="list-unstyled text-white-50 small">
                             <li class="mb-2"><a href="index.aspx" class="text-white-50 text-decoration-none">Home</a></li>
-                      
+                     
                 <%--            <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>--%>
                             <li class="mb-2"><a href="webseries.aspx" class="text-white-50 text-decoration-none">Web Series</a></li>
                             <li class="mb-2"><a href="bollywood.aspx" class="text-white-50 text-decoration-none">Bollywood</a></li>

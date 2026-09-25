@@ -141,11 +141,11 @@
 
                 <ul class="sidebar-menu">
                    <li><a href="admin-webseries.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage webseries</span></a></li>
-<li><a href="admin-movies.aspx" class="active"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
- <li><a href="admin-bollywood.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Bollywood</span></a></li>
+<li><a href="admin-movies.aspx" ><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
+ <li><a href="admin-Cartoon.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Cartoon</span></a></li>
 <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
 <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
-<li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
+<li><a href="admin-comments.aspx" class="active"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
                 </ul>
 
                 <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">

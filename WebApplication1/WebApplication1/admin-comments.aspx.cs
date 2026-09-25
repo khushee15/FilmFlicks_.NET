@@ -9,8 +9,11 @@ namespace WebApplication1
 {
     public partial class admin_comments : System.Web.UI.Page
     {
-        string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True;";
-
+        SqlConnection con;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
+      
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,26 +22,28 @@ namespace WebApplication1
             }
         }
 
-        private void BindComments()
+        void getcon()
         {
-            using (SqlConnection con = new SqlConnection(connStr))
+            con = new SqlConnection(s);
+            if (con.State == ConnectionState.Closed)
             {
-                string query = "SELECT Id, Name, Email, Subject, Message, CreatedAt FROM ContactMessages ORDER BY CreatedAt DESC";
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-
-                        if (gvComments != null)
-                        {
-                            gvComments.DataSource = dt;
-                            gvComments.DataBind();
-                        }
-                    }
-                }
+                con.Open();
             }
+        }
+
+        void BindComments()
+        {
+            getcon();
+            da = new SqlDataAdapter("select Id, Name, Email, Subject, Message, CreatedAt from ContactMessages order by CreatedAt desc", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            if (gvComments != null)
+            {
+                gvComments.DataSource = dt;
+                gvComments.DataBind();
+            }
+            con.Close();
         }
 
         protected void gvComments_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -47,16 +52,10 @@ namespace WebApplication1
             {
                 int messageId = Convert.ToInt32(e.CommandArgument);
 
-                using (SqlConnection con = new SqlConnection(connStr))
-                {
-                    string query = "DELETE FROM ContactMessages WHERE Id = @Id";
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@Id", messageId);
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                getcon();
+                cmd = new SqlCommand("delete from ContactMessages where Id=" + messageId, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
 
                 BindComments();
             }

@@ -8,8 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 
-using System.Data.SqlClient;
-using System.Data;
+
 using System.Configuration;
 using System.IO;
 
@@ -21,19 +20,19 @@ namespace WebApplication1
     {
         SqlConnection con;
         SqlCommand cmd;
+        SqlDataReader dr;
+        string fnm;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-              
                 if (Session["UserEmail"] != null)
                 {
                     LoadUserProfile(Session["UserEmail"].ToString());
                 }
                 else
                 {
-                
                     Response.Redirect("login.aspx");
                 }
             }
@@ -47,90 +46,92 @@ namespace WebApplication1
             }
         }
 
-        private void LoadUserProfile(string email)
+        void LoadUserProfile(string email)
         {
             getcon();
-            string query = "SELECT FullName, Username, Email, Phone, Bio, ImagePath FROM users_tbl WHERE Email = @Email";
-            cmd = new SqlCommand(query, con);
+            cmd = new SqlCommand("SELECT FullName, Username, Email, Phone, Bio, ImagePath FROM users_tbl WHERE Email = @Email", con);
             cmd.Parameters.AddWithValue("@Email", email);
+            dr = cmd.ExecuteReader();
 
-            SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
                 txtFullName.Text = dr["FullName"].ToString();
                 txtUsername.Text = dr["Username"].ToString();
                 txtEmail.Text = dr["Email"].ToString();
-                txtPhone.Text = dr["Phone"] != DBNull.Value ? dr["Phone"].ToString() : "";
-                txtBio.Text = dr["Bio"] != DBNull.Value ? dr["Bio"].ToString() : "";
+                txtPhone.Text = dr["Phone"].ToString();
+                txtBio.Text = dr["Bio"].ToString();
 
                 lblLeftFullName.Text = dr["FullName"].ToString();
                 lblLeftUsername.Text = dr["Username"].ToString();
-                lblLeftPhone.Text = string.IsNullOrEmpty(txtPhone.Text) ? "Not Provided" : txtPhone.Text;
-                lblLeftBio.Text = string.IsNullOrEmpty(txtBio.Text) ? "No bio added yet." : txtBio.Text;
+                lblLeftPhone.Text = dr["Phone"].ToString();
+                lblLeftBio.Text = dr["Bio"].ToString();
 
                 if (dr["ImagePath"] != DBNull.Value && !string.IsNullOrEmpty(dr["ImagePath"].ToString()))
                 {
                     string imgPath = dr["ImagePath"].ToString();
                     imgLeftProfile.ImageUrl = ResolveUrl(imgPath);
-                    imgNavAvatar.ImageUrl = ResolveUrl(imgPath);
+                    Session["UserProfilePic"] = imgPath;
                 }
             }
             dr.Close();
             con.Close();
         }
 
+        void imgupload()
+        {
+            if (fileUploadAvatar.HasFile)
+            {
+                // ફાઈલનું નામ unique રાખવા માટે ટાઈમસ્ટેમ્પ ઉમેર્યું છે
+                string fileName = Path.GetFileNameWithoutExtension(fileUploadAvatar.FileName) + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(fileUploadAvatar.FileName);
+                fnm = "~/Uploads/" + fileName;
+                fileUploadAvatar.SaveAs(Server.MapPath(fnm));
+            }
+        }
         protected void btnSaveChanges_Click(object sender, EventArgs e)
         {
             getcon();
-            string imagePath = imgLeftProfile.ImageUrl;
 
             if (fileUploadAvatar.HasFile)
             {
-                string ext = Path.GetExtension(fileUploadAvatar.FileName).ToLower();
-                if (ext == ".jpg" || ext == ".png" || ext == ".jpeg")
-                {
-                    string folderPath = Server.MapPath("~/Uploads/");
-                    if (!Directory.Exists(folderPath))
-                    {
-                        Directory.CreateDirectory(folderPath);
-                    }
-
-                    string fileName = Guid.NewGuid().ToString() + ext;
-                    string savePath = "~/Uploads/" + fileName;
-                    fileUploadAvatar.SaveAs(folderPath + fileName);
-                    imagePath = savePath;
-                }
-                else
-                {
-                    lblMessage.Text = "<div class='alert alert-danger'>Only JPG, JPEG, and PNG images are allowed!</div>";
-                    con.Close();
-                    return;
-                }
+                imgupload();
+            }
+            else
+            {
+                cmd = new SqlCommand("SELECT ImagePath FROM users_tbl WHERE Username = @Username", con);
+                cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                object obj = cmd.ExecuteScalar();
+                fnm = (obj != null && obj != DBNull.Value) ? obj.ToString() : "";
             }
 
-            string query = "UPDATE users_tbl SET FullName = @Name, Email = @Email, Phone = @Phone, Bio = @Bio, ImagePath = @ImagePath WHERE Username = @Username";
-            cmd = new SqlCommand(query, con);
-
-            cmd.Parameters.AddWithValue("@Name", txtFullName.Text.Trim());
-            cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
-            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.Trim());
-            cmd.Parameters.AddWithValue("@Bio", txtBio.Text.Trim());
-            cmd.Parameters.AddWithValue("@ImagePath", imagePath);
-            cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+            // SQL Injection થી બચવા Parameterized Query નો ઉપયોગ
+            cmd = new SqlCommand("UPDATE users_tbl SET FullName = @FullName, Email = @Email, Phone = @Phone, Bio = @Bio, ImagePath = @ImagePath WHERE Username = @Username", con);
+            cmd.Parameters.AddWithValue("@FullName", txtFullName.Text);
+            cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+            cmd.Parameters.AddWithValue("@Bio", txtBio.Text);
+            cmd.Parameters.AddWithValue("@ImagePath", fnm);
+            cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
 
             cmd.ExecuteNonQuery();
             con.Close();
 
-            lblLeftFullName.Text = txtFullName.Text.Trim();
-            lblLeftPhone.Text = string.IsNullOrEmpty(txtPhone.Text) ? "Not Provided" : txtPhone.Text;
-            lblLeftBio.Text = string.IsNullOrEmpty(txtBio.Text) ? "No bio added yet." : txtBio.Text;
-            imgLeftProfile.ImageUrl = ResolveUrl(imagePath);
-            imgNavAvatar.ImageUrl = ResolveUrl(imagePath);
+           
+            Session["UserEmail"] = txtEmail.Text;
+            Session["username"] = txtUsername.Text;
 
-            Session["UserEmail"] = txtEmail.Text.Trim();
+            lblLeftFullName.Text = txtFullName.Text;
+            lblLeftPhone.Text = txtPhone.Text;
+            lblLeftBio.Text = txtBio.Text;
+
+            if (!string.IsNullOrEmpty(fnm))
+            {
+                imgLeftProfile.ImageUrl = ResolveUrl(fnm);
+                Session["UserProfilePic"] = fnm;
+            }
 
             lblMessage.Text = "<div class='alert alert-success'>Profile updated successfully!</div>";
-        
+
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void btnUpdatePassword_Click(object sender, EventArgs e)

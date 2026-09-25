@@ -42,7 +42,8 @@ namespace WebApplication1
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query += " where FullName like '%" + searchQuery + "%' or Username like '%" + searchQuery + "%' or Email like '%" + searchQuery + "%'";
+           
+                query = query + " where FullName like '%" + searchQuery + "%' or Username like '%" + searchQuery + "%' or Email like '%" + searchQuery + "%'";
             }
 
             da = new SqlDataAdapter(query, con);
@@ -61,7 +62,9 @@ namespace WebApplication1
             if (e.CommandName == "cmd_delete")
             {
                 getcon();
-                cmd = new SqlCommand("delete from users_tbl where UserId='" + e.CommandArgument + "'", con);
+             
+                string deleteQuery = "delete from users_tbl where UserId='" + e.CommandArgument + "'";
+                cmd = new SqlCommand(deleteQuery, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="webseries.aspx.cs" Inherits="WebApplication1.webseries" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="webseries.aspx.cs" Inherits="WebApplication1.webseries" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -32,30 +32,38 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
                         <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
                         <li class="nav-item"><a class="nav-link text-white active" href="webseries.aspx">Web Series</a></li>
-                        <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
+                        <li class="nav-item"><a class="nav-link text-white-50 " href="Cartoon.aspx">Cartoon</a></li>
                         <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
                     </ul>
 
                     <div class="d-flex align-items-center gap-3">
-                        <form class="input-group" style="max-width: 240px;" action="browse.aspx">
-                            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Search web series...">
-                            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
-                        </form>
-
-                        <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-                        <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
-
-                        <div class="profile-dropdown-container">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="rounded-circle border border-primary p-1" width="42" height="42" alt="Profile Avatar">
-                            <div class="profile-dropdown-menu">
-                                <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
-                                <a href="mywatchlist.aspx"><i class="bi bi-bookmark me-2"></i>My Watchlist</a>
-                                <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
-                                <a href="admin-login.aspx"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
-                                <hr class="dropdown-divider bg-secondary my-1">
-                                <a href="login.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
-                            </div>
+                        <div class="input-group" style="max-width: 240px;">
+                            <input type="text" id="navSearchQuery_cart" class="form-control bg-dark text-white border-secondary" placeholder="Search cartoons..." onkeydown="if(event.key === 'Enter'){ performNavSearch_cart(); return false; }">
+                            <button class="btn btn-outline-secondary" type="button" onclick="performNavSearch_cart()"><i class="bi bi-search"></i></button>
                         </div>
+                        
+                        <a href="admin-login.aspx" class="btn btn-outline-warning btn-sm px-3 fw-semibold"><i class="bi bi-shield-lock me-1"></i>Admin</a>
+
+                        <% if (Session["username"] == null) { %>
+                            <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                            <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
+                        <% } else { %>
+                            <div class="profile-dropdown-container">
+                                <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
+                                    <span class="text-white fw-semibold small d-none d-md-inline"><%= Session["username"] %></span>
+                                </div>
+                                <div class="profile-dropdown-menu">
+                                    <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
+                                        <div class="fw-bold"><%= Session["username"] %></div>
+                                        <% if (Session["UserEmail"] != null) { %><div class="small text-white-50"><%= Session["UserEmail"] %></div><% } %>
+                                    </div>
+                                    <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
+                                    <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
+                                    <hr class="dropdown-divider bg-secondary my-1">
+                                    <a href="logout.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                                </div>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -76,16 +84,15 @@
                     <ItemTemplate>
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="movie-card">
-                                <span class="rating-badge"><i class="bi bi-star-fill"></i> IMDb</span>
+                                <span class="rating-badge"><i class="bi bi-star-fill"></i> <%# Eval("ImdbID") %></span>
                                 <span class="quality-badge"><%# Eval("QualityTag") %></span>
                                 
                                 <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' class="movie-poster" alt='<%# Eval("Title") %>'>
                                 
                                 <div class="movie-overlay">
-                                    <h5 class="fw-bold text-white mb-1"><%# Eval("Title") %></h5>
-                                    <p class="text-white-50 small mb-2"><%# Eval("Category") %></p>
-                                    <a href='<%# "webseries-details.aspx?id=" + Eval("MovieID") %>' class="btn btn-crimson btn-sm w-100">
-                                        <i class="bi bi-play-fill me-1"></i>View Episodes
+                                    <h5 class="fw-bold text-white mb-2"><%# Eval("Title") %></h5>
+                                    <a href='<%# "webseries_details.aspx?id=" + Eval("SeriesID") %>' class="btn btn-crimson btn-sm w-100 mt-2">
+                                        <i class="bi bi-play-fill me-1"></i>View Series
                                     </a>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,7 +9,10 @@ namespace WebApplication1
 {
     public partial class index : System.Web.UI.Page
     {
-        string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True";
+        SqlConnection con;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,26 +22,25 @@ namespace WebApplication1
             }
         }
 
-        private void BindTrendingMovies()
+        void getcon()
         {
-            using (SqlConnection con = new SqlConnection(connStr))
+            con = new SqlConnection(s);
+            if (con.State == ConnectionState.Closed)
             {
-                // Web Series સિવાયની ફિલ્મો લાવવા માટે WHERE Category != 'Web Series' મૂક્યું છે
-                string query = "SELECT MovieID, Title, Category, QualityTag, PosterUrl FROM Movies WHERE Category IS NULL OR Category != 'Web Series' ORDER BY MovieID DESC";
-
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-
-                        // Repeater ID બરાબર match કરી દીધું છે (rptHomeMovies)
-                        rptHomeMovies.DataSource = dt;
-                        rptHomeMovies.DataBind();
-                    }
-                }
+                con.Open();
             }
+        }
+
+        void BindTrendingMovies()
+        {
+            getcon();
+            da = new SqlDataAdapter("select MovieID, Title, Category, QualityTag, PosterUrl from Movies where Category is null or (Category != 'Web Series' and Category != 'Cartoon') order by MovieID desc", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            rptHomeMovies.DataSource = dt;
+            rptHomeMovies.DataBind();
+            con.Close();
         }
 
         protected void rptHomeMovies_ItemCommand(object source, RepeaterCommandEventArgs e)

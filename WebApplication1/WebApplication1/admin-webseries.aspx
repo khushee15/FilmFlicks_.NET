@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Manage Web Series - FilmFlicks Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-webseries.aspx.cs" Inherits="WebApplication1.admin_webseries" %>
+<%@ Page Title="Manage Web Series - FilmFlicks Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-webseries.aspx.cs" Inherits="WebApplication1.admin_webseries" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap 5 & Icons CDN -->
@@ -246,14 +246,14 @@
         <ul class="sidebar-menu">
             <li><a href="admin-webseries.aspx" class="active"><i class="bi bi-collection-play-fill"></i> <span>Manage Webseries</span></a></li>
             <li><a href="admin-movies.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
-            <li><a href="admin-bollywood.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Bollywood</span></a></li>
+            <li><a href="admin-Cartoon.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Cartoon</span></a></li>
             <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
             <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
             <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
         </ul>
 
         <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
-            <a href="index.aspx" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3">
+            <a href="logout.aspx" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3">
                 <i class="bi bi-box-arrow-left"></i> <span>Logout</span>
             </a>
         </div>
@@ -378,7 +378,7 @@
                                     <th>ID</th>
                                     <th>POSTER</th>
                                     <th>TITLE</th>
-                                    <th>CATEGORY</th>
+                                    <th>IMDB</th>
                                     <th>QUALITY</th>
                                     <th class="text-end">ACTION</th>
                                 </tr>
@@ -387,18 +387,18 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td class="fw-bold text-white-50">#<%# Eval("MovieID") %></td>
+                            <td class="fw-bold text-white-50">#<%# Eval("SeriesID") %></td>
                             <td>
                                 <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' width="40" height="52" class="rounded" style="object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
                             </td>
                             <td class="fw-semibold text-white"><%# Eval("Title") %></td>
-                            <td><span class="badge bg-secondary text-light px-2 py-1"><%# Eval("Category") %></span></td>
+                            <td><span class="badge bg-warning text-dark px-2 py-1"><i class="bi bi-star-fill me-1"></i><%# Eval("ImdbID") %></span></td>
                             <td><span class="badge bg-primary px-2 py-1"><%# Eval("QualityTag") %></span></td>
                             <td class="text-end">
-                                <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("MovieID") %>' CssClass="action-btn-warning me-1" ToolTip="Edit Web Series">
+                                <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("SeriesID") %>' CssClass="action-btn-warning me-1" ToolTip="Edit Web Series">
                                     <i class="bi bi-pencil"></i>
                                 </asp:LinkButton>
-                                <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("MovieID") %>' CssClass="action-btn-danger" OnClientClick="return confirm('Are you sure you want to delete this web series?');" ToolTip="Delete Web Series">
+                                <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("SeriesID") %>' CssClass="action-btn-danger" OnClientClick="return confirm('Are you sure you want to delete this web series?');" ToolTip="Delete Web Series">
                                     <i class="bi bi-trash"></i>
                                 </asp:LinkButton>
                             </td>

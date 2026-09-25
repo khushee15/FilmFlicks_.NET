@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -52,11 +52,12 @@ namespace WebApplication1
             {
                 getcon();
 
-                string query = "SELECT * FROM users_tbl WHERE (Username = @User OR Email = @User) AND Password = @Password";
-                cmd = new SqlCommand(query, con);
+              
+                string inputUser = txtUsername.Text.Trim();
+                string inputPass = txtPassword.Text.Trim();
 
-                cmd.Parameters.AddWithValue("@User", txtUsername.Text.Trim());
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+                string query = "SELECT * FROM users_tbl WHERE (Username = '" + inputUser + "' OR Email = '" + inputUser + "') AND Password = '" + inputPass + "'";
+                cmd = new SqlCommand(query, con);
 
                 dr = cmd.ExecuteReader();
 
@@ -64,9 +65,12 @@ namespace WebApplication1
                 {
                     dr.Read();
 
-                   
                     Session["username"] = dr["Username"].ToString();
-                    Session["UserEmail"] = dr["Email"].ToString(); 
+                    Session["UserEmail"] = dr["Email"].ToString();
+                    if (dr["ImagePath"] != DBNull.Value && !string.IsNullOrEmpty(dr["ImagePath"].ToString()))
+                    {
+                        Session["UserProfilePic"] = dr["ImagePath"].ToString();
+                    }
 
                     lblLoginFeedback.Text = "Login Successful! Redirecting...";
                     lblLoginFeedback.CssClass = "d-block mt-3 text-center fw-semibold text-success";
@@ -76,7 +80,6 @@ namespace WebApplication1
                     dr.Close();
                     con.Close();
 
-                  
                     Response.Redirect("myprofile.aspx");
                 }
                 else

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,7 +9,10 @@ namespace WebApplication1
 {
     public partial class webseries_details : System.Web.UI.Page
     {
-        string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FilmFlicksDB;Integrated Security=True";
+        SqlConnection con;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,84 +23,68 @@ namespace WebApplication1
                     int seriesId = Convert.ToInt32(Request.QueryString["id"]);
                     BindWebSeriesDetails(seriesId);
                     BindComments(seriesId);
-                }
-            }
-        }
 
-        private void BindWebSeriesDetails(int id)
-        {
-            using (SqlConnection con = new SqlConnection(connStr))
-            {
-                string query = "SELECT * FROM Movies WHERE MovieID = @MovieID AND Category = 'Web Series'";
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@MovieID", id);
-                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    if (Session["username"] != null)
                     {
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-                        rptWebSeriesDetails.DataSource = dt;
-                        rptWebSeriesDetails.DataBind();
+                        txtUserName.Text = Session["username"].ToString();
+                        txtUserName.ReadOnly = true;
                     }
                 }
             }
         }
 
-        private void BindComments(int id)
+        void getcon()
         {
-            try
+            con = new SqlConnection(s);
+            if (con.State == ConnectionState.Closed)
             {
-                using (SqlConnection con = new SqlConnection(connStr))
-                {
-                    string query = "SELECT * FROM Comments WHERE MovieID = @MovieID ORDER BY CommentID DESC";
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@MovieID", id);
-                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            sda.Fill(dt);
-                            rptComments.DataSource = dt;
-                            rptComments.DataBind();
-                        }
-                    }
-                }
+                con.Open();
             }
-            catch
-            {
-                // ડેટાબેઝમાં કોલમ ન હોય તો પેજને ક્રેશ થતા અટકાવશે
-            }
+        }
+
+        void BindWebSeriesDetails(int id)
+        {
+            getcon();
+            da = new SqlDataAdapter("select * from WebSeries where SeriesID = " + id, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            rptWebSeriesDetails.DataSource = dt;
+            rptWebSeriesDetails.DataBind();
+            con.Close();
+        }
+
+        void BindComments(int id)
+        {
+            getcon();
+            da = new SqlDataAdapter("select * from MovieComments where MovieID = " + id + " order by CommentDate desc", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            rptComments.DataSource = dt;
+            rptComments.DataBind();
+            con.Close();
         }
 
         protected void btnSubmitComment_Click(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null && !string.IsNullOrEmpty(txtComment.Text))
+            if (Request.QueryString["id"] != null && !string.IsNullOrEmpty(txtComment.Text.Trim()))
             {
                 int seriesId = Convert.ToInt32(Request.QueryString["id"]);
-                try
+                string userName = Session["username"] != null ? Session["username"].ToString() : (string.IsNullOrEmpty(txtUserName.Text) ? "Anonymous" : txtUserName.Text.Trim());
+                string commentText = txtComment.Text.Trim();
+
+                getcon();
+                cmd = new SqlCommand("insert into MovieComments (MovieID, UserName, CommentText, Rating, CommentDate) values (" + seriesId + ", '" + userName + "', '" + commentText + "', '5.0', GETDATE())", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                if (Session["username"] == null)
                 {
-                    using (SqlConnection con = new SqlConnection(connStr))
-                    {
-                        string query = "INSERT INTO Comments (MovieID, UserName, CommentText, Rating, CommentDate) VALUES (@MovieID, @UserName, @CommentText, 5, GETDATE())";
-                        using (SqlCommand cmd = new SqlCommand(query, con))
-                        {
-                            cmd.Parameters.AddWithValue("@MovieID", seriesId);
-                            cmd.Parameters.AddWithValue("@UserName", string.IsNullOrEmpty(txtUserName.Text) ? "Anonymous" : txtUserName.Text);
-                            cmd.Parameters.AddWithValue("@CommentText", txtComment.Text);
-
-                            con.Open();
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
                     txtUserName.Text = "";
-                    txtComment.Text = "";
-                    BindComments(seriesId);
                 }
-                catch
-                {
-                    // Error safety Block
-                }
+                txtComment.Text = "";
+                BindComments(seriesId);
             }
         }
 

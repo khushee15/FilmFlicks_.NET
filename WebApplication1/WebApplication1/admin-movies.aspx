@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Manage Movies - FilmFlicks Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-movies.aspx.cs" Inherits="WebApplication1.admin_movies" %>
+<%@ Page Title="Manage Movies - FilmFlicks Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-movies.aspx.cs" Inherits="WebApplication1.admin_movies" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap 5 & Icons CDN -->
@@ -254,15 +254,14 @@
         <ul class="sidebar-menu">
             <li><a href="admin-webseries.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage webseries</span></a></li>
             <li><a href="admin-movies.aspx" class="active"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
-             <li><a href="admin-bollywood.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Bollywood</span></a></li>
+            <li><a href="admin-Cartoon.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Cartoon</span></a></li>
             <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
             <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
             <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
-       
         </ul>
 
         <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
-            <a href="index.aspx" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3">
+            <a href="logout.aspx" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold rounded-3">
                 <i class="bi bi-box-arrow-left"></i> <span>Logout</span>
             </a>
         </div>
@@ -294,22 +293,13 @@
 
             <div class="row g-3">
                 <!-- Basic Info -->
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <label class="form-label">Movie Title</label>
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" placeholder="e.g. Oppenheimer"></asp:TextBox>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="form-label">IMDb Rating</label>
                     <asp:TextBox ID="txtImdbID" runat="server" CssClass="form-control" placeholder="e.g. 8.9"></asp:TextBox>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Category</label>
-                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-select">
-                        <asp:ListItem Text="Hollywood" Value="Hollywood"></asp:ListItem>
-                        <asp:ListItem Text="Bollywood" Value="Bollywood"></asp:ListItem>
-                        <asp:ListItem Text="Web Series" Value="Web Series"></asp:ListItem>
-                        <asp:ListItem Text="Anime" Value="Anime"></asp:ListItem>
-                    </asp:DropDownList>
                 </div>
 
                 <div class="col-md-4">
@@ -396,7 +386,6 @@
                                     <th>ID</th>
                                     <th>POSTER</th>
                                     <th>TITLE</th>
-                                    <th>CATEGORY</th>
                                     <th>QUALITY</th>
                                     <th class="text-end">ACTION</th>
                                 </tr>
@@ -410,7 +399,6 @@
                                 <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' width="40" height="52" class="rounded" style="object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
                             </td>
                             <td class="fw-semibold text-white"><%# Eval("Title") %></td>
-                            <td><span class="badge bg-secondary text-light px-2 py-1"><%# Eval("Category") %></span></td>
                             <td><span class="badge bg-primary px-2 py-1"><%# Eval("QualityTag") %></span></td>
                             <td class="text-end">
                                 <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("MovieID") %>' CssClass="action-btn-warning me-1" ToolTip="Edit Movie">

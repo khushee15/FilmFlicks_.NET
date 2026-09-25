@@ -9,8 +9,10 @@ namespace WebApplication1
 {
     public partial class webseries : System.Web.UI.Page
     {
-        string connStr = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
-
+        SqlConnection con;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,19 +21,25 @@ namespace WebApplication1
             }
         }
 
-        private void LoadWebSeries()
+        void getcon()
         {
-            using (SqlConnection con = new SqlConnection(connStr))
+            con = new SqlConnection(s);
+            if (con.State == ConnectionState.Closed)
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Movies WHERE Category = 'Web Series' ORDER BY MovieID DESC", con);
-
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-
-                rptWebSeries.DataSource = dt;
-                rptWebSeries.DataBind();
+                con.Open();
             }
+        }
+
+        void LoadWebSeries()
+        {
+            getcon();
+            da = new SqlDataAdapter("select * from WebSeries order by SeriesID desc", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            rptWebSeries.DataSource = dt;
+            rptWebSeries.DataBind();
+            con.Close();
         }
 
         protected void rptWebSeries_ItemCommand(object source, RepeaterCommandEventArgs e)

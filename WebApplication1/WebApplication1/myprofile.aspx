@@ -1,4 +1,4 @@
-﻿<%@ Page Title="My Profile - FilmFlicks" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="myprofile.aspx.cs" Inherits="WebApplication1.myprofile" %>
+<%@ Page Title="My Profile - FilmFlicks" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="myprofile.aspx.cs" Inherits="WebApplication1.myprofile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap 5 CSS CDN -->
@@ -27,34 +27,38 @@
         <div class="collapse navbar-collapse" id="navContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold ms-lg-4">
             <li class="nav-item"><a class="nav-link text-white-50" href="index.aspx">Home</a></li>
-<%--            <li class="nav-item"><a class="nav-link text-white-50" href="about.aspx">About Us</a></li>
-            <li class="nav-item"><a class="nav-link text-white-50" href="movie-details.aspx">Movies</a></li>--%>
             <li class="nav-item"><a class="nav-link text-white-50" href="webseries.aspx">Web Series</a></li>
-            <li class="nav-item"><a class="nav-link text-white-50" href="bollywood.aspx">Bollywood</a></li>
+            <li class="nav-item"><a class="nav-link text-white-50" href="Cartoon.aspx">Cartoon</a></li>
             <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
           </ul>
 
           <div class="d-flex align-items-center gap-3">
-            <div class="input-group" style="max-width: 240px;">
-              <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Search movies...">
-              <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
-            </div>
+            <form class="input-group" style="max-width: 240px;" action="browse.aspx" method="get">
+              <input type="text" name="q" class="form-control bg-dark text-white border-secondary" placeholder="Search movies...">
+              <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+            </form>
 
-            <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-            <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
-
-            <!-- Profile Dropdown -->
-            <div class="profile-dropdown-container">
-              <asp:Image ID="imgNavAvatar" runat="server" CssClass="rounded-circle border border-primary p-1" Width="42" Height="42" AlternateText="Profile Avatar" ImageUrl="~/Images/default-avatar.png" />
-              <div class="profile-dropdown-menu">
-                <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
-                <a href="mywatchlist.aspx"><i class="bi bi-bookmark me-2"></i>My Watchlist</a>
-                <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
-                <a href="admin-login.aspx"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a>
-                <hr class="dropdown-divider bg-secondary my-1">
-                <a href="login.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+            <% if (Session["username"] == null) { %>
+              <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+              <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
+            <% } else { %>
+              <div class="profile-dropdown-container">
+                <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
+                  <span class="text-white fw-semibold small"><%= Session["username"] %></span>
+                </div>
+                <div class="profile-dropdown-menu">
+                  <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
+                    <div class="fw-bold"><%= Session["username"] %></div>
+                    <% if (Session["UserEmail"] != null) { %><div class="small text-white-50"><%= Session["UserEmail"] %></div><% } %>
+                  </div>
+                  <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
+                  <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
+             
+                  <hr class="dropdown-divider bg-secondary my-1">
+                  <a href="logout.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                </div>
               </div>
-            </div>
+            <% } %>
           </div>
         </div>
       </div>
@@ -154,8 +158,6 @@
             <h6 class="fw-bold text-white mb-3">Quick Links</h6>
             <ul class="list-unstyled text-white-50 small">
               <li class="mb-2"><a href="index.aspx" class="text-white-50 text-decoration-none">Home</a></li>
-          <%--    <li class="mb-2"><a href="about.aspx" class="text-white-50 text-decoration-none">About Us</a></li>
-              <li class="mb-2"><a href="movie-details.aspx" class="text-white-50 text-decoration-none">Movies</a></li>--%>
               <li class="mb-2"><a href="webseries.aspx" class="text-white-50 text-decoration-none">Web Series</a></li>
             </ul>
           </div>

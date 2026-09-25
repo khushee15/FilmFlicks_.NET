@@ -40,9 +40,8 @@ namespace WebApplication1
             {
                 getcon();
 
-                string query = "SELECT Password, Username FROM users_tbl WHERE Email = @Email";
+                string query = "SELECT Password, Username FROM users_tbl WHERE Email = '" + floatingResetEmail.Text.Trim() + "'";
                 cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Email", floatingResetEmail.Text.Trim());
 
                 dr = cmd.ExecuteReader();
 

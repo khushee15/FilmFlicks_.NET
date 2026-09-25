@@ -51,15 +51,6 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox txtImdbID;
 
         /// <summary>
-        /// ddlCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-
-        /// <summary>
         /// ddlQuality control.
         /// </summary>
         /// <remarks>
