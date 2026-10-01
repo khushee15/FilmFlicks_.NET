@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebApplication1
 {
@@ -17,7 +18,7 @@ namespace WebApplication1
         {
             if (!IsPostBack)
             {
-                LoadWebSeries();
+                LoadWebSeries("");
             }
         }
 
@@ -30,10 +31,27 @@ namespace WebApplication1
             }
         }
 
-        void LoadWebSeries()
+        void LoadWebSeries(string searchText)
         {
             getcon();
-            da = new SqlDataAdapter("select * from WebSeries order by SeriesID desc", con);
+
+            string query = "SELECT * FROM WebSeries";
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                query += " WHERE Title LIKE @search";
+            }
+
+            query += " ORDER BY SeriesID DESC";
+
+            cmd = new SqlCommand(query, con);
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                cmd.Parameters.AddWithValue("@search", "%" + searchText.Trim() + "%");
+            }
+
+            da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
@@ -41,10 +59,16 @@ namespace WebApplication1
             rptWebSeries.DataBind();
             con.Close();
         }
-
         protected void rptWebSeries_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
+        }
+
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchVal = txtSearch.Text.Trim();
+            LoadWebSeries(searchVal);
         }
     }
 }

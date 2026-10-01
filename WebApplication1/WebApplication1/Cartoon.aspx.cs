@@ -18,7 +18,7 @@ namespace WebApplication1
         {
             if (!IsPostBack)
             {
-                LoadCartoons();
+                LoadCartoons("");
             }
         }
 
@@ -31,10 +31,20 @@ namespace WebApplication1
             }
         }
 
-        void LoadCartoons()
+        void LoadCartoons(string searchText)
         {
             getcon();
-            da = new SqlDataAdapter("select * from Cartoons order by CartoonID desc", con);
+
+            string query = "select * from Cartoons";
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                query += " where Title like '%" + searchText.Trim() + "%' or Director like '%" + searchText.Trim() + "%'";
+            }
+
+            query += " order by CartoonID desc";
+
+            da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
@@ -50,12 +60,19 @@ namespace WebApplication1
                 rptCartoons.DataBind();
                 pnlNoCartoons.Visible = true;
             }
+
             con.Close();
         }
 
         protected void btnAdmin_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchVal = txtSearch.Text.Trim();
+            LoadCartoons(searchVal);
         }
     }
 }

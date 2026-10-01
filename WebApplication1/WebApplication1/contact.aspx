@@ -32,10 +32,7 @@
              </ul>
 
              <div class="d-flex align-items-center gap-3">
-                 <div class="input-group" style="max-width: 240px;">
-                     <input type="text" id="navSearchQuery_cart" class="form-control bg-dark text-white border-secondary" placeholder="Search cartoons..." onkeydown="if(event.key === 'Enter'){ performNavSearch_cart(); return false; }">
-                     <button class="btn btn-outline-secondary" type="button" onclick="performNavSearch_cart()"><i class="bi bi-search"></i></button>
-                 </div>
+                 
                  
                  <a href="admin-login.aspx" class="btn btn-outline-warning btn-sm px-3 fw-semibold"><i class="bi bi-shield-lock me-1"></i>Admin</a>
 

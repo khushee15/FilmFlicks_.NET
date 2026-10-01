@@ -35,36 +35,39 @@
                         <li class="nav-item"><a class="nav-link text-white-50 " href="Cartoon.aspx">Cartoon</a></li>
                         <li class="nav-item"><a class="nav-link text-white-50" href="contact.aspx">Contact Us</a></li>
                     </ul>
-
                     <div class="d-flex align-items-center gap-3">
-                        <div class="input-group" style="max-width: 240px;">
-                            <input type="text" id="navSearchQuery_cart" class="form-control bg-dark text-white border-secondary" placeholder="Search cartoons..." onkeydown="if(event.key === 'Enter'){ performNavSearch_cart(); return false; }">
-                            <button class="btn btn-outline-secondary" type="button" onclick="performNavSearch_cart()"><i class="bi bi-search"></i></button>
-                        </div>
-                        
-                        <a href="admin-login.aspx" class="btn btn-outline-warning btn-sm px-3 fw-semibold"><i class="bi bi-shield-lock me-1"></i>Admin</a>
-
-                        <% if (Session["username"] == null) { %>
-                            <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
-                            <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
-                        <% } else { %>
-                            <div class="profile-dropdown-container">
-                                <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
-                                    <span class="text-white fw-semibold small d-none d-md-inline"><%= Session["username"] %></span>
-                                </div>
-                                <div class="profile-dropdown-menu">
-                                    <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
-                                        <div class="fw-bold"><%= Session["username"] %></div>
-                                        <% if (Session["UserEmail"] != null) { %><div class="small text-white-50"><%= Session["UserEmail"] %></div><% } %>
-                                    </div>
-                                    <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
-                                    <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
-                                    <hr class="dropdown-divider bg-secondary my-1">
-                                    <a href="logout.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
-                                </div>
-                            </div>
-                        <% } %>
+                    <div class="input-group" style="max-width: 240px;">
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control bg-dark text-white border-secondary" Placeholder="Search web series..."></asp:TextBox>
+                        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-secondary" Text="Search" OnClick="btnSearch_Click" />
                     </div>
+        
+                    <a href="admin-login.aspx" class="btn btn-outline-warning btn-sm px-3 fw-semibold"><i class="bi bi-shield-lock me-1"></i>Admin</a>
+
+                    <% if (Session["username"] == null)
+                        { %>
+                    <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
+                    <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
+                    <% }
+                        else
+                        { %>
+                    <div class="profile-dropdown-container">
+                        <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
+                            <span class="text-white fw-semibold small d-none d-md-inline"><%= Session["username"] %></span>
+                        </div>
+                        <div class="profile-dropdown-menu">
+                            <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
+                                <div class="fw-bold"><%= Session["username"] %></div>
+                                <% if (Session["UserEmail"] != null)
+                                    { %><div class="small text-white-50"><%= Session["UserEmail"] %></div>
+                                <% } %>
+                            </div>
+                            <a href="myprofile.aspx"><i class="bi bi-person me-2"></i>My Profile</a>
+                            <a href="requestmovie.aspx"><i class="bi bi-plus-circle me-2"></i>Request Movie</a>
+                            <hr class="dropdown-divider bg-secondary my-1">
+                            <a href="logout.aspx" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                        </div>
+                    </div>
+                    <% } %>
                 </div>
             </div>
         </nav>
@@ -72,23 +75,23 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <main class="container" style="padding-top: 100px;">
-        
+
         <!-- Dynamic Web Series Section -->
         <section class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="fw-bold m-0 border-start border-4 border-danger ps-3">Popular Web Series</h3>
             </div>
-            
+
             <div class="row g-4">
                 <asp:Repeater ID="rptWebSeries" runat="server" OnItemCommand="rptWebSeries_ItemCommand">
                     <ItemTemplate>
                         <div class="col-12 col-sm-6 col-lg-3">
                             <div class="movie-card">
-                                <span class="rating-badge"><i class="bi bi-star-fill"></i> <%# Eval("ImdbID") %></span>
+                                <span class="rating-badge"><i class="bi bi-star-fill"></i><%# Eval("ImdbID") %></span>
                                 <span class="quality-badge"><%# Eval("QualityTag") %></span>
-                                
+
                                 <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' class="movie-poster" alt='<%# Eval("Title") %>'>
-                                
+
                                 <div class="movie-overlay">
                                     <h5 class="fw-bold text-white mb-2"><%# Eval("Title") %></h5>
                                     <a href='<%# "webseries-details.aspx?id=" + Eval("SeriesID") %>' class="btn btn-crimson btn-sm w-100 mt-2">
@@ -124,6 +127,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
-</body>
+    </body>
 </html>
 </asp:Content>

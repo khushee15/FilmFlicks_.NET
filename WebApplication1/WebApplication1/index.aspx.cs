@@ -18,10 +18,11 @@ namespace WebApplication1
         {
             if (!IsPostBack)
             {
-                BindTrendingMovies();
+                BindTrendingMovies("");
             }
         }
 
+       
         void getcon()
         {
             con = new SqlConnection(s);
@@ -31,10 +32,20 @@ namespace WebApplication1
             }
         }
 
-        void BindTrendingMovies()
+        void BindTrendingMovies(string searchText)
         {
             getcon();
-            da = new SqlDataAdapter("select MovieID, Title, Category, QualityTag, PosterUrl from Movies where Category is null or (Category != 'Web Series' and Category != 'Cartoon') order by MovieID desc", con);
+
+            string query = "select MovieID, Title, Category, QualityTag, PosterUrl from Movies where (Category is null or (Category != 'Web Series' and Category != 'Cartoon'))";
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                query += " and Title like '%" + searchText.Trim() + "%'";
+            }
+
+            query += " order by MovieID desc";
+
+            da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
@@ -46,6 +57,12 @@ namespace WebApplication1
         protected void rptHomeMovies_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchVal = txtSearch.Text.Trim();
+            BindTrendingMovies(searchVal);
         }
     }
 }
