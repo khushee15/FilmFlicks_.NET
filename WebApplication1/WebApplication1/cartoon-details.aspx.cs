@@ -16,7 +16,7 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (ViewState["IsLoaded"] == null)
             {
                 int cartoonId = GetCurrentCartoonId();
                 LoadCartoonDetails(cartoonId);
@@ -27,6 +27,8 @@ namespace WebApplication1
                     txtUserName.Text = Session["username"].ToString();
                     txtUserName.ReadOnly = true;
                 }
+
+                ViewState["IsLoaded"] = true;
             }
         }
 

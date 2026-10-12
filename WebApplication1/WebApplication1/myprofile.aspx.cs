@@ -25,7 +25,7 @@ namespace WebApplication1
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (ViewState["IsLoaded"] == null)
             {
                 if (Session["UserEmail"] != null)
                 {
@@ -35,8 +35,10 @@ namespace WebApplication1
                 {
                     Response.Redirect("login.aspx");
                 }
+
+                ViewState["IsLoaded"] = true;
             }
-        }
+            }
         void getcon()
         {
             con = new SqlConnection(s);

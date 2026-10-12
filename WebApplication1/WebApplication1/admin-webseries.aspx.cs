@@ -18,9 +18,11 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+       
+            if (ViewState["IsLoaded"] == null)
             {
                 BindWebSeriesDirectory();
+                ViewState["IsLoaded"] = true; 
             }
         }
 

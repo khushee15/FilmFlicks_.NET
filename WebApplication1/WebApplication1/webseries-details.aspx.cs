@@ -16,7 +16,7 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (ViewState["IsLoaded"] == null)
             {
                 if (Request.QueryString["id"] != null)
                 {
@@ -30,10 +30,12 @@ namespace WebApplication1
                         txtUserName.ReadOnly = true;
                     }
                 }
+
+                ViewState["IsLoaded"] = true; 
             }
         }
 
-        void getcon()
+            void getcon()
         {
             con = new SqlConnection(s);
             if (con.State == ConnectionState.Closed)
