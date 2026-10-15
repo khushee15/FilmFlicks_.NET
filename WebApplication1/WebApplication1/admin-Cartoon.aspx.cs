@@ -17,9 +17,11 @@ namespace WebApplication1
         string posterPath = "", ss1Path = "", ss2Path = "", ss3Path = "", ss4Path = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+           
+            if (ViewState["IsFirstLoad"] == null)
             {
                 BindCartoonDirectory();
+                ViewState["IsFirstLoad"] = false;
             }
         }
 

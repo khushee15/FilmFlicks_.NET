@@ -4,7 +4,7 @@
     <!-- Bootstrap 5 CSS & Icons CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
+   
     <!-- Custom CSS Files -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/home.css">
@@ -18,7 +18,7 @@
             <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
             </a>
-            
+           
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,7 +66,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <!-- MAIN WEBSERIES DETAILS CONTENT -->
     <main class="container" style="padding-top: 100px;">
-        
+       
         <!-- DYNAMIC WEBSERIES DATA REPEATER -->
         <asp:Repeater ID="rptWebSeriesDetails" runat="server">
             <ItemTemplate>
@@ -87,7 +87,7 @@
                             </div>
 
                             <h1 class="display-4 fw-bold text-white mb-3"><%# Eval("Title") %></h1>
-                            
+                           
                             <div class="d-flex flex-wrap gap-2 mb-4">
                                 <span class="badge bg-primary"><%# Eval("QualityTag") %></span>
                             </div>
@@ -170,39 +170,6 @@
                 </section>
             </ItemTemplate>
         </asp:Repeater>
-
-        <!-- Comments & Reviews Section -->
-        <section class="mb-5">
-            <h3 class="fw-bold mb-4 border-start border-4 border-purple ps-3">User Reviews & Comments</h3>
-            
-            <div class="glass-card p-4">
-                <!-- Add Comment Form -->
-                <div class="mb-5">
-                    <h5 class="fw-bold text-white mb-3"><i class="bi bi-chat-square-text me-2"></i>Leave a Review</h5>
-                    <div class="mb-3">
-                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control bg-dark text-white border-secondary mb-2" Placeholder="Your Name"></asp:TextBox>
-                        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control bg-dark text-white border-secondary" Placeholder="Write your review here..."></asp:TextBox>
-                    </div>
-                    <asp:Button ID="btnSubmitComment" runat="server" Text="Post Comment" CssClass="btn btn-crimson btn-sm" OnClick="btnSubmitComment_Click" />
-                </div>
-
-                <!-- Comment List Repeater -->
-                <div class="review-list">
-                    <asp:Repeater ID="rptComments" runat="server" OnItemCommand="rptComments_ItemCommand">
-                        <ItemTemplate>
-                            <div class="review-card mb-3 pb-3 border-bottom border-secondary">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <h6 class="fw-bold text-white m-0"><%# Eval("UserName") %></h6>
-                                    <span class="text-warning small"><i class="bi bi-star-fill me-1"></i><%# Eval("Rating") %></span>
-                                </div>
-                                <p class="text-white-50 small mb-1"><%# Eval("CommentText") %></p>
-                                <span class="text-muted" style="font-size: 0.75rem;"><%# Eval("CommentDate", "{0:dd MMM yyyy}") %></span>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-            </div>
-        </section>
 
     </main>
 </asp:Content>

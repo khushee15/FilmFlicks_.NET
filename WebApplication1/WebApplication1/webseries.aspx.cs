@@ -16,9 +16,11 @@ namespace WebApplication1
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            
+            if (ViewState["IsFirstLoad"] == null)
             {
                 LoadWebSeries("");
+                ViewState["IsFirstLoad"] = false;
             }
         }
 

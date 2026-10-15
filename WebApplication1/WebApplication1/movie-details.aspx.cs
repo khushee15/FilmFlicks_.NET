@@ -16,25 +16,14 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (ViewState["IsLoaded"] == null)
             {
                 int movieId = GetCurrentMovieId();
                 LoadMovieDetails(movieId);
-                LoadComments(movieId);
 
-                if (Session["username"] != null)
-                {
-                    txtUserName.Text = Session["username"].ToString();
-                    txtUserName.ReadOnly = true;
-                }
+                ViewState["IsLoaded"] = true;
             }
         }
-
-        protected void rptMovieDetails_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-
-        }
-
         void getcon()
         {
             con = new SqlConnection(s);
@@ -68,40 +57,17 @@ namespace WebApplication1
             rptMovieDetails.DataBind();
             con.Close();
         }
-
-        void LoadComments(int movieId)
+        protected void rptMovieDetails_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            getcon();
-            da = new SqlDataAdapter("select * from MovieComments where MovieID = " + movieId + " order by CommentDate desc", con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
 
-            rptComments.DataSource = dt;
-            rptComments.DataBind();
-            con.Close();
         }
+
+        
         protected void btnSubmitComment_Click(object sender, EventArgs e)
         {
-            int movieId = GetCurrentMovieId();
-            string name = Session["username"] != null ? Session["username"].ToString() : (string.IsNullOrWhiteSpace(txtUserName.Text) ? "Anonymous" : txtUserName.Text.Trim());
-            string comment = txtComment.Text.Trim();
-
-            if (!string.IsNullOrEmpty(comment))
-            {
-                getcon();
-                cmd = new SqlCommand("insert into MovieComments (MovieID, UserName, Rating, CommentText, CommentDate) values (" + movieId + ", '" + name + "', '5.0', '" + comment + "', GETDATE())", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                if (Session["username"] == null)
-                {
-                    txtUserName.Text = "";
-                }
-                txtComment.Text = "";
-                LoadComments(movieId);
-            }
+            
         }
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         protected void rptComments_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 

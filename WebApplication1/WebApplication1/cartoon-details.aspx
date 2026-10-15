@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
+   
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/movie-details.css">
@@ -16,7 +16,7 @@
             <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 <i class="bi bi-film me-2 text-primary"></i>FilmFlicks
             </a>
-            
+           
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,7 +34,7 @@
                         <input type="text" id="navSearchQuery_cd" class="form-control bg-dark text-white border-secondary" placeholder="Search cartoons..." onkeydown="if(event.key === 'Enter'){ performNavSearch_cd(); return false; }">
                         <button class="btn btn-outline-secondary" type="button" onclick="performNavSearch_cd()"><i class="bi bi-search"></i></button>
                     </div>
-                  
+                 
                     <% if (Session["username"] == null) { %>
                         <a href="login.aspx" class="btn btn-outline-light btn-sm px-3 fw-semibold">Login</a>
                         <a href="register.aspx" class="btn btn-crimson btn-sm px-3">Register</a>
@@ -42,7 +42,6 @@
                         <div class="profile-dropdown-container">
                             <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
                                 <span class="text-white fw-semibold small d-none d-md-inline"><%= Session["username"] %></span>
-                       
                             </div>
                             <div class="profile-dropdown-menu">
                                 <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
@@ -65,7 +64,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <!-- MAIN CARTOON DETAILS CONTENT -->
     <main class="container" style="padding-top: 100px;">
-        
+       
         <!-- DYNAMIC CARTOON DATA REPEATER -->
         <asp:Repeater ID="rptCartoonDetails" runat="server">
             <ItemTemplate>
@@ -86,7 +85,7 @@
                             </div>
 
                             <h1 class="display-4 fw-bold text-white mb-3"><%# Eval("Title") %></h1>
-                            
+                           
                             <div class="d-flex flex-wrap gap-2 mb-4">
                                 <span class="badge bg-warning text-dark"><%# Eval("Director") %></span>
                                 <span class="badge bg-primary"><%# Eval("QualityTag") %></span>
@@ -170,43 +169,6 @@
                 </section>
             </ItemTemplate>
         </asp:Repeater>
-
-        <!-- Dynamic Comments & Reviews Section -->
-        <section class="mb-5">
-            <h3 class="fw-bold mb-4 border-start border-4 border-purple ps-3">User Reviews & Comments</h3>
-            
-            <div class="glass-card p-4">
-                <!-- Add Comment Form -->
-                <div class="mb-5">
-                    <h5 class="fw-bold text-white mb-3"><i class="bi bi-chat-square-text me-2"></i>Leave a Review</h5>
-                    <asp:Label ID="lblReviewMsg" runat="server" CssClass="d-block mb-3"></asp:Label>
-                    <div class="mb-3">
-                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control bg-dark text-white border-secondary mb-2" Placeholder="Your Name"></asp:TextBox>
-                        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control bg-dark text-white border-secondary" Placeholder="Write your review here..."></asp:TextBox>
-                    </div>
-                    <asp:Button ID="btnSubmitComment" runat="server" Text="Post Comment" CssClass="btn btn-crimson btn-sm" OnClick="btnSubmitComment_Click" />
-                </div>
-
-                <!-- Comment List Repeater -->
-                <div class="review-list">
-                    <asp:Repeater ID="rptComments" runat="server">
-                        <ItemTemplate>
-                            <div class="review-card mb-3 pb-3 border-bottom border-secondary">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <h6 class="fw-bold text-white m-0"><i class="bi bi-person-circle text-primary me-2"></i><%# Eval("UserName") %></h6>
-                                </div>
-                                <p class="text-white-50 small mb-1"><%# Eval("CommentText") %></p>
-                                <span class="text-muted" style="font-size: 0.75rem;"><%# Eval("CommentDate", "{0:dd MMM yyyy HH:mm}") %></span>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                    
-                    <asp:Panel ID="pnlNoComments" runat="server" Visible="false" CssClass="text-center text-white-50 py-3">
-                        No reviews yet. Be the first to leave a review!
-                    </asp:Panel>
-                </div>
-            </div>
-        </section>
 
     </main>
 </asp:Content>

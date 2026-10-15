@@ -19,11 +19,12 @@ namespace WebApplication1
   
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+           
+            if (ViewState["IsFirstLoad"] == null)
             {
                 BindRequests();
+                ViewState["IsFirstLoad"] = false;
             }
-
         }
         void getcon()
         {

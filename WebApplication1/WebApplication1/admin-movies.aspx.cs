@@ -21,9 +21,11 @@ namespace WebApplication1
         string posterPath = "", ss1Path = "", ss2Path = "", ss3Path = "", ss4Path = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+          
+            if (ViewState["IsFirstLoad"] == null)
             {
                 BindMoviesTable();
+                ViewState["IsFirstLoad"] = false;
             }
         }
         void getcon()
@@ -128,7 +130,8 @@ namespace WebApplication1
                 string finalSS3 = string.IsNullOrEmpty(ss3Path) ? currentSS3 : ss3Path;
                 string finalSS4 = string.IsNullOrEmpty(ss4Path) ? currentSS4 : ss4Path;
 
-                cmd = new SqlCommand("update Movies set Title = '" + txtTitle.Text.Trim() + "', ImdbID = '" + txtImdbID.Text.Trim() + "', QualityTag = '" + ddlQuality.SelectedValue + "', PosterUrl = '" + finalPoster + "', Description = '" + txtDescription.Text.Trim() + "', Director = '" + txtDirector.Text.Trim() + "', Cast = '" + txtCast.Text.Trim() + "', TrailerUrl = '" + txtTrailerUrl.Text.Trim() + "', Screenshot1 = '" + finalSS1 + "', Screenshot2 = '" + finalSS2 + "', Screenshot3 = '" + finalSS3 + "', Screenshot4 = '" + finalSS4 + "', DownloadLink1 = '" + txtLink1.Text.Trim() + "', DownloadLink2 = '" + txtLink2.Text.Trim() + "' where MovieID = " + movieId, con);
+                cmd = new SqlCommand("update Movies set Title = '" + txtTitle.Text.Trim().Replace("'", "''") + "', ImdbID = '" + txtImdbID.Text.Trim().Replace("'", "''") + "', QualityTag = '" + ddlQuality.SelectedValue + "', PosterUrl = '" + finalPoster + "', Description = '" + txtDescription.Text.Trim().Replace("'", "''") + "', Director = '" + txtDirector.Text.Trim().Replace("'", "''") + "', Cast = '" + txtCast.Text.Trim().Replace("'", "''") + "', TrailerUrl = '" + txtTrailerUrl.Text.Trim().Replace("'", "''") + "', Screenshot1 = '" + finalSS1 + "', Screenshot2 = '" + finalSS2 + "', Screenshot3 = '" + finalSS3 + "', Screenshot4 = '" + finalSS4 + "', DownloadLink1 = '" + txtLink1.Text.Trim().Replace("'", "''") + "', DownloadLink2 = '" + txtLink2.Text.Trim().Replace("'", "''") + "' where MovieID = " + movieId, con);
+
             }
 
             cmd.ExecuteNonQuery();
