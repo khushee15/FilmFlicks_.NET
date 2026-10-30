@@ -1,18 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-
-
-using System.Configuration;
-using System.IO;
-
-
 
 namespace WebApplication1
 {
@@ -23,6 +18,7 @@ namespace WebApplication1
         SqlDataReader dr;
         string fnm;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (ViewState["IsLoaded"] == null)
@@ -33,12 +29,13 @@ namespace WebApplication1
                 }
                 else
                 {
-                    Response.Redirect("login.aspx");
+                    Response.Redirect("login.aspx?msg=login_please");
                 }
 
                 ViewState["IsLoaded"] = true;
             }
-            }
+        }
+
         void getcon()
         {
             con = new SqlConnection(s);
@@ -51,11 +48,18 @@ namespace WebApplication1
         void LoadUserProfile(string email)
         {
             getcon();
-            cmd = new SqlCommand("SELECT FullName, Username, Email, Phone, Bio, ImagePath FROM users_tbl WHERE Email = '" + email + "'", con);
+            cmd = new SqlCommand("SELECT UserId, FullName, Username, Email, Phone, Bio, ImagePath FROM users_tbl WHERE Email = '" + email + "'", con);
             dr = cmd.ExecuteReader();
 
             if (dr.Read())
             {
+                Session["UserId"] = dr["UserId"].ToString();
+                Session["username"] = dr["Username"].ToString();
+                Session["UserEmail"] = dr["Email"].ToString();
+                Session["FullName"] = dr["FullName"] != DBNull.Value && !string.IsNullOrWhiteSpace(dr["FullName"].ToString())
+                    ? dr["FullName"].ToString()
+                    : dr["Username"].ToString();
+
                 txtFullName.Text = dr["FullName"].ToString();
                 txtUsername.Text = dr["Username"].ToString();
                 txtEmail.Text = dr["Email"].ToString();
@@ -87,6 +91,7 @@ namespace WebApplication1
                 fileUploadAvatar.SaveAs(Server.MapPath(fnm));
             }
         }
+
         protected void btnSaveChanges_Click(object sender, EventArgs e)
         {
             getcon();
@@ -97,18 +102,18 @@ namespace WebApplication1
             }
             else
             {
-                cmd = new SqlCommand("SELECT ImagePath FROM users_tbl WHERE Username = '" + txtUsername.Text.Trim() + "'", con);
-                object obj = cmd.ExecuteScalar();
+                SqlCommand cmdSelect = new SqlCommand("SELECT ImagePath FROM users_tbl WHERE Username = '" + txtUsername.Text.Trim() + "'", con);
+                object obj = cmdSelect.ExecuteScalar();
                 fnm = (obj != null && obj != DBNull.Value) ? obj.ToString() : "";
             }
 
-            cmd = new SqlCommand("UPDATE users_tbl SET FullName = '" + txtFullName.Text.Trim() + "', Email = '" + txtEmail.Text.Trim() + "', Phone = '" + txtPhone.Text.Trim() + "', Bio = '" + txtBio.Text.Trim() + "', ImagePath = '" + fnm + "' WHERE Username = '" + txtUsername.Text.Trim() + "'", con);
-
+            cmd = new SqlCommand("UPDATE users_tbl SET FullName = '" + txtFullName.Text.Trim() + "', Email = '" + txtEmail.Text.Trim() + "', Phone = '" + txtPhone.Text.Trim() + "', Bio = '" + txtBio.Text.Trim() + "', ImagePath = '" + (fnm ?? "") + "' WHERE Username = '" + txtUsername.Text.Trim() + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
 
             Session["UserEmail"] = txtEmail.Text;
             Session["username"] = txtUsername.Text;
+            Session["FullName"] = txtFullName.Text;
 
             lblLeftFullName.Text = txtFullName.Text;
             lblLeftPhone.Text = txtPhone.Text;
@@ -127,7 +132,6 @@ namespace WebApplication1
 
         protected void btnUpdatePassword_Click(object sender, EventArgs e)
         {
-           
         }
     }
 }

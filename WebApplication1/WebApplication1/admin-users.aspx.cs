@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -56,6 +56,7 @@ namespace WebApplication1
             rptUsers.DataBind();
 
             lblTotalUsers.Text = "Total Users: " + ds.Tables[0].Rows.Count.ToString();
+            lblTotalUsersBottom.Text = ds.Tables[0].Rows.Count.ToString();
             con.Close();
         }
 

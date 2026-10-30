@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin-users.aspx.cs" Inherits="WebApplication1.admin_users" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin-users.aspx.cs" Inherits="WebApplication1.admin_users" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -224,6 +224,12 @@
                                 </asp:Repeater>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-25">
+                        <span class="text-white-50 small"><i class="bi bi-info-circle me-1"></i>Total registered users</span>
+                        <span class="badge badge-total-users px-3 py-2 fs-6">
+                            <i class="bi bi-people-fill me-1"></i>Total Users: <asp:Label ID="lblTotalUsersBottom" runat="server">0</asp:Label>
+                        </span>
                     </div>
                 </div>
 

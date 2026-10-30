@@ -42,7 +42,6 @@
                         <div class="profile-dropdown-container">
                             <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
                                 <span class="text-white fw-semibold small d-none d-md-inline"><%= Session["username"] %></span>
-                       
                             </div>
                             <div class="profile-dropdown-menu">
                                 <div class="px-3 py-2 text-white border-bottom border-secondary mb-1">
@@ -170,43 +169,6 @@
                 </section>
             </ItemTemplate>
         </asp:Repeater>
-
-        <!-- Dynamic Comments & Reviews Section -->
-        <section class="mb-5">
-            <h3 class="fw-bold mb-4 border-start border-4 border-purple ps-3">User Reviews & Comments</h3>
-            
-            <div class="glass-card p-4">
-                <!-- Add Comment Form -->
-                <div class="mb-5">
-                    <h5 class="fw-bold text-white mb-3"><i class="bi bi-chat-square-text me-2"></i>Leave a Review</h5>
-                    <asp:Label ID="lblReviewMsg" runat="server" CssClass="d-block mb-3"></asp:Label>
-                    <div class="mb-3">
-                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control bg-dark text-white border-secondary mb-2" Placeholder="Your Name"></asp:TextBox>
-                        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control bg-dark text-white border-secondary" Placeholder="Write your review here..."></asp:TextBox>
-                    </div>
-                    <asp:Button ID="btnSubmitComment" runat="server" Text="Post Comment" CssClass="btn btn-crimson btn-sm" OnClick="btnSubmitComment_Click" />
-                </div>
-
-                <!-- Comment List Repeater -->
-                <div class="review-list">
-                    <asp:Repeater ID="rptComments" runat="server">
-                        <ItemTemplate>
-                            <div class="review-card mb-3 pb-3 border-bottom border-secondary">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <h6 class="fw-bold text-white m-0"><i class="bi bi-person-circle text-primary me-2"></i><%# Eval("UserName") %></h6>
-                                </div>
-                                <p class="text-white-50 small mb-1"><%# Eval("CommentText") %></p>
-                                <span class="text-muted" style="font-size: 0.75rem;"><%# Eval("CommentDate", "{0:dd MMM yyyy HH:mm}") %></span>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                    
-                    <asp:Panel ID="pnlNoComments" runat="server" Visible="false" CssClass="text-center text-white-50 py-3">
-                        No reviews yet. Be the first to leave a review!
-                    </asp:Panel>
-                </div>
-            </div>
-        </section>
 
     </main>
 </asp:Content>

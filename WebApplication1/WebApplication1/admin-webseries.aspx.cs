@@ -45,6 +45,7 @@ namespace WebApplication1
 
             rptAdminWebSeries.DataSource = dt;
             rptAdminWebSeries.DataBind();
+            lblTotalWebSeries.Text = dt.Rows.Count.ToString();
             con.Close();
         }
 

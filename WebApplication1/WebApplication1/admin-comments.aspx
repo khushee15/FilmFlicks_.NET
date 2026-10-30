@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin-comments.aspx.cs" Inherits="WebApplication1.admin_comments" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin-comments.aspx.cs" Inherits="WebApplication1.admin_comments" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -178,7 +178,12 @@
                             EmptyDataText="No contact messages found in the database." OnRowCommand="gvComments_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="Id" HeaderText="ID" ItemStyle-Width="60px" ItemStyle-CssClass="fw-bold text-white-50" />
-                                <asp:BoundField DataField="Name" HeaderText="NAME" ItemStyle-CssClass="fw-semibold text-white" />
+                                <asp:TemplateField HeaderText="USER / SENDER">
+                                    <ItemTemplate>
+                                        <div class="fw-semibold text-white"><%# Eval("Name") %></div>
+                                        <div class="text-white-50 small">ID: #USR-<%# Eval("UserId") != DBNull.Value && !string.IsNullOrEmpty(Eval("UserId").ToString()) ? Eval("UserId") : "N/A" %></div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:BoundField DataField="Email" HeaderText="EMAIL ADDRESS" ItemStyle-CssClass="text-white-50" />
                                 <asp:BoundField DataField="Subject" HeaderText="SUBJECT" ItemStyle-CssClass="text-white-50" />
                                 <asp:BoundField DataField="Message" HeaderText="MESSAGE" ItemStyle-CssClass="text-white-50" />
@@ -195,6 +200,12 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-25">
+                        <span class="text-white-50 small"><i class="bi bi-info-circle me-1"></i>Total user inquiries received</span>
+                        <span class="badge bg-primary px-3 py-2 fs-6">
+                            <i class="bi bi-chat-left-text-fill me-1"></i>Total Messages: <asp:Label ID="lblTotalMessages" runat="server">0</asp:Label>
+                        </span>
                     </div>
                 </div>
 

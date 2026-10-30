@@ -20,15 +20,8 @@ namespace WebApplication1
             {
                 int movieId = GetCurrentMovieId();
                 LoadMovieDetails(movieId);
-                LoadComments(movieId);
 
-                if (Session["username"] != null)
-                {
-                    txtUserName.Text = Session["username"].ToString();
-                    txtUserName.ReadOnly = true;
-                }
-
-                ViewState["IsLoaded"] = true; 
+                ViewState["IsLoaded"] = true;
             }
         }
 
@@ -71,37 +64,9 @@ namespace WebApplication1
             con.Close();
         }
 
-        void LoadComments(int movieId)
-        {
-            getcon();
-            da = new SqlDataAdapter("select * from MovieComments where MovieID = " + movieId + " order by CommentDate desc", con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            rptComments.DataSource = dt;
-            rptComments.DataBind();
-            con.Close();
-        }
         protected void btnSubmitComment_Click(object sender, EventArgs e)
         {
-            int movieId = GetCurrentMovieId();
-            string name = Session["username"] != null ? Session["username"].ToString() : (string.IsNullOrWhiteSpace(txtUserName.Text) ? "Anonymous" : txtUserName.Text.Trim());
-            string comment = txtComment.Text.Trim();
-
-            if (!string.IsNullOrEmpty(comment))
-            {
-                getcon();
-                cmd = new SqlCommand("insert into MovieComments (MovieID, UserName, Rating, CommentText, CommentDate) values (" + movieId + ", '" + name + "', '5.0', '" + comment + "', GETDATE())", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                if (Session["username"] == null)
-                {
-                    txtUserName.Text = "";
-                }
-                txtComment.Text = "";
-                LoadComments(movieId);
-            }
+            
         }
 
         protected void rptComments_ItemCommand(object source, RepeaterCommandEventArgs e)

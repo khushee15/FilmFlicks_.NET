@@ -12,7 +12,6 @@
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-
     <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark">
         <div class="container">
             <a class="navbar-brand fw-bold fs-3" href="index.aspx" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
@@ -28,7 +27,6 @@
 </asp:Content>
 
 <asp:Content ID="Content6" runat="server" ContentPlaceHolderID="ContentPlaceHolder3">
-
     <main class="container auth-wrapper" style="padding-top: 100px;">
         <div class="auth-card-wide">
             <div class="text-center mb-4">
@@ -36,7 +34,6 @@
                 <p class="text-white-50 small">Join FilmFlicks to request movies and build your watchlist</p>
             </div>
 
-     
             <div class="d-grid gap-2 mb-3">
                 <a href="#" class="btn-social">
                     <i class="bi bi-google text-danger fs-5"></i> Sign up with Google
@@ -47,9 +44,7 @@
                 <span>OR FILL YOUR DETAILS</span>
             </div>
 
-           
             <div class="row g-3">
-               
                 <div class="col-12 col-md-6">
                     <div class="form-floating">
                         <asp:TextBox ID="floatingName" runat="server" CssClass="form-control" placeholder="John Doe" ClientIDMode="Static"></asp:TextBox>
@@ -57,7 +52,6 @@
                     </div>
                 </div>
 
-           
                 <div class="col-12 col-md-6">
                     <div class="form-floating">
                         <asp:TextBox ID="floatingUsername" runat="server" CssClass="form-control" placeholder="johndoe123" ClientIDMode="Static"></asp:TextBox>
@@ -65,7 +59,6 @@
                     </div>
                 </div>
 
-     
                 <div class="col-12">
                     <div class="form-floating">
                         <asp:TextBox ID="floatingEmail" runat="server" TextMode="Email" CssClass="form-control" placeholder="name@example.com" ClientIDMode="Static"></asp:TextBox>
@@ -73,7 +66,6 @@
                     </div>
                 </div>
 
-       
                 <div class="col-12 col-md-6">
                     <div class="form-floating">
                         <asp:TextBox ID="floatingPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Password" ClientIDMode="Static"></asp:TextBox>
@@ -81,7 +73,6 @@
                     </div>
                 </div>
 
-         
                 <div class="col-12 col-md-6">
                     <div class="form-floating">
                         <asp:TextBox ID="floatingConfirmPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Confirm Password" ClientIDMode="Static"></asp:TextBox>
@@ -90,7 +81,6 @@
                 </div>
             </div>
 
-         
             <div class="form-check mt-3 mb-4">
                 <asp:CheckBox ID="termsCheck" runat="server" CssClass="form-check-input bg-dark border-secondary" ClientIDMode="Static" />
                 <label class="form-check-label text-white-50 small" for="termsCheck">
@@ -98,10 +88,8 @@
                 </label>
             </div>
 
-         
             <asp:Button ID="btnRegister" runat="server" Text="Create Account" CssClass="btn btn-crimson w-100 py-2 fs-6 fw-bold" OnClick="btnRegister_Click" />
 
-         
             <div class="text-center">
                 <asp:Label ID="lblRegisterFeedback" runat="server"></asp:Label>
             </div>
@@ -114,11 +102,8 @@
 </asp:Content>
 
 <asp:Content ID="Content7" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
-
     <footer class="text-center text-white-50 py-3 small">
         © 2026 FilmFlicks. All rights reserved.
     </footer>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
 </asp:Content>

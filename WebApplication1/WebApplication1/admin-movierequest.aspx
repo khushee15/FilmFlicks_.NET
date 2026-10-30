@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Movie Requests - Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-movierequest.aspx.cs" Inherits="WebApplication1.admin_movierequest" %>
+<%@ Page Title="Movie Requests - Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-movierequest.aspx.cs" Inherits="WebApplication1.admin_movierequest" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap 5 & Icons CDN -->
@@ -78,6 +78,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>USER</th>
                                     <th>TITLE</th>
                                     <th>TYPE / YEAR</th>
                                     <th>LANGUAGE</th>
@@ -92,6 +93,11 @@
                     <ItemTemplate>
                         <tr>
                             <td class="text-white-50">#<%# Eval("RequestId") %></td>
+                            <td>
+                                <div class="fw-semibold text-white"><%# Eval("RequesterName") != DBNull.Value && !string.IsNullOrEmpty(Eval("RequesterName").ToString()) ? Eval("RequesterName") : "Member" %></div>
+                                <div class="text-white-50 small">ID: #USR-<%# Eval("UserId") != DBNull.Value && !string.IsNullOrEmpty(Eval("UserId").ToString()) ? Eval("UserId") : "N/A" %></div>
+                                <div class="text-white-50 small"><%# Eval("RequesterEmail") %></div>
+                            </td>
                             <td class="fw-semibold text-white">
                                 <%# Eval("Title") %>
                                 <div class="text-white-50 small text-truncate" style="max-width: 200px;" title='<%# Eval("AdditionalDetails") %>'>
@@ -132,6 +138,12 @@
                                    Text="No movie requests found." CssClass="text-center text-white-50 d-block py-3"></asp:Label>
                     </FooterTemplate>
                 </asp:Repeater>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-25">
+                <span class="text-white-50 small"><i class="bi bi-info-circle me-1"></i>Total movie requests received</span>
+                <span class="badge bg-danger px-3 py-2 fs-6">
+                    <i class="bi bi-send-fill me-1"></i>Total Requests: <asp:Label ID="lblTotalRequests" runat="server">0</asp:Label>
+                </span>
             </div>
         </div>
     </main>

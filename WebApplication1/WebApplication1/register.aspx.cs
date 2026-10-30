@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
@@ -15,12 +11,12 @@ namespace WebApplication1
         SqlConnection con;
         SqlCommand cmd;
         SqlDataAdapter da;
-        DataSet ds;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
+
         void getcon()
         {
             con = new SqlConnection(s);
@@ -39,9 +35,9 @@ namespace WebApplication1
             floatingConfirmPassword.Text = "";
             termsCheck.Checked = false;
         }
+
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(floatingName.Text))
             {
                 lblRegisterFeedback.Text = "Please enter Full Name!";
@@ -81,31 +77,25 @@ namespace WebApplication1
             {
                 getcon();
 
-                da = new SqlDataAdapter("SELECT * FROM users_tbl WHERE Username='" + floatingUsername.Text.Trim() + "'", con);
-                ds = new DataSet();
-                da.Fill(ds);
+                cmd = new SqlCommand("SELECT COUNT(*) FROM users_tbl WHERE Username = '" + floatingUsername.Text.Trim() + "'", con);
+                int userCount = Convert.ToInt32(cmd.ExecuteScalar());
 
-                if (ds.Tables[0].Rows.Count > 0)
+                if (userCount > 0)
                 {
-                   
                     lblRegisterFeedback.Text = "Username is already taken! Please choose another.";
                     lblRegisterFeedback.CssClass = "d-block mt-2 text-danger";
                     con.Close();
-                }
-                else
-                {
-                 
-                    string query = "INSERT INTO users_tbl (FullName, Username, Email, Password) VALUES ('" + floatingName.Text.Trim() + "', '" + floatingUsername.Text.Trim() + "', '" + floatingEmail.Text.Trim() + "', '" + floatingPassword.Text.Trim() + "')";
-                    cmd = new SqlCommand(query, con);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-
-                    lblRegisterFeedback.Text = "Registration Successful!";
-                    lblRegisterFeedback.CssClass = "d-block mt-2 text-success";
-
-                    clear();
+                    return;
                 }
 
+                cmd = new SqlCommand("INSERT INTO users_tbl (FullName, Username, Email, Password) VALUES ('" + floatingName.Text.Trim() + "', '" + floatingUsername.Text.Trim() + "', '" + floatingEmail.Text.Trim() + "', '" + floatingPassword.Text.Trim() + "')", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                lblRegisterFeedback.Text = "Registration Successful!";
+                lblRegisterFeedback.CssClass = "d-block mt-2 text-success";
+
+                clear();
             }
         }
     }

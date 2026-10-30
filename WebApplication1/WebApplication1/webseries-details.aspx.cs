@@ -22,20 +22,13 @@ namespace WebApplication1
                 {
                     int seriesId = Convert.ToInt32(Request.QueryString["id"]);
                     BindWebSeriesDetails(seriesId);
-                    BindComments(seriesId);
-
-                    if (Session["username"] != null)
-                    {
-                        txtUserName.Text = Session["username"].ToString();
-                        txtUserName.ReadOnly = true;
-                    }
                 }
 
-                ViewState["IsLoaded"] = true; 
+                ViewState["IsLoaded"] = true;
             }
         }
 
-            void getcon()
+        void getcon()
         {
             con = new SqlConnection(s);
             if (con.State == ConnectionState.Closed)
@@ -56,38 +49,9 @@ namespace WebApplication1
             con.Close();
         }
 
-        void BindComments(int id)
-        {
-            getcon();
-            da = new SqlDataAdapter("select * from MovieComments where MovieID = " + id + " order by CommentDate desc", con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            rptComments.DataSource = dt;
-            rptComments.DataBind();
-            con.Close();
-        }
-
         protected void btnSubmitComment_Click(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null && !string.IsNullOrEmpty(txtComment.Text.Trim()))
-            {
-                int seriesId = Convert.ToInt32(Request.QueryString["id"]);
-                string userName = Session["username"] != null ? Session["username"].ToString() : (string.IsNullOrEmpty(txtUserName.Text) ? "Anonymous" : txtUserName.Text.Trim());
-                string commentText = txtComment.Text.Trim();
-
-                getcon();
-                cmd = new SqlCommand("insert into MovieComments (MovieID, UserName, CommentText, Rating, CommentDate) values (" + seriesId + ", '" + userName + "', '" + commentText + "', '5.0', GETDATE())", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                if (Session["username"] == null)
-                {
-                    txtUserName.Text = "";
-                }
-                txtComment.Text = "";
-                BindComments(seriesId);
-            }
+            
         }
 
         protected void rptComments_ItemCommand(object source, RepeaterCommandEventArgs e)

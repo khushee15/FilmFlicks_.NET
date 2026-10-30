@@ -410,6 +410,12 @@
                     </FooterTemplate>
                 </asp:Repeater>
             </div>
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-25">
+                <span class="text-white-50 small"><i class="bi bi-info-circle me-1"></i>Total Web Series in database</span>
+                <span class="badge bg-info text-dark px-3 py-2 fs-6">
+                    <i class="bi bi-collection-play-fill me-1"></i>Total Web Series: <asp:Label ID="lblTotalWebSeries" runat="server">0</asp:Label>
+                </span>
+            </div>
         </div>
 
     </main>

@@ -16,10 +16,19 @@ namespace WebApplication1
         SqlCommand cmd;
         SqlDataReader dr;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["msg"] == "login_please")
+                {
+                    lblLoginFeedback.Text = "Login please! You need to be logged in to continue.";
+                    lblLoginFeedback.CssClass = "d-block mt-3 text-center fw-semibold text-warning";
+                }
+            }
         }
+
         void getcon()
         {
             con = new SqlConnection(s);
@@ -35,9 +44,9 @@ namespace WebApplication1
             txtPassword.Text = "";
             chkRemember.Checked = false;
         }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 lblLoginFeedback.Text = "Please enter Username or Email!";
@@ -52,12 +61,14 @@ namespace WebApplication1
             {
                 getcon();
 
-              
                 string inputUser = txtUsername.Text.Trim();
                 string inputPass = txtPassword.Text.Trim();
 
-                string query = "SELECT * FROM users_tbl WHERE (Username = '" + inputUser + "' OR Email = '" + inputUser + "') AND Password = '" + inputPass + "'";
+                string query = "SELECT * FROM users_tbl WHERE (Username = @username OR Email = @email) AND Password = @password";
                 cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@username", inputUser);
+                cmd.Parameters.AddWithValue("@email", inputUser);
+                cmd.Parameters.AddWithValue("@password", inputPass);
 
                 dr = cmd.ExecuteReader();
 
@@ -65,8 +76,13 @@ namespace WebApplication1
                 {
                     dr.Read();
 
+                    Session["UserId"] = dr["UserId"].ToString();
                     Session["username"] = dr["Username"].ToString();
                     Session["UserEmail"] = dr["Email"].ToString();
+                    Session["FullName"] = dr["FullName"] != DBNull.Value && !string.IsNullOrWhiteSpace(dr["FullName"].ToString())
+                        ? dr["FullName"].ToString()
+                        : dr["Username"].ToString();
+
                     if (dr["ImagePath"] != DBNull.Value && !string.IsNullOrEmpty(dr["ImagePath"].ToString()))
                     {
                         Session["UserProfilePic"] = dr["ImagePath"].ToString();

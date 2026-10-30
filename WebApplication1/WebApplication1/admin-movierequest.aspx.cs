@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,16 +16,16 @@ namespace WebApplication1
         SqlCommand cmd;
         SqlDataAdapter da;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
-  
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (ViewState["IsLoaded"] == null)
             {
                 BindRequests();
-                ViewState["IsLoaded"] = true; 
+                ViewState["IsLoaded"] = true;
             }
-
         }
+
         void getcon()
         {
             con = new SqlConnection(s);
@@ -38,23 +38,25 @@ namespace WebApplication1
         void BindRequests()
         {
             getcon();
-            da = new SqlDataAdapter("select RequestId, Title, ContentType, ReleaseYear, PreferredLanguage, PreferredQuality, AdditionalDetails, RequestDate, ISNULL(Status, 'Pending') as Status from MovieRequests order by RequestId desc", con);
+            da = new SqlDataAdapter("SELECT RequestId, UserId, ISNULL(RequesterName, '') AS RequesterName, ISNULL(RequesterEmail, '') AS RequesterEmail, Title, ContentType, ReleaseYear, PreferredLanguage, PreferredQuality, AdditionalDetails, RequestDate, ISNULL(Status, 'Pending') AS Status FROM MovieRequests ORDER BY RequestId DESC", con);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
             rptRequests.DataSource = dt;
             rptRequests.DataBind();
+
+            lblTotalRequests.Text = dt.Rows.Count.ToString();
             con.Close();
         }
 
         protected void rptRequests_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            string requestId = e.CommandArgument.ToString();
+            int requestId = Convert.ToInt32(e.CommandArgument);
 
             if (e.CommandName == "Approve")
             {
                 getcon();
-                cmd = new SqlCommand("update MovieRequests set Status = 'Approved' where RequestId = " + requestId, con);
+                cmd = new SqlCommand("UPDATE MovieRequests SET Status = 'Approved' WHERE RequestId = " + requestId, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -64,7 +66,7 @@ namespace WebApplication1
             else if (e.CommandName == "DeleteReq")
             {
                 getcon();
-                cmd = new SqlCommand("delete from MovieRequests where RequestId = " + requestId, con);
+                cmd = new SqlCommand("DELETE FROM MovieRequests WHERE RequestId = " + requestId, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -73,5 +75,4 @@ namespace WebApplication1
             }
         }
     }
-
 }

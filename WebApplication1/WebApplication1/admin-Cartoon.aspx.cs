@@ -15,6 +15,7 @@ namespace WebApplication1
         SqlDataAdapter da;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         string posterPath = "", ss1Path = "", ss2Path = "", ss3Path = "", ss4Path = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (ViewState["IsFirstLoad"] == null)
@@ -42,6 +43,7 @@ namespace WebApplication1
 
             rptAdminCartoons.DataSource = dt;
             rptAdminCartoons.DataBind();
+            lblTotalCartoons.Text = dt.Rows.Count.ToString();
             con.Close();
         }
 
@@ -91,6 +93,7 @@ namespace WebApplication1
                 fSS4.SaveAs(Server.MapPath(ss4Path));
             }
         }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
             int cartoonId = Convert.ToInt32(string.IsNullOrEmpty(hfCartoonID.Value) ? "0" : hfCartoonID.Value);
@@ -102,25 +105,7 @@ namespace WebApplication1
 
             if (cartoonId == 0)
             {
-                string query = "INSERT INTO Cartoons " +
-                               "(Title, ImdbID, QualityTag, PosterUrl, Description, Director, Cast, TrailerUrl, Screenshot1, Screenshot2, Screenshot3, Screenshot4, DownloadLink1, DownloadLink2) " +
-                               "VALUES (" +
-                               "'" + txtTitle.Text.Trim() + "', " +
-                               "'" + txtImdbID.Text.Trim() + "', " +
-                               "'" + ddlQuality.SelectedValue + "', " +
-                               "'" + posterPath + "', " +
-                               "'" + txtDescription.Text.Trim() + "', " +
-                               "'" + txtDirector.Text.Trim() + "', " +
-                               "'" + txtCast.Text.Trim() + "', " +
-                               "'" + txtTrailerUrl.Text.Trim() + "', " +
-                               "'" + ss1Path + "', " +
-                               "'" + ss2Path + "', " +
-                               "'" + ss3Path + "', " +
-                               "'" + ss4Path + "', " +
-                               "'" + txtLink1.Text.Trim() + "', " +
-                               "'" + txtLink2.Text.Trim() + "')";
-
-                cmd = new SqlCommand(query, con);
+                cmd = new SqlCommand("INSERT INTO Cartoons (Title, ImdbID, QualityTag, PosterUrl, Description, Director, Cast, TrailerUrl, Screenshot1, Screenshot2, Screenshot3, Screenshot4, DownloadLink1, DownloadLink2) VALUES ('" + txtTitle.Text.Trim() + "', '" + txtImdbID.Text.Trim() + "', '" + ddlQuality.SelectedValue + "', '" + posterPath + "', '" + txtDescription.Text.Trim() + "', '" + txtDirector.Text.Trim() + "', '" + txtCast.Text.Trim() + "', '" + txtTrailerUrl.Text.Trim() + "', '" + ss1Path + "', '" + ss2Path + "', '" + ss3Path + "', '" + ss4Path + "', '" + txtLink1.Text.Trim() + "', '" + txtLink2.Text.Trim() + "')", con);
             }
             else
             {
@@ -144,24 +129,7 @@ namespace WebApplication1
                 string finalSS3 = string.IsNullOrEmpty(ss3Path) ? currentSS3 : ss3Path;
                 string finalSS4 = string.IsNullOrEmpty(ss4Path) ? currentSS4 : ss4Path;
 
-                string query = "UPDATE Cartoons SET " +
-                               "Title = '" + txtTitle.Text.Trim() + "', " +
-                               "ImdbID = '" + txtImdbID.Text.Trim() + "', " +
-                               "QualityTag = '" + ddlQuality.SelectedValue + "', " +
-                               "PosterUrl = '" + finalPoster + "', " +
-                               "Description = '" + txtDescription.Text.Trim() + "', " +
-                               "Director = '" + txtDirector.Text.Trim() + "', " +
-                               "Cast = '" + txtCast.Text.Trim() + "', " +
-                               "TrailerUrl = '" + txtTrailerUrl.Text.Trim() + "', " +
-                               "Screenshot1 = '" + finalSS1 + "', " +
-                               "Screenshot2 = '" + finalSS2 + "', " +
-                               "Screenshot3 = '" + finalSS3 + "', " +
-                               "Screenshot4 = '" + finalSS4 + "', " +
-                               "DownloadLink1 = '" + txtLink1.Text.Trim() + "', " +
-                               "DownloadLink2 = '" + txtLink2.Text.Trim() + "' " +
-                               "WHERE CartoonID = " + cartoonId;
-
-                cmd = new SqlCommand(query, con);
+                cmd = new SqlCommand("UPDATE Cartoons SET Title = '" + txtTitle.Text.Trim() + "', ImdbID = '" + txtImdbID.Text.Trim() + "', QualityTag = '" + ddlQuality.SelectedValue + "', PosterUrl = '" + finalPoster + "', Description = '" + txtDescription.Text.Trim() + "', Director = '" + txtDirector.Text.Trim() + "', Cast = '" + txtCast.Text.Trim() + "', TrailerUrl = '" + txtTrailerUrl.Text.Trim() + "', Screenshot1 = '" + finalSS1 + "', Screenshot2 = '" + finalSS2 + "', Screenshot3 = '" + finalSS3 + "', Screenshot4 = '" + finalSS4 + "', DownloadLink1 = '" + txtLink1.Text.Trim() + "', DownloadLink2 = '" + txtLink2.Text.Trim() + "' WHERE CartoonID = " + cartoonId, con);
             }
 
             cmd.ExecuteNonQuery();
@@ -221,6 +189,7 @@ namespace WebApplication1
                 BindCartoonDirectory();
             }
         }
+
         void ClearForm()
         {
             hfCartoonID.Value = "0";

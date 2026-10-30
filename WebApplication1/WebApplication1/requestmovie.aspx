@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="requestmovie.aspx.cs" Inherits="WebApplication1.requestmovie" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="requestmovie.aspx.cs" Inherits="WebApplication1.requestmovie" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +100,16 @@
                         <asp:Label ID="lblMessage" runat="server" EnableViewState="false"></asp:Label>
 
                         <div class="row g-4">
+
+                            <!-- Requester Details (From Logged-In User) -->
+                            <div class="col-12 col-md-6">
+                                <label for="txtRequesterName" class="form-label">Your Name <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtRequesterName" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Your Name"></asp:TextBox>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="txtRequesterEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtRequesterEmail" runat="server" CssClass="form-control" ReadOnly="true" placeholder="Your Email"></asp:TextBox>
+                            </div>
 
                             <!-- Movie / Series Title -->
                             <div class="col-12">

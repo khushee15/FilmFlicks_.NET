@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,13 +13,13 @@ namespace WebApplication1
         SqlCommand cmd;
         SqlDataAdapter da;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
-      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (ViewState["IsLoaded"] == null)
             {
                 BindComments();
-                ViewState["IsLoaded"] = true; 
+                ViewState["IsLoaded"] = true;
             }
         }
 
@@ -35,7 +35,7 @@ namespace WebApplication1
         void BindComments()
         {
             getcon();
-            da = new SqlDataAdapter("select Id, Name, Email, Subject, Message, CreatedAt from ContactMessages order by CreatedAt desc", con);
+            da = new SqlDataAdapter("SELECT Id, UserId, Name, Email, Subject, Message, CreatedAt FROM ContactMessages ORDER BY CreatedAt DESC", con);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
@@ -44,6 +44,8 @@ namespace WebApplication1
                 gvComments.DataSource = dt;
                 gvComments.DataBind();
             }
+
+            lblTotalMessages.Text = dt.Rows.Count.ToString();
             con.Close();
         }
 
@@ -54,7 +56,7 @@ namespace WebApplication1
                 int messageId = Convert.ToInt32(e.CommandArgument);
 
                 getcon();
-                cmd = new SqlCommand("delete from ContactMessages where Id=" + messageId, con);
+                cmd = new SqlCommand("DELETE FROM ContactMessages WHERE Id = " + messageId, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
