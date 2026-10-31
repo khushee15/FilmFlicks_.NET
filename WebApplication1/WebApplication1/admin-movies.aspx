@@ -1,5 +1,7 @@
 <%@ Page Title="Manage Movies - FilmFlicks Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-movies.aspx.cs" Inherits="WebApplication1.admin_movies" %>
 
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap 5 & Icons CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -244,6 +246,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<%--    <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />--%>
     <!-- SIDEBAR -->
     <nav class="admin-sidebar">
         <a href="admin-dashboard.aspx" class="sidebar-brand">
@@ -258,6 +261,8 @@
             <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
             <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
             <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
+                        <li><a href="admin-reports.aspx" ><i class="bi bi-file-earmark-bar-graph-fill"></i> <span>Reports</span></a></li>
+
         </ul>
 
         <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
@@ -272,12 +277,16 @@
     <!-- MAIN CONTENT AREA -->
     <main class="admin-main-content">
         
-        <!-- Header Title -->
-        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+        <!-- Header Title with Report Button on Top-Right -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25">
             <div>
                 <h3 class="fw-bold text-white mb-1">Movie Catalog Management</h3>
                 <p class="text-white-50 small mb-0">Add new movies, update download links, media files and manage movie library.</p>
             </div>
+         <%--   <div>
+     <asp:Button ID="btnDownloadReport" runat="server" Text="Download Report" CssClass="btn btn-outline-light btn-sm px-3" OnClick="btnDownloadReport_Click" />
+
+ </div>--%>
         </div>
 
         <!-- Notification Message -->
@@ -393,22 +402,22 @@
                             <tbody>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <tr>
-                            <td class="fw-bold text-white-50">#<%# Eval("MovieID") %></td>
-                            <td>
-                                <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' width="40" height="52" class="rounded" style="object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
-                            </td>
-                            <td class="fw-semibold text-white"><%# Eval("Title") %></td>
-                            <td><span class="badge bg-primary px-2 py-1"><%# Eval("QualityTag") %></span></td>
-                            <td class="text-end">
-                                <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("MovieID") %>' CssClass="action-btn-warning me-1" ToolTip="Edit Movie">
-                                    <i class="bi bi-pencil"></i>
-                                </asp:LinkButton>
-                                <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("MovieID") %>' CssClass="action-btn-danger" OnClientClick="return confirm('Are you sure you want to delete this movie?');" ToolTip="Delete Movie">
-                                    <i class="bi bi-trash"></i>
-                                </asp:LinkButton>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td class="fw-bold text-white-50">#<%# Eval("MovieID") %></td>
+                                    <td>
+                                        <img src='<%# ResolveUrl(Eval("PosterUrl").ToString()) %>' width="40" height="52" class="rounded" style="object-fit: cover; border: 1px solid rgba(255,255,255,0.1);" />
+                                    </td>
+                                    <td class="fw-semibold text-white"><%# Eval("Title") %></td>
+                                    <td><span class="badge bg-primary px-2 py-1"><%# Eval("QualityTag") %></span></td>
+                                    <td class="text-end">
+                                        <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("MovieID") %>' CssClass="action-btn-warning me-1" ToolTip="Edit Movie">
+                                            <i class="bi bi-pencil"></i>
+                                        </asp:LinkButton>
+                                        <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("MovieID") %>' CssClass="action-btn-danger" OnClientClick="return confirm('Are you sure you want to delete this movie?');" ToolTip="Delete Movie">
+                                            <i class="bi bi-trash"></i>
+                                        </asp:LinkButton>
+                                    </td>
+                                </tr>
                     </ItemTemplate>
                     <FooterTemplate>
                             </tbody>

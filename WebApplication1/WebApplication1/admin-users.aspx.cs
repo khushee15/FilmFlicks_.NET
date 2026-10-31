@@ -9,6 +9,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web.Design;
+
 namespace WebApplication1
 {
     public partial class admin_users : System.Web.UI.Page
@@ -19,6 +23,9 @@ namespace WebApplication1
         DataTable dt;
         DataSet ds;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
+
+        private CrystalDecisions.CrystalReports.Engine.ReportDocument cr = new ReportDocument();
+        static string Crypath = "";
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -114,6 +121,23 @@ namespace WebApplication1
         {
             gridfill(txtSearch.Text.Trim());
         }
-    
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            //getcon();
+            //da = new SqlDataAdapter("select * from users_tbl", con);
+            //ds = new DataSet();
+            //da.Fill(ds);
+            //string s = Server.MapPath("~/user.xml");
+            //ds.WriteXmlSchema(s);
+
+            //string path = Server.MapPath("~/user.rpt");
+            //cr.Load(path);
+            //cr.SetDataSource(ds.Tables[0]);
+            //cr.Refresh();
+            //CrystalReportViewer1.ReportSource = cr;
+            //cr.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+            //Response, true, "users_tbl");
+        }
     }
 }

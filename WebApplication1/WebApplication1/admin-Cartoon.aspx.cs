@@ -6,6 +6,10 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web.Design;
+
 namespace WebApplication1
 {
     public partial class admin_Cartoon : System.Web.UI.Page
@@ -13,8 +17,16 @@ namespace WebApplication1
         SqlConnection con;
         SqlCommand cmd;
         SqlDataAdapter da;
+        DataSet ds;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         string posterPath = "", ss1Path = "", ss2Path = "", ss3Path = "", ss4Path = "";
+
+        private CrystalDecisions.CrystalReports.Engine.ReportDocument cr
+= new ReportDocument();
+        static string Crypath = "";
+
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -94,6 +106,7 @@ namespace WebApplication1
             }
         }
 
+     
         protected void btnSave_Click(object sender, EventArgs e)
         {
             int cartoonId = Convert.ToInt32(string.IsNullOrEmpty(hfCartoonID.Value) ? "0" : hfCartoonID.Value);
@@ -189,7 +202,23 @@ namespace WebApplication1
                 BindCartoonDirectory();
             }
         }
+        protected void btnDownloadReport_Click(object sender, EventArgs e)
+        {
+            //getcon();
+            //da = new SqlDataAdapter("select * from Cartoons", con);
+            //ds = new DataSet();
+            //da.Fill(ds);
+            //string s = Server.MapPath("~/cartoons.xml");
+            //ds.WriteXmlSchema(s);
 
+            //string path = Server.MapPath("~/Cartoons.rpt");
+            //cr.Load(path);
+            //cr.SetDataSource(ds.Tables[0]);
+            //cr.Refresh();
+            //CrystalReportViewer1.ReportSource = cr;
+            //cr.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+            //Response, true, "Crtoons");
+        }
         void ClearForm()
         {
             hfCartoonID.Value = "0";

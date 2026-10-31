@@ -40,6 +40,8 @@
         <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
         <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
         <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
+                        <li><a href="admin-reports.aspx" ><i class="bi bi-file-earmark-bar-graph-fill"></i> <span>Reports</span></a></li>
+
       </ul>
 
       <div class="pt-3 border-top border-secondary border-opacity-25">

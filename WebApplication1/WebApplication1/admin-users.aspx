@@ -1,5 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin-users.aspx.cs" Inherits="WebApplication1.admin_users" %>
 
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -150,11 +152,13 @@
 
                 <ul class="sidebar-menu">
                    <li><a href="admin-webseries.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage webseries</span></a></li>
-<li><a href="admin-movies.aspx" ><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
- <li><a href="admin-Cartoon.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Cartoon</span></a></li>
-<li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
-<li><a href="admin-users.aspx" class="active"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
-<li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
+                   <li><a href="admin-movies.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Movies</span></a></li>
+                   <li><a href="admin-Cartoon.aspx"><i class="bi bi-collection-play-fill"></i> <span>Manage Cartoon</span></a></li>
+                   <li><a href="admin-movierequest.aspx"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
+                   <li><a href="admin-users.aspx" class="active"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
+                   <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
+                        <li><a href="admin-reports.aspx" ><i class="bi bi-file-earmark-bar-graph-fill"></i> <span>Reports</span></a></li>
+
                 </ul>
 
                 <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
@@ -167,13 +171,20 @@
             <!-- MAIN CONTENT AREA -->
             <main class="admin-main-content">
                 
-                <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+                <!-- HEADER SECTION: Perfect Alignment with Flexbox -->
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25">
                     <div>
                         <h3 class="fw-bold text-white mb-1">User Account Management</h3>
                         <p class="text-white-50 small mb-0">Manage registered users and remove accounts.</p>
                     </div>
-                    <div class="d-flex gap-2">
+
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- Report Button with Proper CSS Class -->
+                      <%--  <asp:Button ID="Button1" runat="server" Text="Report" CssClass="btn btn-outline-light btn-sm px-3" OnClick="Button1_Click" />--%>
+                        
+                        <!-- Search TextBox -->
                         <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Search user..." Style="width: 220px;" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
+<%--                        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />--%>
                     </div>
                 </div>
 

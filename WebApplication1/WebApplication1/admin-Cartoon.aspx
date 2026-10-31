@@ -1,5 +1,7 @@
 <%@ Page Title="Manage Cartoon - FilmFlicks Admin" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="admin-Cartoon.aspx.cs" Inherits="WebApplication1.admin_Cartoon" %>
 
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap 5 & Icons CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -240,6 +242,8 @@
             <li><a href="admin-movierequest.aspx" ><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
             <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
             <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
+                        <li><a href="admin-reports.aspx" ><i class="bi bi-file-earmark-bar-graph-fill"></i> <span>Reports</span></a></li>
+
         </ul>
 
         <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
@@ -259,7 +263,16 @@
             <div>
                 <h3 class="fw-bold text-white mb-1">Cartoon Catalog Management</h3>
                 <p class="text-white-50 small mb-0">Add new cartoons, anime, update download links, media files and manage cartoon library.</p>
+<%--                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />--%>
             </div>
+
+
+<%--            <div>
+                <asp:Button ID="btnDownloadReport" runat="server" Text="Download Report" CssClass="btn btn-outline-light btn-sm px-3" OnClick="btnDownloadReport_Click" />
+
+            </div>
+
+  --%>
         </div>
 
         <!-- Notification Message -->

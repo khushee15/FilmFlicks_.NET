@@ -47,6 +47,8 @@
 <li><a href="admin-movierequest.aspx" class="active"><i class="bi bi-send-fill"></i> <span>Movie Requests</span></a></li>
 <li><a href="admin-users.aspx"><i class="bi bi-people-fill"></i> <span>Users</span></a></li>
 <li><a href="admin-comments.aspx"><i class="bi bi-chat-left-text-fill"></i> <span>Comments</span></a></li>
+                        <li><a href="admin-reports.aspx" ><i class="bi bi-file-earmark-bar-graph-fill"></i> <span>Reports</span></a></li>
+
  </ul>
         <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
             <a href="index.aspx" class="text-danger d-flex align-items-center gap-2 p-2 text-decoration-none fw-semibold">

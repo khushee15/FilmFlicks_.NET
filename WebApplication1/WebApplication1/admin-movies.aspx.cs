@@ -1,3 +1,4 @@
+using CrystalDecisions.Shared;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,6 +11,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Web.Design;
 namespace WebApplication1
 {
     public partial class admin_movies : System.Web.UI.Page
@@ -17,8 +22,14 @@ namespace WebApplication1
         SqlConnection con;
         SqlCommand cmd;
         SqlDataAdapter da;
+        DataTable dt;
+        DataSet ds;
         string s = ConfigurationManager.ConnectionStrings["dbcon"].ConnectionString;
         string posterPath = "", ss1Path = "", ss2Path = "", ss3Path = "", ss4Path = "";
+
+        private CrystalDecisions.CrystalReports.Engine.ReportDocument cr
+    = new ReportDocument();
+        static string Crypath = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +39,25 @@ namespace WebApplication1
                 ViewState["IsLoaded"] = true;
             }
         }
+       protected void btnDownloadReport_Click(object sender, EventArgs e)
+        {
+            //getcon();
+            //da = new SqlDataAdapter("select * from Movies", con);
+            //ds = new DataSet();
+            //da.Fill(ds);
+            //string s = Server.MapPath("~/movies.xml");
+            //ds.WriteXmlSchema(s);
 
+
+            //string path = Server.MapPath("~/Movies.rpt");
+            //cr.Load(path);
+            //cr.SetDataSource(ds.Tables[0]);
+            //cr.Refresh();
+            //CrystalReportViewer1.ReportSource = cr;
+            //cr.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+            //  Response, true, "Movies");
+
+        }
         void getcon()
         {
             con = new SqlConnection(s);
@@ -96,6 +125,10 @@ namespace WebApplication1
                 ss4Path = "~/screnshort/" + Guid.NewGuid().ToString() + "_" + Path.GetFileName(fSS4.FileName);
                 fSS4.SaveAs(Server.MapPath(ss4Path));
             }
+        }
+
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
